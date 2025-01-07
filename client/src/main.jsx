@@ -6,7 +6,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ToastContainer position='top-center' hideProgressBar={true} autoClose={3000} />
+    <ToastContainer position='top-center' hideProgressBar={true} autoClose={false} closeButton={false}/>
     <App />
   </StrictMode>,
 )
