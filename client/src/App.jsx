@@ -1,9 +1,8 @@
 import React from "react"
-import { 
-  MainLayout,
-  LoginPage,
-  RegisterPage
-} from './pages'
+import { MainLayout, LoginPage, RegisterPage} from './pages'
+
+import { DashboardUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
+import { pengajuanLoader, profileLoader, statusLoader } from './pages/user'
 
 import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
@@ -30,7 +29,25 @@ const App = () => {
       ]
     },
     {
-      path: '/user'
+      path: '/user',
+      element: <DashboardUser />,
+      children: [
+        {
+          index: true,
+          element: <StatusPengajuanUser />,
+          loader: statusLoader
+        },
+        {
+          path: 'pengajuan',
+          element: <PengajuanUser />,
+          loader: pengajuanLoader
+        },
+        {
+          path: 'profil',
+          element: <ProfilUser />,
+          loader: profileLoader
+        }
+      ]
     },
     {
       path: '/rt'
