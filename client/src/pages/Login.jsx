@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AtSign, KeyRound, X, EyeClosed, Eye, LoaderCircle } from 'lucide-react'
-import { Form, Link, useNavigation } from 'react-router-dom'
+import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { toast } from 'react-toastify'
 
@@ -11,14 +11,15 @@ export const action = async({ request }) => {
 
   try {
     const { data: response } = await customFetch.post('/auth/login', data)
-    const { role } = response
-    console.log(response);
-    
+    const { role } = response.user
+
     toast.success('berhasil masuk')
-
-
-
+    if (role === "USER") {
+      return redirect('/user')
+    }
+  
     return '.'
+
   } catch (error) {
     toast.error(error.response.data.msg);
     return error
