@@ -7,8 +7,6 @@ import { NotAuthenticatedError } from '../middleware/ErrorHandlerMiddleware.js'
 const login = async(req, res) => {
 
     const user = await User.findOne({email: req.body.email})
-    console.log(user);
-    
     const isPasswordValid = await comparePassword(req.body.password, user.password);
 
     if (!isPasswordValid) {
@@ -23,7 +21,8 @@ const login = async(req, res) => {
     });
 
 
-    return res.status(StatusCodes.OK).json({ msg: 'berhasil login' })
+    const { password, ...userWithoutPassword } = user._doc;
+    return res.status(StatusCodes.OK).json({ msg: 'berhasil login',  user: userWithoutPassword})
 
 };
 

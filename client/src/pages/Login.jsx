@@ -10,8 +10,14 @@ export const action = async({ request }) => {
   const data = Object.fromEntries(formData)
 
   try {
-    await customFetch.post('/auth/login', data)
+    const { data: response } = await customFetch.post('/auth/login', data)
+    const { role } = response
+    console.log(response);
+    
     toast.success('berhasil masuk')
+
+
+
     return '.'
   } catch (error) {
     toast.error(error.response.data.msg);
