@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Scan } from 'lucide-react'
 import { Form } from 'react-router-dom'
+import { baubauData } from '../../utils/constant'
 import { FormInput, FormTextarea } from '../../components'
 
 export const loader = async() => {
@@ -8,9 +9,6 @@ export const loader = async() => {
 }
 
 const PengajuanUser = () => {
-
-  // const [ktpImage, setKtpImage] = useState(null)
-  // const [kkImage, setKkImage] = useState(null)
 
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
   const imageUpload = (event, name) => {
@@ -21,6 +19,20 @@ const PengajuanUser = () => {
     }
   }
 
+
+  const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
+  const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
+  
+  
+  const setChaining = (event) => {
+    setSelectedKecamatan(event.target.value)
+
+    const getKecamatan = baubauData.find(item => {
+      return item.kecamatan === (event.target.value || selectedKecamatan) 
+    })
+
+    setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
+  }
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center justify-center flex-col'>
@@ -71,6 +83,29 @@ const PengajuanUser = () => {
                 <FormInput inputName='pekerjaanIbu' placeholder='Pekerjaan'Tanggal lahir labelInput='pekerjaan' />
                 <FormInput inputName='tanggalLahirIbu' placeholder='kota lahir'Tanggal lahir labelInput='Tempat lahir' />
                 <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir'Tanggal lahir labelInput='Tanggal lahir' inputType='date' />
+              </article>
+
+              <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Tujuan Pengajuan</h4>
+
+              <article className='grid grid-cols-2 gap-4'>
+                {/* chaining kecamatan dan kelurahan */}
+                <div className='w-full flex flex-col gap-x-1'>
+                  <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kecamatan</label>
+                    <select onChange={(e) => setChaining(e)} className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase'  name='kecamatan' id='kecamatan' >
+                      {baubauData.map((item, index) => {
+                        return <option key={index} value={item.kecamatan} className='capitalize'>{item.kecamatan}</option>
+                      })}
+                    </select>
+                </div>
+
+                <div className='w-full flex flex-col gap-x-1'>
+                  <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kelurahan</label>
+                    <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' name='kelurahan' id='kelurahan' >
+                      {selectedKelurahan.map((item, index) => {
+                        return <option key={index} value={item} className='capitalize'>{item}</option>
+                      })}
+                    </select>
+                </div>
               </article>
 
             </section>
