@@ -1,5 +1,5 @@
 import React, { useContext, createContext } from 'react'
-import { Outlet, redirect, useLoaderData } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
@@ -12,18 +12,20 @@ export const loader = async() => {
     return data
   } catch (error) {
     console.log(error.response.data.msg);
-    return error
+    return redirect('/')
   }
 }
 
 const DashboardUser = () => {
 
   const { user } = useLoaderData()
+  const navigate = useNavigate()
+  
 
   const logoutUser = async() => {
-    handleToast('info', 'Logout Berhasil', 'Senang Dapat Melayani Anda !')
+    handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
     await customFetch.get('/auth/logout')
-    return redirect('/')
+    return navigate('/')
   }
 
   return (
@@ -33,7 +35,7 @@ const DashboardUser = () => {
     }}>
 
       <div className='w-full h-[100vh] flex overflow-hidden'>
-        <Sidebar data={user} />
+        <Sidebar data={user} logoutUser={logoutUser} />
 
         <div className='flex-1'>
           <Outlet />
