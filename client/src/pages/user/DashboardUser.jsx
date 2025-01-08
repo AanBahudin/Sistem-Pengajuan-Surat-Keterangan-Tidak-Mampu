@@ -1,5 +1,6 @@
 import React, { useContext, createContext } from 'react'
 import { Outlet } from 'react-router-dom'
+import { Sidebar } from '../../components'
 
 const DashboardUserContext = createContext()
 
@@ -8,7 +9,15 @@ const DashboardUser = () => {
 
   return (
     <DashboardUserContext.Provider value={{}}>
-      <Outlet />
+
+      <div className='w-full h-[100vh] flex overflow-hidden'>
+        <Sidebar />
+
+        <div className='flex-1'>
+          <Outlet />
+        </div>
+      </div>
+
     </DashboardUserContext.Provider>
   )
 }
