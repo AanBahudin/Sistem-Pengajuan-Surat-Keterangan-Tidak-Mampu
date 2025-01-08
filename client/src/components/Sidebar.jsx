@@ -30,7 +30,7 @@ const Sidebar = () => {
           
           <div>
             <h1 className='text-sm text-slate-900 font-bold'>Aan Bahudin</h1>
-            <p className='text-[12px] text-slate-500'>aanbahudin@gmail.com</p>
+            <p className='text-[12px] text-slate-500 truncate'>aanbahudin@gmail.com</p>
             <button className='text-[12px] bg-slate-200 border-[1px] border-newRed/40 w-full py-1 rounded-md mt-2 hover:bg-newRed hover:text-white cursor-default duration-200 ease-in-out'>keluar</button>
           </div>
       </section>
