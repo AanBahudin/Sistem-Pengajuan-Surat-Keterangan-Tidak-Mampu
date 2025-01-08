@@ -1,7 +1,7 @@
 import React from 'react'
 import { toast } from 'react-toastify'
 import { Check, X } from 'lucide-react'
-import { useUserDashboardContext } from './DashboardUser'
+import { useAppContext } from '../../App'
 
 export const loader = async() => {
   return null
@@ -9,10 +9,8 @@ export const loader = async() => {
 
 const StatusPengajuanUser = () => {
 
-  const { handleToast } = useUserDashboardContext()
   return (
     <div>
-      <button onClick={() => handleToast('info', 'Pengajuan anda diterima !', 'Surat keterangan akan segera dibuat')}> show toast </button>
     </div>
   )
 }
