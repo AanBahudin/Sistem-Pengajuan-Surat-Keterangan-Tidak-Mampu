@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { userRole } from '../utils/constants.js'
 
 const DataSchema = mongoose.Schema({
-    id_permohonan : {
+    id_pemohon : {
         type: mongoose.Types.ObjectId,
         ref: "User"
     },

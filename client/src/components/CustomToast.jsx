@@ -20,7 +20,7 @@ import { Check, Info, TriangleAlert, CircleAlert } from 'lucide-react'
     )
   }
 
-  export const handleToast = (type, title, deskripsi) => {
+  export const handleToast = (type, title, deskripsi, closeTime) => {
       
       let bg = 'bg-newGreen';
   
@@ -36,6 +36,7 @@ import { Check, Info, TriangleAlert, CircleAlert } from 'lucide-react'
   
       return toast(<CustomToast type={type} title={title} description={deskripsi} />, {
         closeButton: false,
+        autoClose: closeTime === false ? false : closeTime,
         className: `py-1 px-4 w-[400px] ${bg} border-[1px] border-slate-300 rounded-xl`,
         ariaLabel: 'Login Berhasil',
       })

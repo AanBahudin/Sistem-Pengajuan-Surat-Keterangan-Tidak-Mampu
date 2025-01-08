@@ -20,7 +20,13 @@ export const action = async({ request }) => {
     return '.'
 
   } catch (error) {
-    toast.error(error.response.data.msg);
+    const errArr = error.response.data.msg
+
+    if (typeof errArr === 'string') {
+      handleToast('error', 'Ada yang tidak beres', errArr, 4000)
+    } else {
+      handleToast('error', 'Ada yang tidak beres', errArr.join(', '), 4000)
+    }
     return error
   }
   

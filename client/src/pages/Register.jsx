@@ -16,10 +16,9 @@ export const action = async({ request }) => {
     const errArr = error.response.data.msg
 
     if (typeof errArr === 'string') {
-      handleToast('error', 'Ada yang tidak beres', errArr)
-      toast.error(errArr)
+      handleToast('error', 'Ada yang tidak beres', errArr, 4000)
     } else {
-      handleToast('error', 'Ada yang tidak beres', errArr.join(', '))
+      handleToast('error', 'Ada yang tidak beres', errArr.join(', '), 4000)
     }
     return error
   }

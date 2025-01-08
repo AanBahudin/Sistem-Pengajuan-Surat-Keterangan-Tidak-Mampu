@@ -68,7 +68,7 @@ const App = () => {
   return (
 
     <>
-      <ToastContainer position='top-right' hideProgressBar={true} autoClose={3000} closeButton={false}/>
+      <ToastContainer position='top-right' hideProgressBar={true} closeButton={false}/>
       <AppContext.Provider value={{}}>
         <div className='h-[100vh] w-full'>
           <RouterProvider router={router} />
