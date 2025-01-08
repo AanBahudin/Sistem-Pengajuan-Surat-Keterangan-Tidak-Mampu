@@ -32,6 +32,6 @@ const DataSchema = new mongoose.Schema({
         ref: "User"
     },
     nama : String
-});
+}, { timestamps:true });
 
 export default mongoose.model("Data", DataSchema)
