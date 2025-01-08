@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUserDashboardContext } from './DashboardUser'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { FormInput, FormTextarea } from '../../components'
+import { baubauData } from '../../utils/constant'
 
 export const loader = async() => {
   return null
@@ -12,6 +13,26 @@ const ProfilUser = () => {
 
   const { user } = useUserDashboardContext()
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
+  const [selectedKecamatan, setSelectedKecamatan] = useState('Wolio')
+  const [selectedKelurahan, setSelectedKelurahan] = useState([])
+
+  useEffect(() => {
+    const getKecamatan = baubauData.find(item => {
+      return item.kecamatan === selectedKecamatan
+    })
+
+    setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
+  }, [])
+
+  const setChaining = (event) => {
+    setSelectedKecamatan(event.target.value)
+
+    const getKecamatan = baubauData.find(item => {
+      return item.kecamatan === (event.target.value || selectedKecamatan) 
+    })
+
+    setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
+  }  
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center flex-col'>
@@ -71,8 +92,26 @@ const ProfilUser = () => {
                   {/* sisi kiri */}
                   <article className='w-full col-span-7 gap-x-6 gap-y-4 grid grid-cols-2'>
                     <FormInput inputName='Kota' placeholder='nomor induk keluarga' labelInput='Kota' isReadOnly={!isEdit} defaultValue='Baubau' />
-                    <FormInput inputName='Kecamatan' placeholder='nomor induk keluarga' labelInput='Kecamatan' isReadOnly={!isEdit} defaultValue='Wolio' />
-                    <FormInput inputName='Kelurahan' placeholder='nomor induk keluarga' labelInput='Kelurahan' isReadOnly={!isEdit} defaultValue='Bukit Wolio Indah' />
+
+                    {/* chaining kecamatan dan kelurahan */}
+                    <div className='w-full flex flex-col gap-x-1'>
+                      <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kecamatan</label>
+                        <select onChange={(e) => setChaining(e)} className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' defaultValue='Wolio' name='kecamatan' id='kecamatan' disabled={!isEdit} value={!isEdit ? 'Wolio' : null}>
+                          {baubauData.map((item, index) => {
+                            return <option key={index} value={item.kecamatan} className='capitalize'>{item.kecamatan}</option>
+                          })}
+                        </select>
+                    </div>
+
+                    <div className='w-full flex flex-col gap-x-1'>
+                      <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kelurahan</label>
+                        <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' defaultValue='Bukit Wolio Indah' name='kelurahan' id='kelurahan' disabled={!isEdit} value={!isEdit ? 'Bukit Wolio Indah' : null}>
+                          {selectedKelurahan.map((item, index) => {
+                            return <option key={index} value={item} className='capitalize'>{item}</option>
+                          })}
+                        </select>
+                    </div>
+
                     <FormInput inputName='RT' placeholder='nomor induk keluarga' labelInput='Rukun Warga' isReadOnly={!isEdit} defaultValue='016' />
                     <FormInput inputName='RW' placeholder='nomor induk keluarga' labelInput='Rukun Tetangga' isReadOnly={!isEdit} defaultValue='004' />
                   </article>

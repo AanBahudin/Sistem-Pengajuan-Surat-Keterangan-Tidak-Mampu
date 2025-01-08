@@ -101,8 +101,8 @@ const Login = () => {
           </div>
         </div>
 
-        <div className='w-full h-full bg-newYellow rounded-r-xl'>
-          <h1>Picture section</h1>
+        <div className='w-full h-full bg-gradient-to-b from-newBlue to-blue-500 rounded-r-xl'>
+          {/* <h1>Picture section</h1> */}
         </div>
       </section>
 
