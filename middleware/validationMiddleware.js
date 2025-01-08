@@ -28,9 +28,9 @@ const withValidationErrors = (validateValues) => {
 export const validateLogin = withValidationErrors([
     body('email')
         .notEmpty()
-        .withMessage('Please provide email')
+        .withMessage('Email tidak boleh kosong')
         .isEmail()
-        .withMessage('Email is not valid')
+        .withMessage('Email tidak sesuai')
         .custom(async(email) => {
             const isEmailExist = await User.findOne({email: email});
             if (!isEmailExist) {
@@ -39,9 +39,9 @@ export const validateLogin = withValidationErrors([
         }),
     body('password')
         .notEmpty()
-        .withMessage('Please provide password')
+        .withMessage('Password tidak boleh kosong')
         .isLength({ min: 6, max: 10 })
-        .withMessage('Password min 6, max 10 characters')
+        .withMessage('Password minimal 6 dan maksimal 15 karakter')
 ])
 
 export const validateRegister = withValidationErrors([
