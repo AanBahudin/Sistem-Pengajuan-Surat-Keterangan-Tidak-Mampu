@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom'
 const SidebarLink = ({ icon, name, path }) => {
   return (
     <NavLink className={({ isActive }) =>
-      `border-l-[2px] hover:shadow-md group hover:bg-slate-200 w-full px-2 py-5 
-       border-transparent hover:border-l-[2px] rounded-md hover:border-newBlue 
+      `border-l-[4px] hover:shadow-md group hover:bg-slate-200 w-full px-2 py-5 
+       border-transparent hover:border-l-[4px] rounded-md hover:border-newBlue 
        duration-200 ease-in-out pl-4 ${isActive ? 'bg-slate-200 text-slate-900' : ''}`
     } end={true} to={path}>
         <div className='flex items-center justify-between'>
