@@ -9,11 +9,11 @@ export const sidebarLinks = [
     {
         icon: <SquarePlus  className='w-5 h-5 stroke-slate-700 group-hover:stroke-slate-900' />,
         name: 'Pengajuan',
-        path: '/pengajuan'
+        path: 'pengajuan'
     },
     {
         icon: <SquareUserIcon  className='w-5 h-5 stroke-slate-700 group-hover:stroke-slate-900' />,
         name: 'Profil',
-        path: '/profil'
+        path: 'profil'
     },
 ]
