@@ -13,7 +13,6 @@ export const action = async({ request }) => {
     const { data: response } = await customFetch.post('/auth/login', data)
     const { role } = response.user
 
-    toast.success('berhasil masuk')
     if (role === "USER") {
       return redirect('/user')
     }
