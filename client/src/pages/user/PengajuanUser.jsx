@@ -1,14 +1,40 @@
 import React, { useState } from 'react'
 import { Scan, LoaderCircle } from 'lucide-react'
-import { Form, useNavigation } from 'react-router-dom'
+import { Form, redirect, useNavigation } from 'react-router-dom'
 import { baubauData } from '../../utils/constant'
 import { FormInput, FormTextarea } from '../../components'
+import { handleToast } from '../../components/CustomToast'
+import customFetch from '../../utils/customFetch'
 
 export const loader = async() => {
   return null
 }
 
+export const action = async({ request }) => {
+  const formData = await request.formData()
+  try {
+    customFetch.post('/data', formData)
+    handleToast('success', 'Pengajuan dikirim', 'Ajuanmu telah dikirim. Lihat detailnya dimenu informasi', 3000)
+    return redirect('/user')
+  } catch (error) {
+    const errArr = error.response.data.msg
+
+    if (typeof errArr === 'string') {
+      handleToast('error', 'Ada yang tidak beres', errArr, 4000)
+    } else {
+      handleToast('error', 'Ada yang tidak beres', errArr.join(', '), 4000)
+    }
+    return error
+  }
+}
+
 const PengajuanUser = () => {
+  
+  const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
+  const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
+  const navigation = useNavigation()
+  const isSubmitting = navigation.state === 'submitting'
+
 
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
   const imageUpload = (event, name) => {
@@ -19,31 +45,28 @@ const PengajuanUser = () => {
     }
   }
 
-
-  const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
-  const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
-  const isSubmitting = useNavigation().state === 'submitting'
-  
   const setChaining = (event) => {
     setSelectedKecamatan(event.target.value)
 
     const getKecamatan = baubauData.find(item => {
-      return item.kecamatan === (event.target.value || selectedKecamatan) 
+      item.kecamatan === (event.target.value || selectedKecamatan) 
     })
 
     setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
   }
 
+  
+
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center justify-center flex-col'>
 
-      {/* welcome sign */}
+      welcome sign
       <section className='w-full h-full rounded-xl p-4'>
         <h1 className='text-4xl font-semibold text-slate-900'>Ajukan Surat Keterangan Tidak Mampu Anda!</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Isi formulir pengajuan di bawah ini untuk memulai proses permohonan. Pastikan data yang Anda masukkan lengkap dan benar agar proses berjalan lancar.</p>
 
         {/* container pengajuan */}
-        <Form method='POST' className='mt-10 w-full'>
+        <Form method='POST' encType='multipart/form-data' className='mt-10 w-full'>
 
           <div className='w-full grid grid-cols-12 gap-x-6'>
 
@@ -151,7 +174,7 @@ const PengajuanUser = () => {
             </section>
 
             <div className='col-span-7 mt-6 mb-20 flex flex-col'>
-              <button disabled={isSubmitting} className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+              <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
                 { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
                 <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
               </button>

@@ -6,7 +6,7 @@ const FormInput = ({ labelInput, inputType='text', inputName, placeholder, isAut
       <label htmlFor="Nama" className='text-slate-800 font-semibold capitalize'>{ labelInput }</label>
 
       {inputType === 'select' ? (
-        <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' defaultValue={defaultValue} name={inputName} id={inputName} disabled={isReadOnly} value={isReadOnly ? defaultValue : null}>
+        <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' defaultValue={defaultValue} name={inputName} id={inputName} disabled={isReadOnly} value={isReadOnly ? defaultValue : ''}>
           {list.map((item, index) => {
             return <option value={item} className='capitalize'>{item}</option>
           })}

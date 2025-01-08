@@ -7,6 +7,7 @@ import { MainLayout, LoginPage, RegisterPage} from './pages'
 // user page import
 import { DashboardUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
 import { dashboardUserLoader, pengajuanLoader, profileLoader, statusLoader } from './pages/user'
+import { pengajuanAction } from "./pages/user"
 
 import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
@@ -48,6 +49,7 @@ const App = () => {
         {
           path: 'pengajuan',
           element: <PengajuanUser />,
+          action: PengajuanUser,
           loader: pengajuanLoader
         },
         {
