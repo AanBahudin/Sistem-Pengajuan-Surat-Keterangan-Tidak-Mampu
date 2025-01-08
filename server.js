@@ -13,6 +13,7 @@ import dataRouter from './router/dataRoute.js';
 
 // middleware
 import errorHandlerMiddleware from './errors/ErrorHandler.js'
+import { authenticatedUser } from './middleware/authMiddleware.js';
 
 // using package
 const app = express();
@@ -29,8 +30,8 @@ cloudinary.config({
 })
 
 // route
-app.use('/api/v1/users', userRouter);
-app.use('/api/v1/data', dataRouter);
+app.use('/api/v1/users', authenticatedUser, userRouter);
+app.use('/api/v1/data', authenticatedUser, dataRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use(errorHandlerMiddleware);
