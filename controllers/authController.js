@@ -33,9 +33,13 @@ const register = async(req, res) => {
     return res.status(StatusCodes.OK).json({msg: 'Berhasil daftar'})
 };
 
-const logout = async(req, res) => {
-    res.send('logout route');
-};
+export const logout = async(req, res) => {
+    res.cookie('token', 'logout', {
+        expires: new Date(Date.now())
+    })
+
+    return res.status(StatusCodes.OK).json({ msg: 'Successfully logout' })
+}
 
 export {
     login,

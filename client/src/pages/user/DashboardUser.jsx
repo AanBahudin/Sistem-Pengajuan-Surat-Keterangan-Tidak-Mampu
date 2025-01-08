@@ -1,7 +1,8 @@
 import React, { useContext, createContext } from 'react'
-import { Outlet, useLoaderData } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
+import { handleToast } from '../../components/CustomToast'
 
 const DashboardUserContext = createContext()
 export const loader = async() => {
@@ -19,9 +20,16 @@ const DashboardUser = () => {
 
   const { user } = useLoaderData()
 
+  const logoutUser = async() => {
+    handleToast('info', 'Logout Berhasil', 'Senang Dapat Melayani Anda !')
+    await customFetch.get('/auth/logout')
+    return redirect('/')
+  }
+
   return (
     <DashboardUserContext.Provider value={{
-      user
+      user,
+      logoutUser
     }}>
 
       <div className='w-full h-[100vh] flex overflow-hidden'>
