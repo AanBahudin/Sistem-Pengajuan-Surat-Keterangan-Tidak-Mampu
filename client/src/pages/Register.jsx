@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AtSign, KeyRound, X, EyeClosed, Eye, LoaderCircle, UserRound } from 'lucide-react'
+import { AtSign, KeyRound, X, EyeClosed, Eye, LoaderCircle, UserRound, Landmark } from 'lucide-react'
 import customFetch from '../utils/customFetch'
 import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -36,6 +36,7 @@ const Register = () => {
 
       <section className='w-full h-[100%] rounded-xl bg-slate-200 flex justify-between items-center shadow-lg'>
         <div className='w-full pl-20 '>
+          <Landmark size={45} className='bg-newBlue py-1 px-2 rounded-md stroke-white mb-2' />
           <h1 className='text-slate-600 font-bold text-2xl'>Selamat Datang di Pengajuan SKTM</h1>
           <p className='text-slate-500 text-sm'>Silahkan daftar terlebih dahulu untuk masuk ke dalam website</p>
 
