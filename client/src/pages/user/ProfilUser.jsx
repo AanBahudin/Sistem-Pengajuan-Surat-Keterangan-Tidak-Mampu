@@ -1,6 +1,6 @@
 import React from 'react'
 import { useUserDashboardContext } from './DashboardUser'
-import { User, Pencil, Camera, X } from 'lucide-react'
+import { User, Pencil, Camera, X, Save } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { FormInput, FormTextarea } from '../../components'
 
@@ -20,12 +20,19 @@ const ProfilUser = () => {
         <p className='text-md w-[80%] mt-2 text-slate-500'>Selamat datang di halaman profil Anda. Di sini, Anda dapat melihat detail informasi pribadi dan memperbaruinya jika diperlukan.</p>
 
         <section className='w-full pb-20 rounded-2xl shadow-lg mt-10'>
-          <div className='w-full h-[30vh] bg-gradient-to-b from-newBlue to-blue-500 rounded-t-2xl flex justify-end items-end p-4 group'>
+          <div className='w-full h-[30vh] bg-gradient-to-b from-newBlue to-blue-500 rounded-t-2xl flex justify-end items-end gap-x-4 p-4 group'>
+
+            { isEdit ? (
+                <button className={`bg-newBlue w-[12%] text-white text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}><Save className='w-4 h-4 stroke-white'/> Simpan</button>
+            ) : null }
+
             <Link to={`${isEdit ? '/user/profil'  : '/user/profil?edit=true'}`} className={`${isEdit ? 'bg-newRed/80 hover:bg-newRed text-white ' : 'bg-white hover:bg-slate-200 text-slate-600 hover:text-slate-950 '} w-[12%] text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}>
               
                 {isEdit ? <X className='w-3 h-3 stroke-white' /> : <Pencil className='w-3 h-3 stroke-slate-600 group-hover:stroke-slate-950' />}
                 {isEdit ? 'Batal' : 'Edit Profil'}
             </Link>
+
+
             <input type="file" name="profile" id="profile" accept='image/*' className='hidden'/>
           </div>
 
