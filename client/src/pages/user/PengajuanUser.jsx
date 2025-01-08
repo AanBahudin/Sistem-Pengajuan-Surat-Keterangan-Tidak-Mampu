@@ -28,35 +28,35 @@ const PengajuanUser = () => {
 
               <article className='grid grid-cols-2 gap-4'>
 
-                <FormInput inputName='nama' placeholder='nama lengkap' isAutoFocus={true} labelInput='Nama' />
-                <FormInput inputName='nik' placeholder='nomor induk keluarga' isAutoFocus={true} labelInput='Nomor induk keluarga' />
-                <FormInput inputName='jenisKelamin' placeholder='masukan jenis kelamin' isAutoFocus={true} labelInput='Jenis kelamin' />
-                <FormInput inputName='pekerjaan' placeholder='Pekerjaan' isAutoFocus={true} labelInput='pekerjaan' />
-                <FormInput inputName='tanggalLahir' placeholder='kota lahir' isAutoFocus={true} labelInput='Tempat lahir' />
-                <FormInput inputName='tempatLahir' placeholder='Kota lahir' isAutoFocus={true} labelInput='Tanggal lahir' inputType='date' />
+                <FormInput inputName='nama' placeholder='nama lengkap'Tanggal lahir labelInput='Nama' isAutoFocus={true} />
+                <FormInput inputName='nik' placeholder='nomor induk keluarga'Tanggal lahir labelInput='Nomor induk keluarga' />
+                <FormInput inputName='jenisKelamin'Tanggal lahir labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} />
+                <FormInput inputName='pekerjaan' placeholder='Pekerjaan'Tanggal lahir labelInput='pekerjaan' />
+                <FormInput inputName='tanggalLahir' placeholder='kota lahir'Tanggal lahir labelInput='Tempat lahir' />
+                <FormInput inputName='tempatLahir' placeholder='Kota lahir'Tanggal lahir labelInput='Tanggal lahir' inputType='date' />
                 
               </article>
 
               <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ayah</h4>
 
               <article className='grid grid-cols-2 gap-4'>
-                <FormInput inputName='namaAyah' placeholder='nama lengkap' isAutoFocus={true} labelInput='Nama ayah' />
-                <FormInput inputName='nikAyah' placeholder='nomor induk keluarga' isAutoFocus={true} labelInput='Nomor induk keluarga' />
-                <FormInput inputName='jenisKelaminAyah' placeholder='masukan jenis kelamin' isAutoFocus={true} labelInput='Jenis kelamin' />
-                <FormInput inputName='pekerjaanAyah' placeholder='Pekerjaan ayah' isAutoFocus={true} labelInput='pekerjaan' />
-                <FormInput inputName='tanggalLahirAyah' placeholder='kota lahir' isAutoFocus={true} labelInput='Tempat lahir' />
-                <FormInput inputName='tempatLahirAyah' placeholder='Kota lahir' isAutoFocus={true} labelInput='Tanggal lahir' inputType='date' />
+                <FormInput inputName='namaAyah' placeholder='nama lengkap'Tanggal lahir labelInput='Nama ayah' />
+                <FormInput inputName='nikAyah' placeholder='nomor induk keluarga'Tanggal lahir labelInput='Nomor induk keluarga' />
+                <FormInput inputName='jenisKelaminAyah'Tanggal lahir labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Pria' />
+                <FormInput inputName='pekerjaanAyah' placeholder='Pekerjaan ayah'Tanggal lahir labelInput='pekerjaan' />
+                <FormInput inputName='tanggalLahirAyah' placeholder='kota lahir'Tanggal lahir labelInput='Tempat lahir' />
+                <FormInput inputName='tempatLahirAyah' placeholder='Kota lahir'Tanggal lahir labelInput='Tanggal lahir' inputType='date' />
               </article>
 
               <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ibu</h4>
 
               <article className='grid grid-cols-2 gap-4'>
-                <FormInput inputName='namaIbu' placeholder='nama lengkap' isAutoFocus={true} labelInput='Nama ibu' />
-                <FormInput inputName='nikIbu' placeholder='nomor induk keluarga' isAutoFocus={true} labelInput='Nomor induk keluarga' />
-                <FormInput inputName='jenisKelaminIbu' placeholder='masukan jenis kelamin' isAutoFocus={true} labelInput='Jenis kelamin' />
-                <FormInput inputName='pekerjaanIbu' placeholder='Pekerjaan' isAutoFocus={true} labelInput='pekerjaan' />
-                <FormInput inputName='tanggalLahirIbu' placeholder='kota lahir' isAutoFocus={true} labelInput='Tempat lahir' />
-                <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir' isAutoFocus={true} labelInput='Tanggal lahir' inputType='date' />
+                <FormInput inputName='namaIbu' placeholder='nama lengkap'Tanggal lahir labelInput='Nama ibu' />
+                <FormInput inputName='nikIbu' placeholder='nomor induk keluarga'Tanggal lahir labelInput='Nomor induk keluarga' />
+                <FormInput inputName='jenisKelaminIbu'Tanggal lahir labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Wanita' />
+                <FormInput inputName='pekerjaanIbu' placeholder='Pekerjaan'Tanggal lahir labelInput='pekerjaan' />
+                <FormInput inputName='tanggalLahirIbu' placeholder='kota lahir'Tanggal lahir labelInput='Tempat lahir' />
+                <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir'Tanggal lahir labelInput='Tanggal lahir' inputType='date' />
               </article>
 
             </section>
