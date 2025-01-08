@@ -1,7 +1,7 @@
 import React from 'react'
 import { toast } from 'react-toastify'
 import { Check, X } from 'lucide-react'
-import { useAppContext } from '../../App'
+import { handleToast } from '../../components/CustomToast'
 
 export const loader = async() => {
   return null
@@ -9,7 +9,6 @@ export const loader = async() => {
 
 const StatusPengajuanUser = () => {
 
-  const { handleToast } = useAppContext()
   return (
     <div>
       <button onClick={() => handleToast('error', 'Pengajuan anda diterima !', 'Surat keterangan akan segera dibuat')}> show toast </button>

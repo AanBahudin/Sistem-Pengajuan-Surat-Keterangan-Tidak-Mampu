@@ -63,34 +63,11 @@ const App = () => {
     }
   ])
 
-  const handleToast = (type, title, deskripsi) => {
-    
-    let bg = 'bg-newGreen';
-
-    if (type === 'success') {
-      bg = 'bg-newGreen'
-    } else if (type === 'info') {
-      bg = 'bg-newBlue'
-    } else if (type === 'error') {
-      bg = 'bg-newRed'
-    } else {
-      bg = 'bg-newYellow'
-    }
-
-    return toast(<CustomToast type={type} title={title} description={deskripsi} />, {
-      closeButton: false,
-      className: `py-1 px-4 w-[400px] ${bg} border-[1px] border-slate-300 rounded-xl`,
-      ariaLabel: 'Login Berhasil',
-    })
-  }
-
   return (
 
     <>
       <ToastContainer position='top-right' hideProgressBar={true} autoClose={3000} closeButton={false}/>
-      <AppContext.Provider value={{
-        handleToast
-      }}>
+      <AppContext.Provider value={{}}>
         <div className='h-[100vh] w-full'>
           <RouterProvider router={router} />
         </div>
