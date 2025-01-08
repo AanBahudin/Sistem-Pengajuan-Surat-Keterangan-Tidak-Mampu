@@ -1,19 +1,30 @@
 import { StatusCodes } from "http-status-codes";
 import { promises as fs } from 'fs'
+import Data from '../models/DataModel.js'
 import cloudinary from 'cloudinary'
 
 const addData = async(req, res) => {
 
-    // if(req.file) {
-    //     const response = await cloudinary.v2.uploader.upload(req.file.path);
-    //     await fs.unlink(req.file.path)
-    //     req.body.photo = response.secure_url
-    //     req.body.photoPublicId = response.public_id
-    // }
-
     console.log(req.body);
-    console.log(req.file);
     
+    req.body.id_pemohon = req.user.userId
+    
+    if(req.files) {
+
+        const fotoKTP = await cloudinary.v2.uploader.upload(req.files.ktp[0].path)
+        const fotoKK = await cloudinary.v2.uploader.upload(req.files.kk[0].path)
+
+        await fs.unlink(req.files.ktp[0].path)
+        await fs.unlink(req.files.kk[0].path)
+
+        req.body.ktp = fotoKTP.secure_url
+        req.body.publicIdKtp = fotoKTP.public_id
+        req.body.kk = fotoKK.secure_url
+        req.body.publicIdKK = fotoKK.public_id
+    }
+
+    
+    await Data.create(req.body)
     return res.status(StatusCodes.OK).json({msg: 'success'})
 };
 

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DataSchema = mongoose.Schema({
+const DataSchema = new mongoose.Schema({
 
     nama: String,
     nik: String,

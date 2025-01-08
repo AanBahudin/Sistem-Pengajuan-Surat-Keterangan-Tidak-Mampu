@@ -1,5 +1,4 @@
 import React, { createContext, useContext } from "react"
-import CustomToast from "./components/CustomToast"
 import { toast, ToastContainer } from "react-toastify"
 
 import { MainLayout, LoginPage, RegisterPage} from './pages'
@@ -49,7 +48,7 @@ const App = () => {
         {
           path: 'pengajuan',
           element: <PengajuanUser />,
-          action: PengajuanUser,
+          action: pengajuanAction,
           loader: pengajuanLoader
         },
         {
