@@ -1,5 +1,5 @@
-import { Scan, SquarePlus } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
+import { Scan } from 'lucide-react'
 import { Form } from 'react-router-dom'
 import { FormInput, FormTextarea } from '../../components'
 
@@ -8,6 +8,20 @@ export const loader = async() => {
 }
 
 const PengajuanUser = () => {
+
+  // const [ktpImage, setKtpImage] = useState(null)
+  // const [kkImage, setKkImage] = useState(null)
+
+  const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
+  const imageUpload = (event, name) => {
+    const file = event.target.files[0]
+    if (file) {
+      setSelectedImage(prevState => ({...prevState, [name]: URL.createObjectURL(file)
+    }));
+    }
+  }
+
+
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center justify-center flex-col'>
 
@@ -69,20 +83,35 @@ const PengajuanUser = () => {
 
               <div className='flex flex-col gap-x-1'>
                 <p className='text-slate-800 font-semibold'>Foto KTP Pemohon</p>
-                <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 resize-none overflow-y-auto flex items-center justify-center' >
-                    <Scan className='w-14 h-14 stroke-slate-500/40' />
+                <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
+                    { selectedImage.ktpImage ? (
+                      <img className='w-full h-full object-contain' src={selectedImage.ktpImage} alt="" />
+                    ) : (
+                      <Scan className='w-14 h-14 stroke-slate-500/40' />
+                    ) }
                 </section>
-                <label htmlFor="ktp" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu identitas</label>
-                <input type="file" name="ktp" id="ktp" accept='image/*' className='hidden' />
+                <div className='flex gap-x-6'>
+                  <button type='button' onClick={() => setSelectedImage(prevState => ({...prevState, ktpImage: null }))}  className={`bg-newRed/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm ${selectedImage.ktpImage ? 'visible' : 'hidden'}`}>Hapus</button>
+                  <label htmlFor="ktp" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu identitas</label>
+                </div>
+                <input type="file" name="ktp" id="ktp" accept='image/*' className='hidden' onChange={(event) => imageUpload(event, 'ktpImage')} />
               </div>
 
               <div className='flex flex-col gap-x-1'>
                 <p className='text-slate-800 font-semibold'>Foto Scan Kartu Keluarga</p>
                 <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 resize-none overflow-y-auto flex items-center justify-center' >
-                    <Scan className='w-14 h-14 stroke-slate-500/40' />
+                    { selectedImage.kkImage ? (
+                      <img className='w-full h-full object-contain' src={selectedImage.kkImage} alt="" />
+                    ) : (
+                      <Scan className='w-14 h-14 stroke-slate-500/40' />
+                    ) }
                 </section>
-                <label htmlFor="kk" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu keluarga</label>
-                <input type="file" name="kk" id="kk" accept='image/*' className='hidden' />
+
+                <div className='flex gap-x-5'>
+                  <button type='button' onClick={() => setSelectedImage(prevState => ({...prevState, kkImage: null }))} htmlFor="kk" className={`bg-newRed/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm ${selectedImage.kkImage ? 'visible' : 'hidden'}`}>Hapus</button>
+                  <label htmlFor="kk" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu keluarga</label>
+                </div>
+                <input type="file" name="kk" id="kk" accept='image/*' className='hidden' onChange={(event) => imageUpload(event, 'kkImage')} />
               </div>
             </section>
 
