@@ -4,6 +4,7 @@ export { default as PengajuanUser } from './PengajuanUser'
 export { default as StatusPengajuanUser } from './StatusPengajuanUser'
 
 // LOADER
+export { loader as dashboardUserLoader } from './DashboardUser'
 export { loader as profileLoader } from './ProfilUser'
 export { loader as pengajuanLoader } from './PengajuanUser'
 export { loader as statusLoader } from './StatusPengajuanUser'

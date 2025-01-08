@@ -1,5 +1,5 @@
 import React, { useContext, createContext } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLoaderData } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 
@@ -7,6 +7,7 @@ const DashboardUserContext = createContext()
 export const loader = async() => {
   try {
     const { data } = await customFetch.get('/user/currentUser')
+    
     return data
   } catch (error) {
     console.log(error.response.data.msg);
@@ -16,11 +17,15 @@ export const loader = async() => {
 
 const DashboardUser = () => {
 
+  const { user } = useLoaderData()
+
   return (
-    <DashboardUserContext.Provider value={{}}>
+    <DashboardUserContext.Provider value={{
+      user
+    }}>
 
       <div className='w-full h-[100vh] flex overflow-hidden'>
-        <Sidebar />
+        <Sidebar data={user} />
 
         <div className='flex-1'>
           <Outlet />

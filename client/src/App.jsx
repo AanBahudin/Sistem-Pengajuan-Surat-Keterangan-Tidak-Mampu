@@ -4,8 +4,9 @@ import { toast, ToastContainer } from "react-toastify"
 
 import { MainLayout, LoginPage, RegisterPage} from './pages'
 
+// user page import
 import { DashboardUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
-import { pengajuanLoader, profileLoader, statusLoader } from './pages/user'
+import { dashboardUserLoader, pengajuanLoader, profileLoader, statusLoader } from './pages/user'
 
 import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
@@ -37,6 +38,7 @@ const App = () => {
     {
       path: '/user',
       element: <DashboardUser />,
+      loader: dashboardUserLoader,
       children: [
         {
           index: true,

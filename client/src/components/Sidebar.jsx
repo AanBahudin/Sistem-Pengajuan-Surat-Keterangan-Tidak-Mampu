@@ -3,7 +3,7 @@ import { Landmark, User } from 'lucide-react'
 import SidebarLink from './SidebarLink'
 import { sidebarLinks } from '../utils/constant'
 
-const Sidebar = () => {
+const Sidebar = ({ data }) => {
   return (
     <div className='w-[15%] bg-slate-100 flex flex-col justify-between'>
 
@@ -29,8 +29,8 @@ const Sidebar = () => {
           <User className='w-10 h-10 bg-slate-300/70 p-2 rounded-full stroke-slate-400' />
           
           <div>
-            <h1 className='text-sm text-slate-900 font-bold'>Aan Bahudin</h1>
-            <p className='text-[12px] text-slate-500 truncate'>aanbahudin@gmail.com</p>
+            <h1 className='text-sm text-slate-900 font-bold'>{data.nama}</h1>
+            <p className='text-[12px] text-slate-500 truncate'>{data.email}</p>
             <button className='text-[12px] bg-slate-200 border-[1px] border-newRed/40 w-full py-1 rounded-md mt-2 hover:bg-newRed hover:text-white cursor-default duration-200 ease-in-out'>keluar</button>
           </div>
       </section>
