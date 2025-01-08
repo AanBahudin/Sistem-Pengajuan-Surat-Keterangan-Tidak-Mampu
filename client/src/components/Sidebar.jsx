@@ -1,5 +1,7 @@
 import React from 'react'
 import { Landmark, NotepadTextDashed } from 'lucide-react'
+import SidebarLink from './SidebarLink'
+import { sidebarLinks } from '../utils/constant'
 
 const Sidebar = () => {
   return (
@@ -13,11 +15,10 @@ const Sidebar = () => {
 
 
       {/* links */}
-      <section className='bg-slate-200 w-full px-2 py-4 border-transparent border-l-[4px] rounded-md hover:border-newBlue duration-200 ease-in-out pl-4 mt-16'>
-        <div className='flex items-center gap-x-4'>
-          <NotepadTextDashed className='w-5 h-5 stroke-slate-500' />
-          <p className='text-sm text-slate-800'>Pengajuan</p>
-        </div>
+      <section className='w-full flex flex-col gap-y-2 mt-16'>
+        {sidebarLinks.map((item, index) => {
+          return <SidebarLink {...item} key={index} />
+        })}
       </section>
     </div>
   )
