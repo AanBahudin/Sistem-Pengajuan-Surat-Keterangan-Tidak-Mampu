@@ -2,7 +2,7 @@ import React from 'react'
 import { useUserDashboardContext } from './DashboardUser'
 import { User, Pencil, Camera, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
-import { FormInput } from '../../components'
+import { FormInput, FormTextarea } from '../../components'
 
 export const loader = async() => {
   return null
@@ -73,10 +73,7 @@ const ProfilUser = () => {
                   
                   {/* sisi kanan */}
                   <article className='w-full col-span-5 grid grid-cols-1'>
-                    <div className='flex flex-col gap-x-1'>
-                        <h5 className='text-slate-600 font-semibold capitalize'>Alamat Lengkap</h5>
-                        <p className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600  overflow-y-auto'>Jl. Sultan Hasanuddin No.58, Batulo, Kec. Wolio, Kota Bau-Bau, Sulawesi Tenggara 93716</p>
-                    </div>
+                    <FormTextarea labelInput='Alamat Lengkap' nameInput='alamat' placeholder='masukan alamat' isReadOnly={!isEdit} defaultValue='Jl. Sultan Hasanuddin No.58, Batulo, Kec. Wolio, Kota Bau-Bau, Sulawesi Tenggara 93716' />
                   </article>
 
                 </section>
