@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Scan } from 'lucide-react'
-import { Form } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Scan, LoaderCircle } from 'lucide-react'
+import { Form, useNavigation } from 'react-router-dom'
 import { baubauData } from '../../utils/constant'
 import { FormInput, FormTextarea } from '../../components'
 
@@ -22,7 +22,7 @@ const PengajuanUser = () => {
 
   const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
   const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
-  
+  const isSubmitting = useNavigation().state === 'submitting'
   
   const setChaining = (event) => {
     setSelectedKecamatan(event.target.value)
@@ -151,7 +151,10 @@ const PengajuanUser = () => {
             </section>
 
             <div className='col-span-7 mt-6 mb-20 flex flex-col'>
-              <button className='w-full py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>Ajukan</button>
+              <button disabled={isSubmitting} className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+                { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
+                <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
+              </button>
               <p className='text-xs text-slate-500 italic mt-2'> <span className='text-newBlue font-bold'>Peringatan! </span> pastikan semua data yang Anda masukkan benar dan sesuai dengan fakta. Manipulasi data atau memberikan informasi palsu dapat dikenakan sanksi hukum sesuai peraturan yang berlaku.</p>
             </div>
           </div>
