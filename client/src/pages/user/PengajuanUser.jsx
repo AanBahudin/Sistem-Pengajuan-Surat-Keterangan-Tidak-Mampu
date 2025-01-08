@@ -1,7 +1,7 @@
 import { Scan, SquarePlus } from 'lucide-react'
 import React from 'react'
 import { Form } from 'react-router-dom'
-import { FormInput } from '../../components'
+import { FormInput, FormTextarea } from '../../components'
 
 export const loader = async() => {
   return null
@@ -63,15 +63,9 @@ const PengajuanUser = () => {
 
             {/* kolom kanan */}
             <section className='w-full col-span-5 grid grid-cols-1 ml-6 gap-y-4 h-fit'>
-              <div className='flex flex-col gap-x-1'>
-                <label htmlFor="Nama" className='text-slate-800 font-semibold'>Alamat Pemohon</label>
-                <textarea name="alamat" id="alamat" className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 resize-none overflow-y-auto' placeholder='Alamat lengkap'></textarea>
-              </div>
 
-              <div className='flex flex-col gap-x-1'>
-                <label htmlFor="Nama" className='text-slate-800 font-semibold'>Alamat Wali</label>
-                <textarea name="alamat" id="alamat" className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 resize-none overflow-y-auto' placeholder='Alamat lengkap'></textarea>
-              </div>
+              <FormTextarea labelInput='Alamat Pemohon' nameInput='alamatPemohon' placeholder='masukan alamat' />
+              <FormTextarea labelInput='Alamat wali' nameInput='alamatwali' placeholder='masukan alamat' />
 
               <div className='flex flex-col gap-x-1'>
                 <p className='text-slate-800 font-semibold'>Foto KTP Pemohon</p>
