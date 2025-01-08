@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AtSign, KeyRound, X, EyeClosed, Eye, LoaderCircle, UserRound, Landmark } from 'lucide-react'
 import customFetch from '../utils/customFetch'
 import { Form, Link, redirect, useNavigation } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { handleToast } from '../components/CustomToast'
 
 export const action = async({ request }) => {
   const formData = await request.formData()
@@ -10,15 +10,16 @@ export const action = async({ request }) => {
 
   try {
     await customFetch.post('/auth/register', data)
-    toast.success('Pendaftaran berhasil')
+    handleToast('success', 'Pendaftaran Berhasil', 'Silahkan masuk dengan akun yang baru saja dibuat')
     return redirect('/')
   } catch (error) {
     const errArr = error.response.data.msg
 
     if (typeof errArr === 'string') {
+      handleToast('error', 'Ada yang tidak beres', errArr)
       toast.error(errArr)
     } else {
-      toast.error(errArr.join(' '));
+      handleToast('error', 'Ada yang tidak beres', errArr.join(', '))
     }
     return error
   }

@@ -49,12 +49,12 @@ export const validateRegister = withValidationErrors([
         .notEmpty()
         .withMessage('Please provide name')
         .isLength({ min: 3, max: 30 })
-        .withMessage('name must be mininum 3 characters and 30 characters long'),
+        .withMessage('nama minimal 3 karakter dan maksimal 30 karakter'),
     body('email')
         .notEmpty()
-        .withMessage('Please provide email')
+        .withMessage('Email tidak boleh kosong')
         .isEmail()
-        .withMessage('Email is not valid')
+        .withMessage('Email tidak sesuai')
         .custom( async (email) => {
             const isUserExist = await User.findOne({email});
             if (isUserExist) {
@@ -63,9 +63,9 @@ export const validateRegister = withValidationErrors([
         } ),
     body('password')
         .notEmpty()
-        .withMessage('Please provide password')
+        .withMessage('password tidak boleh kosong')
         .isLength({min: 6, max: 15})
-        .withMessage('Password min 6, max 10 characters'),
+        .withMessage('Password minimal 6 dan maksimal 15 karakter'),
 ])
 
 
