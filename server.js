@@ -30,7 +30,7 @@ cloudinary.config({
 })
 
 // route
-app.use('/api/v1/users', authenticatedUser, userRouter);
+app.use('/api/v1/user', authenticatedUser, userRouter);
 app.use('/api/v1/data', authenticatedUser, dataRouter);
 app.use('/api/v1/auth', authRouter);
 
