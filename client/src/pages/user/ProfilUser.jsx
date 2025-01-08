@@ -2,7 +2,7 @@ import React from 'react'
 import { useUserDashboardContext } from './DashboardUser'
 import { User, Pencil, Camera, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
-
+import { FormInput } from '../../components'
 
 export const loader = async() => {
   return null
@@ -46,35 +46,12 @@ const ProfilUser = () => {
                 <h1 className='text-2xl font-bold text-slate-800'>Identitas Diri</h1>
 
                 <section className='w-full grid grid-cols-3 gap-x-6 gap-y-4 mt-6'>
-                  <div className='w-full flex flex-col gap-x-1'>
-                    <h5 className='text-slate-600 font-semibold capitalize'>nama lengkap</h5>
-                    <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                  </div>
-
-                  <div className='w-full flex flex-col gap-x-1'>
-                    <h5 className='text-slate-600 font-semibold capitalize'>nomor induk keluarga</h5>
-                    <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                  </div>
-
-                  <div className='w-full flex flex-col gap-x-1'>
-                    <h5 className='text-slate-600 font-semibold capitalize'>jenis kelamin</h5>
-                    <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                  </div>
-
-                  <div className='w-full flex flex-col gap-x-1'>
-                    <h5 className='text-slate-600 font-semibold capitalize'>email</h5>
-                    <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                  </div>
-
-                  <div className='w-full flex flex-col gap-x-1'>
-                    <h5 className='text-slate-600 font-semibold capitalize'>kontak</h5>
-                    <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                  </div>
-
-                  <div className='w-full flex flex-col gap-x-1'>
-                    <h5 className='text-slate-600 font-semibold capitalize'>tanggal lahir</h5>
-                    <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                  </div>
+                  <FormInput inputName='nama' placeholder='nama lengkap'labelInput='Nama' isAutoFocus={true} isReadOnly={!isEdit} defaultValue='Aan Bahudin'  />
+                  <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue='7472022805030001' />
+                  <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} isReadOnly={!isEdit} defaultValue='Pria' />
+                  <FormInput inputName='email' placeholder='email'labelInput='email' isReadOnly={!isEdit} defaultValue='aanbahudin@gmail.com' />
+                  <FormInput inputName='kontak' placeholder='Kontak' labelInput='kontak' isReadOnly={!isEdit} defaultValue='081217597905' />
+                  <FormInput inputName='tempatLahir' labelInput='tanggal Lahir' inputType='date' isReadOnly={!isEdit} defaultValue='16/05/2003' />
                 </section>
               </div>
 
@@ -86,35 +63,11 @@ const ProfilUser = () => {
 
                   {/* sisi kiri */}
                   <article className='w-full col-span-7 gap-x-6 gap-y-4 grid grid-cols-2'>
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <h5 className='text-slate-600 font-semibold capitalize'>nama lengkap</h5>
-                      <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <h5 className='text-slate-600 font-semibold capitalize'>nomor induk keluarga</h5>
-                      <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <h5 className='text-slate-600 font-semibold capitalize'>jenis kelamin</h5>
-                      <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <h5 className='text-slate-600 font-semibold capitalize'>email</h5>
-                      <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <h5 className='text-slate-600 font-semibold capitalize'>kontak</h5>
-                      <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <h5 className='text-slate-600 font-semibold capitalize'>tanggal lahir</h5>
-                      <p className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600 '>Aan Bahudin</p>
-                    </div>
+                    <FormInput inputName='Kota' placeholder='nomor induk keluarga' labelInput='Kota' isReadOnly={!isEdit} defaultValue='Baubau' />
+                    <FormInput inputName='Kecamatan' placeholder='nomor induk keluarga' labelInput='Kecamatan' isReadOnly={!isEdit} defaultValue='Wolio' />
+                    <FormInput inputName='Kelurahan' placeholder='nomor induk keluarga' labelInput='Kelurahan' isReadOnly={!isEdit} defaultValue='Bukit Wolio Indah' />
+                    <FormInput inputName='RT' placeholder='nomor induk keluarga' labelInput='Rukun Warga' isReadOnly={!isEdit} defaultValue='016' />
+                    <FormInput inputName='RW' placeholder='nomor induk keluarga' labelInput='Rukun Tetangga' isReadOnly={!isEdit} defaultValue='004' />
                   </article>
 
                   
@@ -122,7 +75,7 @@ const ProfilUser = () => {
                   <article className='w-full col-span-5 grid grid-cols-1'>
                     <div className='flex flex-col gap-x-1'>
                         <h5 className='text-slate-600 font-semibold capitalize'>Alamat Lengkap</h5>
-                        <p className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600  overflow-y-auto'></p>
+                        <p className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-600  overflow-y-auto'>Jl. Sultan Hasanuddin No.58, Batulo, Kec. Wolio, Kota Bau-Bau, Sulawesi Tenggara 93716</p>
                     </div>
                   </article>
 
