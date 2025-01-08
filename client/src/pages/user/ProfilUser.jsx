@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useUserDashboardContext } from './DashboardUser'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLoaderData, useLocation } from 'react-router-dom'
 import { FormInput, FormTextarea } from '../../components'
 import { baubauData } from '../../utils/constant'
 
@@ -12,6 +12,7 @@ export const loader = async() => {
 const ProfilUser = () => {
 
   const { user } = useUserDashboardContext()
+  
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
   const [selectedKecamatan, setSelectedKecamatan] = useState('Wolio')
   const [selectedKelurahan, setSelectedKelurahan] = useState([])
@@ -66,18 +67,18 @@ const ProfilUser = () => {
             </article>
 
             <article className='w-full px-10 mt-2'>
-              <h1 className='text-lg font-semibold text-slate-800'>Aan Bahudin</h1>
-              <p className='text-sm text-slate-600'>aanbahudin@gmail.com</p>
+              <h1 className='text-lg font-semibold text-slate-800 capitalize'>{ user.nama }</h1>
+              <p className='text-sm text-slate-600'>{ user.email }</p>
               <p className='text-sm text-slate-600 mt-2'>login sejak 12/12/24</p>
 
               <div className='mt-10'>
                 <h1 className='text-2xl font-bold text-slate-800'>Identitas Diri</h1>
 
                 <section className='w-full grid grid-cols-3 gap-x-6 gap-y-4 mt-6'>
-                  <FormInput inputName='nama' placeholder='nama lengkap'labelInput='Nama' isAutoFocus={true} isReadOnly={!isEdit} defaultValue='Aan Bahudin'  />
-                  <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue='7472022805030001' />
+                  <FormInput inputName='nama' placeholder='nama lengkap'labelInput='Nama' isAutoFocus={true} isReadOnly={!isEdit} defaultValue={user.nama}  />
+                  <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} />
                   <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} isReadOnly={!isEdit} defaultValue='Pria' />
-                  <FormInput inputName='email' placeholder='email'labelInput='email' isReadOnly={!isEdit} defaultValue='aanbahudin@gmail.com' />
+                  <FormInput inputName='email' placeholder='email'labelInput='email' isReadOnly={!isEdit} defaultValue={user.email} />
                   <FormInput inputName='kontak' placeholder='Kontak' labelInput='kontak' isReadOnly={!isEdit} defaultValue='081217597905' />
                   <FormInput inputName='tempatLahir' labelInput='tanggal Lahir' inputType='date' isReadOnly={!isEdit} defaultValue='16/05/2003' />
                 </section>

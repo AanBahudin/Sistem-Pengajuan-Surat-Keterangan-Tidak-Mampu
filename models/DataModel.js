@@ -31,7 +31,21 @@ const DataSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "User"
     },
-    nama : String
+    statusAccRt: {
+        type: Boolean,
+        default: false
+    },
+    statusAccKelurahan: {
+        type: Boolean,
+        default: false
+    },
+    statusPengajuanUlang: {
+        type: Boolean,
+        default: false
+    },
+    pesan: {
+        type: String,
+    }
 }, { timestamps:true });
 
 export default mongoose.model("Data", DataSchema)
