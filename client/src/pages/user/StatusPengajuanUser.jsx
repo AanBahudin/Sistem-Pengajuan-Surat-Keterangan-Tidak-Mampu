@@ -9,8 +9,10 @@ export const loader = async() => {
 
 const StatusPengajuanUser = () => {
 
+  const { handleToast } = useAppContext()
   return (
     <div>
+      <button onClick={() => handleToast('error', 'Pengajuan anda diterima !', 'Surat keterangan akan segera dibuat')}> show toast </button>
     </div>
   )
 }

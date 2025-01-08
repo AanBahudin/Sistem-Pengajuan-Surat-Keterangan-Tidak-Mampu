@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { AtSign, KeyRound, X, EyeClosed, Eye, LoaderCircle } from 'lucide-react'
 import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
-import { toast } from 'react-toastify'
+import { handleToast } from '../components/CustomToast'
 
 export const action = async({ request }) => {
 
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
-
   try {
     const { data: response } = await customFetch.post('/auth/login', data)
     const { role } = response.user
 
+    handleToast('success', 'Berhasil Login !', 'Selamat Datang di Dashboard')
     if (role === "USER") {
       return redirect('/user')
     }

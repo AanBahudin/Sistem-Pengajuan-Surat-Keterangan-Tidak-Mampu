@@ -87,14 +87,14 @@ const App = () => {
   return (
 
     <>
-    <ToastContainer position='top-right' hideProgressBar={true} autoClose={3000} closeButton={false}/>
-    <AppContext.Provider value={{
-      handleToast
-    }}>
-      <div className='h-[100vh] w-full'>
-        <RouterProvider router={router} />
-      </div>
-    </AppContext.Provider>
+      <ToastContainer position='top-right' hideProgressBar={true} autoClose={3000} closeButton={false}/>
+      <AppContext.Provider value={{
+        handleToast
+      }}>
+        <div className='h-[100vh] w-full'>
+          <RouterProvider router={router} />
+        </div>
+      </AppContext.Provider>
     </>
   )
 }
