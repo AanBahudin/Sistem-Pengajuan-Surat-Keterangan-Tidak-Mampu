@@ -1,6 +1,7 @@
 import { Scan, SquarePlus } from 'lucide-react'
 import React from 'react'
 import { Form } from 'react-router-dom'
+import { FormInput } from '../../components'
 
 export const loader = async() => {
   return null
@@ -26,88 +27,36 @@ const PengajuanUser = () => {
               <h4 className='text-lg font-medium text-slate-800 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Pemohon</h4>
 
               <article className='grid grid-cols-2 gap-4'>
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Nama</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
 
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Nomor Induk Keluarga</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Jenis Kelamin</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Tempat, Tanggal Lahir</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Pekerjaan</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
+                <FormInput inputName='nama' placeholder='nama lengkap' isAutoFocus={true} labelInput='Nama' />
+                <FormInput inputName='nik' placeholder='nomor induk keluarga' isAutoFocus={true} labelInput='Nomor induk keluarga' />
+                <FormInput inputName='jenisKelamin' placeholder='masukan jenis kelamin' isAutoFocus={true} labelInput='Jenis kelamin' />
+                <FormInput inputName='pekerjaan' placeholder='Pekerjaan' isAutoFocus={true} labelInput='pekerjaan' />
+                <FormInput inputName='tanggalLahir' placeholder='kota lahir' isAutoFocus={true} labelInput='Tempat lahir' />
+                <FormInput inputName='tempatLahir' placeholder='Kota lahir' isAutoFocus={true} labelInput='Tanggal lahir' inputType='date' />
+                
               </article>
 
               <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ayah</h4>
 
               <article className='grid grid-cols-2 gap-4'>
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Nama</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Nomor Induk Keluarga</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Jenis Kelamin</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Tempat, Tanggal Lahir</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Pekerjaan</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
+                <FormInput inputName='namaAyah' placeholder='nama lengkap' isAutoFocus={true} labelInput='Nama ayah' />
+                <FormInput inputName='nikAyah' placeholder='nomor induk keluarga' isAutoFocus={true} labelInput='Nomor induk keluarga' />
+                <FormInput inputName='jenisKelaminAyah' placeholder='masukan jenis kelamin' isAutoFocus={true} labelInput='Jenis kelamin' />
+                <FormInput inputName='pekerjaanAyah' placeholder='Pekerjaan ayah' isAutoFocus={true} labelInput='pekerjaan' />
+                <FormInput inputName='tanggalLahirAyah' placeholder='kota lahir' isAutoFocus={true} labelInput='Tempat lahir' />
+                <FormInput inputName='tempatLahirAyah' placeholder='Kota lahir' isAutoFocus={true} labelInput='Tanggal lahir' inputType='date' />
               </article>
 
               <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ibu</h4>
 
               <article className='grid grid-cols-2 gap-4'>
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Nama</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Nomor Induk Keluarga</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Jenis Kelamin</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Tempat, Tanggal Lahir</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
-
-                <div className='flex flex-col gap-x-1'>
-                  <label htmlFor="Nama" className='text-slate-800 font-semibold'>Pekerjaan</label>
-                  <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60' type="text" placeholder='nama pemohon ...' autoFocus required autoComplete='off' />
-                </div>
+                <FormInput inputName='namaIbu' placeholder='nama lengkap' isAutoFocus={true} labelInput='Nama ibu' />
+                <FormInput inputName='nikIbu' placeholder='nomor induk keluarga' isAutoFocus={true} labelInput='Nomor induk keluarga' />
+                <FormInput inputName='jenisKelaminIbu' placeholder='masukan jenis kelamin' isAutoFocus={true} labelInput='Jenis kelamin' />
+                <FormInput inputName='pekerjaanIbu' placeholder='Pekerjaan' isAutoFocus={true} labelInput='pekerjaan' />
+                <FormInput inputName='tanggalLahirIbu' placeholder='kota lahir' isAutoFocus={true} labelInput='Tempat lahir' />
+                <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir' isAutoFocus={true} labelInput='Tanggal lahir' inputType='date' />
               </article>
 
             </section>
