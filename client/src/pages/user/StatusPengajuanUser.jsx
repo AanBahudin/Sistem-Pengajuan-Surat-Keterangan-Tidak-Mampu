@@ -27,7 +27,7 @@ const StatusPengajuanUser = () => {
 
       {/* welcome sign */}
       <section className='w-full h-full rounded-xl p-4'>
-        <h1 className='text-4xl font-semibold text-slate-900'>Selamat Datang {user.nama} 👋</h1>
+        <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Selamat Datang {user.nama} 👋</h1>
         <p className='text-md mt-2 text-slate-500'>Pantau status pengajuan surat Anda dengan mudah. Anda hanya dapat memiliki maksimal 3 pengajuan. Untuk mengajukan yang baru, Anda harus membatalkan salah satu dari yang sedang berjalan.</p>
 
         {/* kartu pengajuan */}

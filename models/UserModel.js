@@ -15,8 +15,14 @@ const UserSchema = mongoose.Schema({
     },
     password : String,
     alamat : String,
-    kelurahan : String,
-    kecamatan : String,
+    kelurahan : {
+        type: String,
+        default: 'Batupuaro'
+    },
+    kecamatan : {
+        type: String,
+        default: 'Wameo'
+    },
     nomor_hp : String,
     tempat_tanggal_lahir: String,
     NIK : String
