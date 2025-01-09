@@ -10,6 +10,7 @@ import { pengajuanAction } from "./pages/user"
 
 // kelurahan page import
 import { DashboardPengajuan, DetailPengajuan, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
+import { kelurahanLayoutLoader } from "./pages/kelurahan"
 
 import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
@@ -67,6 +68,7 @@ const App = () => {
     {
       path: '/kelurahan',
       element: <KelurahanLayout />,
+      loader: kelurahanLayoutLoader,
       children: [
         {
           index: true,
