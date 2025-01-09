@@ -1,9 +1,8 @@
 import React from 'react'
 import { Landmark, User } from 'lucide-react'
 import SidebarLink from './SidebarLink'
-import { sidebarLinks } from '../utils/constant'
 
-const Sidebar = ({ data, logoutUser }) => {
+const Sidebar = ({ data, logoutUser, link }) => {
   return (
     <div className='w-[15%] bg-slate-100 flex flex-col justify-between'>
 
@@ -17,7 +16,7 @@ const Sidebar = ({ data, logoutUser }) => {
 
         {/* links */}
         <section className='w-full flex flex-col gap-y-2 mt-16'>
-          {sidebarLinks.map((item, index) => {
+          {link.map((item, index) => {
             return <SidebarLink {...item} key={index} />
           })}
         </section>

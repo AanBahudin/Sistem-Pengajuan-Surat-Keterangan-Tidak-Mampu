@@ -84,7 +84,8 @@ const App = () => {
         },
         {
           path: 'profil',
-          element: <ProfilUser />
+          element: <ProfilUser />,
+          loader: profileLoader
         }
       ]
     }

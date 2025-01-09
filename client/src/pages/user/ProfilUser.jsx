@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { useUserDashboardContext } from './DashboardUser'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
-import { Link, useLoaderData, useLocation } from 'react-router-dom'
+import { Link, useLoaderData, useLocation, redirect } from 'react-router-dom'
+import customFetch from '../../utils/customFetch'
 import { FormInput, FormTextarea } from '../../components'
 import { baubauData } from '../../utils/constant'
 
 export const loader = async() => {
-  return null
+  try {
+    const { data } = await customFetch.get('/user/currentUser')
+    console.log(data);
+    
+    return data
+  } catch (error) {
+    console.log(error);
+    return redirect('/')
+  }
 }
 
 const ProfilUser = () => {
 
-  const { user } = useUserDashboardContext()
+  const { user } = useLoaderData()
   
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
   const [selectedKecamatan, setSelectedKecamatan] = useState('Wolio')
