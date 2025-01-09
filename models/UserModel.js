@@ -7,6 +7,11 @@ const UserSchema = mongoose.Schema({
         enum: Object.values(userRole),
         default: userRole.USER
     },
+    instansi: {
+        kelurahan: String,
+        kecamatan: String,
+        rt: String,
+    },
     nama : String,
     email : {
         type: String,
