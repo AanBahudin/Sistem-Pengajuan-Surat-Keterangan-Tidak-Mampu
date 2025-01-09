@@ -8,6 +8,9 @@ import { DashboardUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from '.
 import { dashboardUserLoader, pengajuanLoader, profileLoader, statusLoader } from './pages/user'
 import { pengajuanAction } from "./pages/user"
 
+// kelurahan page import
+import { DashboardPengajuan, DetailPengajuan, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
+
 import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
 
@@ -62,7 +65,26 @@ const App = () => {
       path: '/rt'
     },
     {
-      path: '/admin'
+      path: '/kelurahan',
+      element: <KelurahanLayout />,
+      children: [
+        {
+          index: true,
+          element: <DashboardPengajuan />
+        },
+        {
+          path: 'pengajuan',
+          element: <SemuaPengajuan />
+        },
+        {
+          path: 'pengajuan/:id',
+          element: <DetailPengajuan />
+        },
+        {
+          path: 'profil',
+          element: <ProfilUser />
+        }
+      ]
     }
   ])
 
