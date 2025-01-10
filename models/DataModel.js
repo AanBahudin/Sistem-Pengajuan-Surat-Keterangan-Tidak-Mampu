@@ -37,8 +37,8 @@ const DataSchema = new mongoose.Schema({
         default: false
     },
     statusAccKelurahan: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: 'belum'
     },
     statusPengajuanUlang: {
         type: Boolean,
