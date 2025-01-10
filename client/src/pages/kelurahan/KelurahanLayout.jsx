@@ -3,6 +3,7 @@ import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
+import { baubauData } from '../../utils/constant'
 import { adminSidebarLinks } from '../../utils/constant'
 
 const KelurahaanContext = createContext()
@@ -24,8 +25,11 @@ const KelurahanLayout = () => {
 
   const toggleImageReview = (show, judul) => {
     setShowImageReview(prevState => ({...prevState, show, judul}))
-    
   }
+
+  const dataKelurahan = baubauData.find(item => {
+      return item.kecamatan === user.kecamatan
+    })
 
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
@@ -37,6 +41,7 @@ const KelurahanLayout = () => {
     <KelurahaanContext.Provider value={{
       showImageReview,
       user,
+      dataKelurahan,
       toggleImageReview,
       logoutUser
     }}>

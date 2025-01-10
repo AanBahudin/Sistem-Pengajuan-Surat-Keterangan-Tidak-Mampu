@@ -46,6 +46,10 @@ const UserSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    tempatLahir: {
+        type: String,
+        default: ''
+    },
     jenisKelamin: {
         type: String,
         default: "Pria"

@@ -4,7 +4,7 @@ import { Link, useLoaderData, useLocation, redirect, Form, useNavigation } from 
 import customFetch from '../../utils/customFetch'
 import { DataContainer, BigDataContainer, FormInput, FormTextarea } from '../../components'
 import { baubauData } from '../../utils/constant'
-import { useUserDashboardContext } from './DashboardUser'
+import { useKelurahanContext } from './KelurahanLayout'
 import { handleToast } from '../../components/CustomToast'
 
 export const loader = async() => {
@@ -43,10 +43,10 @@ export const action = async({ request }) => {
 }
 
 
-const ProfilUser = () => {
+const ProfileKelurahan = () => {
 
   const { user } = useLoaderData()
-  const { dataKelurahan } = useUserDashboardContext()
+  const { dataKelurahan } = useKelurahanContext()
   
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
 
@@ -125,13 +125,8 @@ const ProfilUser = () => {
                   { !isEdit ? (
                     <>
                       <DataContainer labelData='nama lengkap' valueData={user.nama} />
-                      <DataContainer labelData='nomor induk keluarga' valueData={user.nik} />
-                      <DataContainer labelData='jenis kelamin' valueData={user.jenisKelamin} />
                       <DataContainer labelData='email' valueData={user.email} />
                       <DataContainer labelData='kontak ' valueData={user.nomor_hp} />
-                      <DataContainer labelData='tanggal lahir ' valueData={formattedDate} />
-                      <DataContainer labelData='tempat lahir ' valueData={user.tempatLahir} />
-                      <DataContainer labelData='pekerjaan ' valueData={user.pekerjaan} />
                     </>
                   ) : (
                     <>
@@ -157,40 +152,8 @@ const ProfilUser = () => {
 
                   {/* sisi kiri */}
                   <article className='w-full col-span-7 gap-x-6 gap-y-4 grid grid-cols-2'>
-
-                    {!isEdit ? (
-                      <>
-                        <DataContainer labelData='Kecamatan ' valueData={user.kecamatan} />
-                        <DataContainer labelData='Kelurahan ' valueData={user.kelurahan} />
-                        <DataContainer labelData='Rukun Tetangga ' valueData={user.RT} />
-                        <DataContainer labelData='Rukun Warga ' valueData={user.RW} />
-                      </>
-                    ) : (
-                      <>
-                        <div className='w-full flex flex-col gap-x-1'>
-                          <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kecamatan</label>
-                            <select onChange={(e) => setChaining(e)} className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase'  name='kecamatan' id='kecamatan' >
-                              {baubauData.map((item, index) => {
-                                return <option key={index} value={item.kecamatan} className='capitalize'>{item.kecamatan}</option>
-                              })}
-                            </select>
-                        </div>
-
-                        <div className='w-full flex flex-col gap-x-1'>
-                          <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kelurahan</label>
-                            <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' name='kelurahan' id='kelurahan'>
-                              {selectedKelurahan.map((item, index) => {
-                                return <option key={index} value={item} className='capitalize'>{item}</option>
-                              })}
-                            </select>
-                        </div>
-
-                        <FormInput inputName='RT' labelInput='rukun tetangga' placeholder='nomor rukun tetangga' defaultValue={user.RT} />                    
-                        <FormInput inputName='RW' labelInput='Rukun Warga' placeholder='nomor rukun warga' defaultValue={user.RW} />                    
-                      </>
-                    )}
-
-
+                    <DataContainer labelData='Kecamatan ' valueData={user.kecamatan} />
+                    <DataContainer labelData='Kelurahan ' valueData={user.kelurahan} />
                   </article>
 
                   
@@ -213,4 +176,4 @@ const ProfilUser = () => {
   )
 }
 
-export default ProfilUser
+export default ProfileKelurahan

@@ -17,6 +17,7 @@ import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ProfileKelurahan from "./pages/kelurahan/ProfileKelurahan"
 
 
 const AppContext = createContext()
@@ -90,7 +91,7 @@ const App = () => {
         },
         {
           path: 'profil',
-          element: <ProfilUser />,
+          element: <ProfileKelurahan />,
           loader: profileLoader
         }
       ]
