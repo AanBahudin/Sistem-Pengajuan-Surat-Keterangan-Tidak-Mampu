@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
-import { Link, useLoaderData, useLocation, redirect, Form } from 'react-router-dom'
+import { Link, useLoaderData, useLocation, redirect, Form, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { DataContainer, BigDataContainer, FormInput, FormTextarea } from '../../components'
 import { baubauData } from '../../utils/constant'
@@ -49,6 +49,8 @@ const ProfilUser = () => {
   
   const { dataKelurahan } = useUserDashboardContext()
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
+
+  const isSubmitting = useNavigation().state === 'submitting'
   
   const [selectedKecamatan, setSelectedKecamatan] = useState(user.kecamatan)
   const [selectedKelurahan, setSelectedKelurahan] = useState(dataKelurahan)
@@ -71,6 +73,7 @@ const ProfilUser = () => {
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center flex-col'>
+      <img src={user.photo} alt="" />
       <Form method='POST' encType='multipart/form-data' className='w-full h-full rounded-xl p-4'>
         <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Hallo, {user.nama} ✨</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Selamat datang di halaman profil Anda. Di sini, Anda dapat melihat detail informasi pribadi dan memperbaruinya jika diperlukan.</p>
@@ -79,7 +82,7 @@ const ProfilUser = () => {
           <div className='w-full h-[30vh] bg-gradient-to-b from-newBlue to-blue-500 rounded-t-2xl flex justify-end items-end gap-x-4 p-4 group'>
 
             { isEdit ? (
-                <button className={`bg-newBlue w-[12%] text-white text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}><Save className='w-4 h-4 stroke-white'/> Simpan</button>
+                <button className={`bg-newBlue w-[12%] text-white text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}><Save className='w-4 h-4 stroke-white'/> { isSubmitting ? 'Menyimpan' : 'Simpan' } </button>
             ) : null }
 
             <Link to={`${isEdit ? '/user/profil'  : '/user/profil?edit=true'}`} className={`${isEdit ? 'bg-newRed/80 hover:bg-newRed text-white ' : 'bg-white hover:bg-slate-200 text-slate-600 hover:text-slate-950 '} w-[12%] text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}>
@@ -178,7 +181,7 @@ const ProfilUser = () => {
                         </div>
 
                         <FormInput inputName='RT' labelInput='rukun tetangga' placeholder='nomor rukun tetangga' defaultValue={user.RT} />                    
-                        <FormInput inputName='RW' labelInput='Rukun Warga' placeholder='nomor rukun warga' defaultalue={user.RW} />                    
+                        <FormInput inputName='RW' labelInput='Rukun Warga' placeholder='nomor rukun warga' defaultValue={user.RW} />                    
                       </>
                     )}
 
