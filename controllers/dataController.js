@@ -1,10 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 import { promises as fs } from 'fs'
 import Data from '../models/DataModel.js'
+import User from '../models/UserModel.js'
 import cloudinary from 'cloudinary'
 
 const addData = async(req, res) => {
     
+    const user = await User.findOne({_id: req.user.userId})
+    
+    req.body.kelurahan = user.kelurahan
+    req.body.kecamatan = user.kecamatan
     req.body.id_pemohon = req.user.userId
     
     if(req.files) {

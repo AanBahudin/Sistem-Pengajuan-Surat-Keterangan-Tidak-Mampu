@@ -31,10 +31,7 @@ export const action = async({ request }) => {
 
 const PengajuanUser = () => {
   
-  const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
-  const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-
   const { checkIsUserEligible } = useUserDashboardContext()
   
   const navigation = useNavigation()
@@ -47,15 +44,6 @@ const PengajuanUser = () => {
       setSelectedImage(prevState => ({...prevState, [name]: URL.createObjectURL(file)
     }));
     }
-  }
- 
-  // set chaining for kelurahan and kecamatan
-  const setChaining = (event) => {
-    setSelectedKecamatan(event.target.value)
-    const getKecamatan = baubauData.find(item => {
-      return item.kecamatan === (event.target.value || selectedKecamatan) 
-    })
-    setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
   }
 
   return (
