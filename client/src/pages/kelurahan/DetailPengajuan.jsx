@@ -1,10 +1,24 @@
 import React from 'react'
 import { DataContainer, BigDataContainer, ImageViewer } from '../../components'
-import { useLoaderData, useNavigation } from 'react-router-dom'
+import { Form, useLoaderData, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import moment from 'moment'
 import { useKelurahanContext } from './KelurahanLayout'
+import { LoaderCircle } from 'lucide-react'
+import { handleToast } from '../../components/CustomToast'
 
+export const action = async({request, params}) => {
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData)
+
+  try {
+    await customFetch.patch(`/kelurahan/${params.id}`, data)
+    return handleToast('success', 'Pengajuan di Terima', 'Hasil pengajuan akan segera dikirim ke pemohon', 3000)
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
 
 export const loader = async({ params }) => {
   try {
@@ -109,15 +123,29 @@ const DetailPengajuan = () => {
           </section>
 
           <div className='col-span-7 mt-10 mb-20 flex gap-x-6'>
-            <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
-              { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
-              <span>{ isSubmitting ? 'Mengajukan ...' : 'Terima' }</span>
-            </button>
 
-            <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
-              { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
-              <span>{ isSubmitting ? 'Menolak ...' : 'Tolak' }</span>
-            </button>
+
+            {data.statusAccKelurahan === 'belum' ? (
+              <>
+                <Form method='POST' className='w-full'>
+                  <input type="hidden" name='status' value='terima' />
+                  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+                    { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
+                    <span>{ isSubmitting ? 'Mengajukan ...' : 'Terima' }</span>
+                  </button>
+                </Form>
+
+                <Form method='POST' className='w-full'>
+                  <input type="hidden" name='status' value='tolak' />
+                  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
+                    { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
+                    <span>{ isSubmitting ? 'Menolak ...' : 'Tolak' }</span>
+                  </button>
+                </Form>
+              </>
+            ) : (
+              <p className={`w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white ${data.statusAccKelurahan === 'terima' ? 'bg-newBlue/80 hover:bg-newBlue' : 'bg-newRed/80 hover:bg-newRed'} duration-200 ease-in-out col-span-2 text-center`} >{ data.statusAccKelurahan === 'terima' ? 'Sudah diterima' : 'tertolak' }</p>
+            )}
             </div>
           </div>
 

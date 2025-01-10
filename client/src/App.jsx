@@ -11,6 +11,7 @@ import { pengajuanAction } from "./pages/user"
 // kelurahan page import
 import { DashboardPengajuan, dashboardPengajuanLoader, DetailPengajuan, detailPengajuanLoader, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
 import { kelurahanLayoutLoader, semuaPengajuanLoader } from "./pages/kelurahan"
+import { detailPengajuanAction } from './pages/kelurahan'
 
 import { action as LoginAction } from './pages/Login'
 import { action as RegisterAction } from './pages/Register'
@@ -83,7 +84,8 @@ const App = () => {
         {
           path: 'pengajuan/:id',
           element: <DetailPengajuan />,
-          loader: detailPengajuanLoader
+          loader: detailPengajuanLoader,
+          action: detailPengajuanAction
         },
         {
           path: 'profil',

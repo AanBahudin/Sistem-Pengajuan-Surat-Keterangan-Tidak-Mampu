@@ -8,3 +8,6 @@ export { loader as kelurahanLayoutLoader } from './KelurahanLayout'
 export { loader as semuaPengajuanLoader } from './SemuaPengajuan'
 export { loader as dashboardPengajuanLoader } from './DashboardPengajuan'
 export { loader as detailPengajuanLoader } from './DetailPengajuan'
+
+// ACTION
+export { action as detailPengajuanAction } from './DetailPengajuan'
