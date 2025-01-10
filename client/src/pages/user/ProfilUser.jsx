@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
 import { Link, useLoaderData, useLocation, redirect } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
-import { FormInput, FormTextarea } from '../../components'
+import { DataContainer, BigDataContainer, FormInput, FormTextarea } from '../../components'
 import { baubauData } from '../../utils/constant'
 
 export const loader = async() => {
   try {
     const { data } = await customFetch.get('/user/currentUser')
-    console.log(data);
-    
     return data
   } catch (error) {
     console.log(error);
@@ -24,8 +22,7 @@ const ProfilUser = () => {
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
   const [selectedKecamatan, setSelectedKecamatan] = useState('Wolio')
   const [selectedKelurahan, setSelectedKelurahan] = useState([])
-  console.log(user.role === 'USER');
-  
+  console.log(user)
 
   useEffect(() => {
     const getKecamatan = baubauData.find(item => {
@@ -85,12 +82,17 @@ const ProfilUser = () => {
                 <h1 className='text-2xl font-bold text-slate-800'>Identitas Diri</h1>
 
                 <section className='w-full grid grid-cols-3 gap-x-6 gap-y-4 mt-6'>
-                  <FormInput inputName='nama' placeholder='nama lengkap'labelInput='Nama' isAutoFocus={true} isReadOnly={!isEdit} defaultValue={user.nama}  />
-                  { user.role === 'USER' ? <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} />  : null}
+                  <DataContainer labelData='nama lengkap' valueData={user.nama} />
+                  <DataContainer labelData='nomor induk keluarga' valueData={user.nik} />
+                  <DataContainer labelData='jenis kelamin' valueData={user.jenisKelamin} />
+                  <DataContainer labelData='email' valueData={user.email} />
+                  <DataContainer labelData='kontak ' valueData={user.nomor_hp} />
+                  <DataContainer labelData='tempat lahir ' valueData={user.tanggalLahir} />
+                  {/* { user.role === 'USER' ? <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} />  : null}
                   <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} isReadOnly={!isEdit} defaultValue='Pria' />
                   <FormInput inputName='email' placeholder='email'labelInput='email' isReadOnly={!isEdit} defaultValue={user.email} />
                   <FormInput inputName='kontak' placeholder='Kontak' labelInput='kontak' isReadOnly={!isEdit} defaultValue='081217597905' />
-                  <FormInput inputName='tempatLahir' labelInput='tanggal Lahir' inputType='date' isReadOnly={!isEdit} defaultValue='16/05/2003' />
+                  <FormInput inputName='tempatLahir' labelInput='tanggal Lahir' inputType='date' isReadOnly={!isEdit} defaultValue='16/05/2003' /> */}
                 </section>
               </div>
 
@@ -102,35 +104,16 @@ const ProfilUser = () => {
 
                   {/* sisi kiri */}
                   <article className='w-full col-span-7 gap-x-6 gap-y-4 grid grid-cols-2'>
-                    <FormInput inputName='Kota' placeholder='nomor induk keluarga' labelInput='Kota' isReadOnly={!isEdit} defaultValue='Baubau' />
-
-                    {/* chaining kecamatan dan kelurahan */}
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kecamatan</label>
-                        <select onChange={(e) => setChaining(e)} className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' defaultValue='Wolio' name='kecamatan' id='kecamatan' disabled={!isEdit} value={!isEdit ? 'Wolio' : null}>
-                          {baubauData.map((item, index) => {
-                            return <option key={index} value={item.kecamatan} className='capitalize'>{item.kecamatan}</option>
-                          })}
-                        </select>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-x-1'>
-                      <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kelurahan</label>
-                        <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' defaultValue='Bukit Wolio Indah' name='kelurahan' id='kelurahan' disabled={!isEdit} value={!isEdit ? 'Bukit Wolio Indah' : null}>
-                          {selectedKelurahan.map((item, index) => {
-                            return <option key={index} value={item} className='capitalize'>{item}</option>
-                          })}
-                        </select>
-                    </div>
-
-                    <FormInput inputName='RT' placeholder='nomor induk keluarga' labelInput='Rukun Warga' isReadOnly={!isEdit} defaultValue='016' />
-                    <FormInput inputName='RW' placeholder='nomor induk keluarga' labelInput='Rukun Tetangga' isReadOnly={!isEdit} defaultValue='004' />
+                    <DataContainer labelData='Kecamatan ' valueData={user.kecamatan} />
+                    <DataContainer labelData='Kelurahan ' valueData={user.kelurahan} />
+                    <DataContainer labelData='Rukun Tetangga ' valueData={user.RT} />
+                    <DataContainer labelData='Rukun Warga ' valueData={user.RW} />
                   </article>
 
                   
                   {/* sisi kanan */}
                   <article className='w-full col-span-5 grid grid-cols-1'>
-                    <FormTextarea labelInput='Alamat Lengkap' nameInput='alamat' placeholder='masukan alamat' isReadOnly={!isEdit} defaultValue={user.alamat} />
+                    <BigDataContainer labelInput='Alamat Lengkap' dataValue={user.alamat} />
                   </article>
 
                 </section>

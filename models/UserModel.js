@@ -27,9 +27,14 @@ const UserSchema = mongoose.Schema({
         type: String,
         default: '00'
     },
+    RW: {
+        type: String,
+        default: '00'
+    },
     nomor_hp : String,
-    tempat_tanggal_lahir: String,
-    NIK : String
+    tanggalLahir: String,
+    jenisKelamin: String,
+    nik : String
 }, { timestamps: true });
 
 export default mongoose.model("User", UserSchema);
