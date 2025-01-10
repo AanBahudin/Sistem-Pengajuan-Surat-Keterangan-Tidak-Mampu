@@ -19,8 +19,6 @@ export const loader = async() => {
 const StatusPengajuanUser = () => {
 
   const { permohonan } = useLoaderData()
-  console.log(permohonan);
-  
   const { user } = useUserDashboardContext()
 
   return (
@@ -44,7 +42,7 @@ const StatusPengajuanUser = () => {
           )  : (
             <>
               {permohonan.map((item, index) => {
-                return <StatusCard key={index} {...item} urutan={urutan[index]} />
+                return <StatusCard key={index} {...item} />
               })}
             </>
           )}
