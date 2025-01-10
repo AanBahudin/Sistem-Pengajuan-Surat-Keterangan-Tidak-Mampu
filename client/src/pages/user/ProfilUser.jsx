@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
 import { Link, useLoaderData, useLocation, redirect, Form } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
@@ -46,6 +46,7 @@ export const action = async({ request }) => {
 const ProfilUser = () => {
 
   const { user } = useLoaderData()
+  
   const { dataKelurahan } = useUserDashboardContext()
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
   
@@ -88,7 +89,7 @@ const ProfilUser = () => {
             </Link>
 
 
-            <input type="file" name="profile" id="profile" accept='image/*' className='hidden' onChange={(event) => imageUpload(event)}/>
+            <input type="file" name="photo" id="photo" accept='image/*' className='hidden' onChange={(event) => imageUpload(event)}/>
           </div>
 
             <article className='w-full flex px-6 gap-x-4'>
@@ -103,7 +104,7 @@ const ProfilUser = () => {
                   )
                 )
               }
-              {isEdit && <label htmlFor='profile'  className='bg-newBlue/70 w-fit h-fit mt-2 hover:bg-newBlue py-2 px-4 rounded-lg text-sm text-slate-600 flex items-center gap-x-3 group hover:text-slate-950 duration-200 ease-in-out cursor-default select-none'><Camera className='w-5 h-5 stroke-slate-600 group-hover:stroke-slate-950' /> Pilih gambar</label>}
+              {isEdit && <label htmlFor='photo'  className='bg-newBlue/70 w-fit h-fit mt-2 hover:bg-newBlue py-2 px-4 rounded-lg text-sm text-slate-600 flex items-center gap-x-3 group hover:text-slate-950 duration-200 ease-in-out cursor-default select-none'><Camera className='w-5 h-5 stroke-slate-600 group-hover:stroke-slate-950' /> Pilih gambar</label>}
               
             </article>
 
