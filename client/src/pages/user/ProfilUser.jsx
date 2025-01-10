@@ -199,11 +199,8 @@ const ProfilUser = () => {
               
             </article>
         </section>
-      </section>
-
-
-
-  </Form>
+      </Form>
+  </section>
   )
 }
 
