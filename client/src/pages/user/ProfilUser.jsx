@@ -56,6 +56,8 @@ const ProfilUser = () => {
   const [selectedKelurahan, setSelectedKelurahan] = useState(dataKelurahan)
   const [selectedImage, setSelectedImage] = useState(null)
   
+  const formattedDate = user.tanggalLahir.split('T')[0];
+
   const imageUpload = (event) => {
     const file = event.target.files[0]
     if (file) {
@@ -127,7 +129,7 @@ const ProfilUser = () => {
                       <DataContainer labelData='jenis kelamin' valueData={user.jenisKelamin} />
                       <DataContainer labelData='email' valueData={user.email} />
                       <DataContainer labelData='kontak ' valueData={user.nomor_hp} />
-                      <DataContainer labelData='tanggal lahir ' valueData={user.tanggalLahir} />
+                      <DataContainer labelData='tanggal lahir ' valueData={formattedDate} />
                       <DataContainer labelData='pekerjaan ' valueData={user.pekerjaan} />
                     </>
                   ) : (
@@ -137,7 +139,7 @@ const ProfilUser = () => {
                       <FormInput inputName='jenisKelamin' labelInput='jenis kelamin' inputType='select'  defaultValue={user.jenisKelamin || 'Pria'} list={['Pria', 'Wanita']} />
                       <FormInput inputName='email' labelInput='Email' placeholder='masukan email' defaultValue={user.email} />
                       <FormInput inputName='nomor_hp' placeholder='masukan nomor telepon'labelInput='kontak' defaultValue={user.nomor_hp} />
-                      <FormInput inputName='tanggalLahir' labelInput='tanggal Lahir' inputType='date' defaultValue={ user.tanggalLahir } />
+                      <FormInput inputName='tanggalLahir' labelInput='tanggal Lahir' inputType='date' defaultValue={ formattedDate } />
                       <FormInput inputName='pekerjaan' labelInput='pekerjaan' placeholder='Masukan pekerjaan' defaultValue={ user.pekerjaan } />
                     </>
 
