@@ -1,7 +1,9 @@
 import React from 'react'
-import {DataContainer } from '../../components'
+import { DataContainer, BigDataContainer } from '../../components'
 import { useLoaderData, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
+import moment from 'moment'
+import { X } from 'lucide-react'
 
 export const loader = async({ params }) => {
   try {
@@ -16,11 +18,24 @@ export const loader = async({ params }) => {
 const DetailPengajuan = () => {
 
   const isSubmitting = useNavigation().state === 'submitting'
+  
   const {data} = useLoaderData()
   
 
   return (
-    <section className='w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
+    <section className='relative w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
+
+    {/* image viewer test */}
+    <div className='fixed flex items-center flex-col h-[70vh] w-[50%] z-20 bg-slate-100 rounded-2xl px-10 py-4 overflow-hidden border-[2px] border-slate-200'>
+
+      <section className='w-full flex justify-between items-center gap-x-4'>
+        <h1 className='font-semibold text-slate-800'>Kartu Tanda Penduduk Aan Bahudin</h1>
+        <X className='stroke-newRed' size={35} />
+      </section>
+
+      <img className='w-full overflow-hidden h-[70%] my-auto object-contain' src={data.ktp} alt="" />
+    </div>
+
 
     {/* welcome sign */}
     <section className='w-full h-full rounded-xl p-4'>
@@ -40,33 +55,33 @@ const DetailPengajuan = () => {
 
               <DataContainer labelData='Nama lengkap' valueData={data.nama} />
               <DataContainer labelData='Nomor induk keluarga' valueData={data.nik} />
-              <DataContainer inputName='jenisKelamin'labelData='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} />
-              <DataContainer inputName='pekerjaan' placeholder='Pekerjaan' labelData='pekerjaan' />
-              <DataContainer inputName='tanggalLahir' placeholder='tanggal lahir' labelData='tanggal lahir' inputType='date' />
-              <DataContainer inputName='tempatLahir' placeholder='Kota lahir' labelData='tempat lahir'  />
+              <DataContainer labelData='jenis kelamin' valueData={data.jenisKelamin} />
+              <DataContainer labelData='pekerjaan' valueData={data.pekerjaan} />
+              <DataContainer labelData='Tanggal lahir' valueData={ moment(data.createdAt).format('L') } />
+              <DataContainer labelData='tempatLahir' valueData={data.tempatLahir} />
               
             </article>
 
             <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ayah</h4>
 
             <article className='grid grid-cols-2 gap-4'>
-              <DataContainer inputName='namaAyah' placeholder='nama lengkap'labelData='Nama ayah' />
-              <DataContainer inputName='nikAyah' placeholder='nomor induk keluarga'labelData='Nomor induk keluarga' />
-              <DataContainer inputName='jenisKelaminAyah'labelData='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Pria' />
-              <DataContainer inputName='pekerjaanAyah' placeholder='Pekerjaan ayah'labelData='pekerjaan' />
-              <DataContainer inputName='tanggalLahirAyah' placeholder='kota lahir' labelData='tanggal lahir'  inputType='date' />
-              <DataContainer inputName='tempatLahirAyah' placeholder='Kota lahir' labelData='tempat lahir' />
+              <DataContainer valueData={data.namaAyah} labelData='Nama ayah' />
+              <DataContainer valueData={data.nikAyah} labelData='Nomor induk keluarga' />
+              <DataContainer valueData={data.jenisKelaminAyah} labelData='Jenis kelamin' />
+              <DataContainer valueData={data.pekerjaanAyah} labelData='pekerjaan' />
+              <DataContainer valueData={data.tanggalLahirAyah} labelData='tanggal lahir'  inputType='date' />
+              <DataContainer valueData={data.tempatLahirAyah} labelData='tempat lahir' />
             </article>
 
             <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ibu</h4>
 
             <article className='grid grid-cols-2 gap-4'>
-              <DataContainer inputName='namaIbu' placeholder='nama lengkap'labelData='Nama ibu' />
-              <DataContainer inputName='nikIbu' placeholder='nomor induk keluarga'labelData='Nomor induk keluarga' />
-              <DataContainer inputName='jenisKelaminIbu'labelData='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Wanita' />
-              <DataContainer inputName='pekerjaanIbu' placeholder='Pekerjaan'labelData='pekerjaan ibu' />
-              <DataContainer inputName='tanggalLahirIbu' placeholder='kota lahir'labelData='tanggal lahir' inputType='date' />
-              <DataContainer inputName='tempatLahirIbu' placeholder='Kota lahir'labelData='tempat lahir' />
+              <DataContainer valueData={data.namaIbu} placeholder='nama lengkap'labelData='Nama ibu' />
+              <DataContainer valueData={data.nikIbu} placeholder='nomor induk keluarga'labelData='Nomor induk keluarga' />
+              <DataContainer valueData="Wanita" labelData='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Wanita' />
+              <DataContainer valueData={data.pekerjaanIbu} placeholder='Pekerjaan'labelData='pekerjaan ibu' />
+              <DataContainer valueData={data.tanggalLahirIbu} placeholder='kota lahir'labelData='tanggal lahir' inputType='date' />
+              <DataContainer valueData={data.tempatLahirIbu} placeholder='Kota lahir'labelData='tempat lahir' />
             </article>
 
             
@@ -74,16 +89,41 @@ const DetailPengajuan = () => {
 
             {/* kolom kanan */}
           <section className='w-full col-span-5 grid grid-cols-1 ml-6 gap-y-4 h-fit'>
+            <BigDataContainer labelInput="Alamat Lengkap" dataValue={data.alamatPemohon} />
+            <BigDataContainer labelInput="Alamat Wali" dataValue={data.alamatwali} />
 
+            <div className='flex flex-col gap-x-4'>
+                <p className='text-slate-800 font-semibold'>Foto KTP Pemohon</p>
+                <section className='w-full h-[30vh] text-sm px-10 py-5 group outline-none rounded-md border-[2px] red overflow-hidden border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
+                    <div className=' relative w-full h-full overflow-hidden rounded-md'>
+                      <button className='text-sm w-[10vw] absolute z-1 top-1/2 left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-newBlue text-white rounded-xl py-2 px-10 transition-opacity opacity-0 group-hover:opacity-100'>lihat foto</button>
+                      <img className='w-full h-full object-cover rounded-md group-hover:opacity-70 duration-200 ease-in-out' src={data.ktp} alt="" />
+                    </div>
+                </section>
+            </div>
+
+            <div className='flex flex-col gap-x-1 mt-4'>
+                <p className='text-slate-800 font-semibold'>Foto KK Pemohon</p>
+                <section className='w-full h-[30vh] text-sm px-10 py-5 group outline-none rounded-md border-[2px] red overflow-hidden border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
+                    <div className=' relative w-full z-10 h-full overflow-hidden rounded-md'>
+                      <button className='text-sm w-[10vw] absolute z-10 top-1/2 left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-newBlue text-white rounded-xl py-2 px-10 transition-opacity opacity-0 group-hover:opacity-100'>lihat foto</button>
+                      <img className='w-full h-full object-cover rounded-md group-hover:opacity-70 duration-200 ease-in-out' src={data.kk} alt="" />
+                    </div>
+                </section>
+            </div>
         
           </section>
 
-          <div className='col-span-7 mt-6 mb-20 flex flex-col'>
+          <div className='col-span-7 mt-10 mb-20 flex gap-x-6'>
             <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
               { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
-              <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
-              </button>
-              <p className='text-xs text-slate-500 italic mt-2'> <span className='text-newBlue font-bold'>Peringatan! </span> pastikan semua data yang Anda masukkan benar dan sesuai dengan fakta. Manipulasi data atau memberikan informasi palsu dapat dikenakan sanksi hukum sesuai peraturan yang berlaku.</p>
+              <span>{ isSubmitting ? 'Mengajukan ...' : 'Terima' }</span>
+            </button>
+
+            <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
+              { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
+              <span>{ isSubmitting ? 'Menolak ...' : 'Tolak' }</span>
+            </button>
             </div>
           </div>
 

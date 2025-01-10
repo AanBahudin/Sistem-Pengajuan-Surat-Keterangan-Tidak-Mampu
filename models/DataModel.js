@@ -11,6 +11,7 @@ const DataSchema = new mongoose.Schema({
     namaAyah: String,
     nikAyah: String,
     jenisKelaminAyah: String,
+    pekerjaanAyah: String,
     tanggalLahirAyah: String,
     tempatLahirAyah: String,
     namaIbu: String,

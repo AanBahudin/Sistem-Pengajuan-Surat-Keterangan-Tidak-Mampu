@@ -1,3 +1,4 @@
+export { default as BigDataContainer } from './BigDataContainer'
 export { default as CustomToast } from './CustomToast'
 export { default as DataContainer } from './DataContainer'
 export { default as FormInput } from './FormInput'

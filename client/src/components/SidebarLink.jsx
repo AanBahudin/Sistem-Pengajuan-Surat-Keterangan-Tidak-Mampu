@@ -19,7 +19,7 @@ const SidebarLink = ({ icon, name, path }) => {
             <p className='text-sm text-slate-600 group-hover:text-slate-950'>{name}</p>
           </div>
 
-          <NavLink className={({ isActive }) => `${isActive ? 'visible' : 'invisible'}`} to={path} end>
+          <NavLink  className={({ isActive }) => `${isActive ? 'visible' : 'invisible'}`} to={path} end>
             <ChevronRight className="w-3 h-3 mr-4 my-auto group-hover:stroke-newBlue group-hover:visible" />
           </NavLink>
         </div>
