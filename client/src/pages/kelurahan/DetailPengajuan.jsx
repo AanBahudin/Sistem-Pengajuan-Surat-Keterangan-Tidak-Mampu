@@ -106,6 +106,7 @@ const DetailPengajuan = () => {
 
             {/* kolom kanan */}
           <section className='w-full col-span-5 grid grid-cols-1 ml-6 gap-y-4 h-fit'>
+            <BigDataContainer labelInput="alasan pengajuan" dataValue={data.alasanPengajuan} />
             <BigDataContainer labelInput="Alamat Lengkap" dataValue={data.alamatPemohon} />
             <BigDataContainer labelInput="Alamat Wali" dataValue={data.alamatwali} />
 

@@ -44,7 +44,6 @@ const StatusPengajuanUser = () => {
           )  : (
             <>
               {permohonan.map((item, index) => {
-                const urutan = ['Pertama', 'Kedua', 'Terakhir']
                 return <StatusCard key={index} {...item} urutan={urutan[index]} />
               })}
             </>
