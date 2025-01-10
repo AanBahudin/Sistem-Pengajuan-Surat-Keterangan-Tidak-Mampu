@@ -23,6 +23,12 @@ const DashboardUser = () => {
   const navigate = useNavigate()
   
 
+  const checkIsUserEligible = () => {
+    return Object.values(user).filter(item => {
+      return item === ''
+    }).length === 0
+  }
+  
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
     await customFetch.get('/auth/logout')
@@ -32,6 +38,7 @@ const DashboardUser = () => {
   return (
     <DashboardUserContext.Provider value={{
       user,
+      checkIsUserEligible,
       logoutUser
     }}>
 

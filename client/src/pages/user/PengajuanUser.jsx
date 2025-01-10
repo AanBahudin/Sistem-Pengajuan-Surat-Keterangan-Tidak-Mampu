@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Scan, LoaderCircle } from 'lucide-react'
-import { Form, redirect, useNavigation } from 'react-router-dom'
+import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import { baubauData } from '../../utils/constant'
 import { FormInput, FormTextarea } from '../../components'
 import { handleToast } from '../../components/CustomToast'
+import {useUserDashboardContext} from './DashboardUser'
 import customFetch from '../../utils/customFetch'
 
 export const loader = async() => {
@@ -30,10 +31,16 @@ export const action = async({ request }) => {
 
 const PengajuanUser = () => {
   
+  const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
+  const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
+  const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
+
+  const { checkIsUserEligible } = useUserDashboardContext()
   
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
-  const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
+  
+  // for review photo before upload
   const imageUpload = (event, name) => {
     const file = event.target.files[0]
     if (file) {
@@ -41,19 +48,17 @@ const PengajuanUser = () => {
     }));
     }
   }
-
-  const [selectedKecamatan, setSelectedKecamatan] = useState('Batupuaro')
-  const [selectedKelurahan, setSelectedKelurahan] = useState(baubauData[0].kelurahan)
-
+ 
+  // set chaining for kelurahan and kecamatan
   const setChaining = (event) => {
     setSelectedKecamatan(event.target.value)
-
     const getKecamatan = baubauData.find(item => {
       return item.kecamatan === (event.target.value || selectedKecamatan) 
     })
-
     setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
   }
+
+  
 
   
 
@@ -63,6 +68,10 @@ const PengajuanUser = () => {
       <section className='w-full h-full rounded-xl p-4'>
         <h1 className='text-4xl font-semibold text-slate-900'>Ajukan Surat Keterangan Tidak Mampu Anda!</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Isi formulir pengajuan di bawah ini untuk memulai proses permohonan. Pastikan data yang Anda masukkan lengkap dan benar agar proses berjalan lancar.</p>
+
+        <div className='w-full mt-4 py-2 px-2  flex rounded-lg justify-between bg-newRed/80 items-center'>
+          <h1 className='font-medium text-white'>Maaf, Anda tidak bisa mengajukan surat keterangan jika data diri anda belum lengkap. <Link to='/user/profil' className='underline'>Silahkan lengkapi terlebih dahulu</Link> </h1>
+        </div>
 
         {/* container pengajuan */}
         <Form method='POST' encType='multipart/form-data' className='mt-10 w-full'>
@@ -174,10 +183,15 @@ const PengajuanUser = () => {
             </section>
 
             <div className='col-span-7 mt-6 mb-20 flex flex-col'>
-              <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
-                { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
-                <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
-              </button>
+
+              { 
+                checkIsUserEligible() && (
+                <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+                  { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
+                  <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
+                </button>
+                )
+              }
               <p className='text-xs text-slate-500 italic mt-2'> <span className='text-newBlue font-bold'>Peringatan! </span> pastikan semua data yang Anda masukkan benar dan sesuai dengan fakta. Manipulasi data atau memberikan informasi palsu dapat dikenakan sanksi hukum sesuai peraturan yang berlaku.</p>
             </div>
           </div>
