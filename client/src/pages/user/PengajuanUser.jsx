@@ -32,8 +32,10 @@ export const action = async({ request }) => {
 const PengajuanUser = () => {
   
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-  const { checkIsUserEligible } = useUserDashboardContext()
-  
+  const { user, checkIsUserEligible } = useUserDashboardContext()
+  const { nama, jenisKelamin, pekerjaan, nik, tanggalLahir, tempatLahir, alamat } = user
+
+
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
   
@@ -67,12 +69,12 @@ const PengajuanUser = () => {
 
               <article className='grid grid-cols-2 gap-4'>
 
-                <FormInput inputName='nama' placeholder='nama lengkap' labelInput='Nama' isAutoFocus={true} />
-                <FormInput inputName='nik' placeholder='nomor induk keluarga' labelInput='Nomor induk keluarga' />
-                <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} />
-                <FormInput inputName='pekerjaan' placeholder='Pekerjaan' labelInput='pekerjaan' />
-                <FormInput inputName='tanggalLahir' placeholder='tanggal lahir' labelInput='tanggal lahir' inputType='date' />
-                <FormInput inputName='tempatLahir' placeholder='Kota lahir' labelInput='tempat lahir'  />
+                <FormInput inputName='nama' placeholder='nama lengkap' labelInput='Nama' isAutoFocus={true} defaultValue={nama} />
+                <FormInput inputName='nik' placeholder='nomor induk keluarga' labelInput='Nomor induk keluarga' defaultValue={nik} />
+                <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue={jenisKelamin} />
+                <FormInput inputName='pekerjaan' placeholder='Pekerjaan' labelInput='pekerjaan' defaultValue={pekerjaan} />
+                <FormInput inputName='tanggalLahir' placeholder='tanggal lahir' labelInput='tanggal lahir' inputType='date' defaultValue={tanggalLahir.split('T')[0]} />
+                <FormInput inputName='tempatLahir' placeholder='Kota lahir' labelInput='tempat lahir' defaultValue={tempatLahir || ''}  />
                 
               </article>
 
@@ -103,7 +105,7 @@ const PengajuanUser = () => {
             <section className='w-full col-span-5 grid grid-cols-1 ml-6 gap-y-4 h-fit'>
 
               <FormTextarea labelInput='Alasan Pengajuan' nameInput='alasanPengajuan' placeholder='alasan' />
-              <FormTextarea labelInput='Alamat Pemohon' nameInput='alamatPemohon' placeholder='masukan alamat' />
+              <FormTextarea labelInput='Alamat Pemohon' nameInput='alamatPemohon' placeholder='masukan alamat' defaultValue={alamat} />
               <FormTextarea labelInput='Alamat wali' nameInput='alamatwali' placeholder='masukan alamat' />
 
               <div className='flex flex-col gap-x-1'>
