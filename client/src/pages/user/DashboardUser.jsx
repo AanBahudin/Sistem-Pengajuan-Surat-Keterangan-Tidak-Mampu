@@ -3,7 +3,7 @@ import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
-import { sidebarLinks } from '../../utils/constant'
+import { baubauData, sidebarLinks } from '../../utils/constant'
 
 const DashboardUserContext = createContext()
 export const loader = async() => {
@@ -29,6 +29,14 @@ const DashboardUser = () => {
     }).length === 0
   }
   
+
+  const dataKelurahan = baubauData.find(item => {
+    return item.kecamatan === user.kecamatan
+  }).kelurahan
+  
+  console.log(dataKelurahan);
+  
+
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
     await customFetch.get('/auth/logout')
@@ -38,6 +46,7 @@ const DashboardUser = () => {
   return (
     <DashboardUserContext.Provider value={{
       user,
+      dataKelurahan,
       checkIsUserEligible,
       logoutUser
     }}>

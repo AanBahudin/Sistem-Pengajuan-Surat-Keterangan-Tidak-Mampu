@@ -20,11 +20,11 @@ const UserSchema = mongoose.Schema({
     },
     kelurahan : {
         type: String,
-        default: 'Batupuaro'
+        default: 'Wameo'
     },
     kecamatan : {
         type: String,
-        default: 'Wameo'
+        default: 'Batupoaro'
     },
     RT: {
         type: String,
