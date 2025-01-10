@@ -1,6 +1,7 @@
 export { default as CustomToast } from './CustomToast'
 export { default as FormInput } from './FormInput'
 export { default as FormTextarea } from './FormTextarea'
+export { default as KelurahanPengajuanCard } from './KelurahanPengajuanCard'
 export { default as Sidebar } from './Sidebar'
 export { default as SidebarLink } from './SidebarLink'
 export { default as StatusCard } from './StatusCard'

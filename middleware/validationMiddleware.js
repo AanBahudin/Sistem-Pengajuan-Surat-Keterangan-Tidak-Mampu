@@ -40,8 +40,8 @@ export const validateLogin = withValidationErrors([
     body('password')
         .notEmpty()
         .withMessage('Password tidak boleh kosong')
-        .isLength({ min: 6, max: 10 })
-        .withMessage('Password minimal 6 dan maksimal 15 karakter')
+        .isLength({ min: 6, max: 20 })
+        .withMessage('Password minimal 6 dan maksimal 20 karakter')
 ])
 
 export const validateRegister = withValidationErrors([

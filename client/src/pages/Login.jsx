@@ -15,6 +15,8 @@ export const action = async({ request }) => {
     handleToast('success', 'Berhasil Login !', 'Selamat Datang di Dashboard')
     if (role === "USER") {
       return redirect('/user')
+    } else if (role === 'KELURAHAN') {
+      return redirect('/kelurahan')
     }
   
     return '.'

@@ -7,11 +7,6 @@ const UserSchema = mongoose.Schema({
         enum: Object.values(userRole),
         default: userRole.USER
     },
-    instansi: {
-        kelurahan: String,
-        kecamatan: String,
-        rt: String,
-    },
     nama : String,
     email : {
         type: String,
@@ -27,6 +22,10 @@ const UserSchema = mongoose.Schema({
     kecamatan : {
         type: String,
         default: 'Wameo'
+    },
+    RT: {
+        type: String,
+        default: '00'
     },
     nomor_hp : String,
     tempat_tanggal_lahir: String,

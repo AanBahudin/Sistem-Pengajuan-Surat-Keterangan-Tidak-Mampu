@@ -102,7 +102,7 @@ const PengajuanUser = () => {
                 <FormInput inputName='namaIbu' placeholder='nama lengkap'labelInput='Nama ibu' />
                 <FormInput inputName='nikIbu' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' />
                 <FormInput inputName='jenisKelaminIbu'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Wanita' />
-                <FormInput inputName='pekerjaanIbu' placeholder='Pekerjaan'labelInput='pekerjaan' />
+                <FormInput inputName='pekerjaanIbu' placeholder='Pekerjaan'labelInput='pekerjaan ibu' />
                 <FormInput inputName='tanggalLahirIbu' placeholder='kota lahir'labelInput='tanggal lahir' inputType='date' />
                 <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir'labelInput='tempat lahir' />
               </article>

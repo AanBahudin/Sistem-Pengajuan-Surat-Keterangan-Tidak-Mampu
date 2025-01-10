@@ -27,8 +27,8 @@ const Sidebar = ({ data, logoutUser, link }) => {
       <section className='flex items-center justify-center gap-x-4 px-2 py-4 border-t-[1px] border-slate-200 bg-slate-200/60'>
           <User className='w-10 h-10 bg-slate-300/70 p-2 rounded-full stroke-slate-400' />
           
-          <div>
-            <h1 className='text-sm text-slate-900 font-bold'>{data.nama}</h1>
+          <div className='w-full flex-1'>
+            <h1 className='text-sm text-slate-900 font-bold'>{data.nama.slice(0, 20)}..</h1>
             <p className='text-[12px] text-slate-500 truncate'>{data.email}</p>
             <button onClick={logoutUser} className='text-[12px] bg-slate-200 border-[1px] border-newRed/40 w-full py-1 rounded-md mt-2 hover:bg-newRed hover:text-white cursor-default duration-200 ease-in-out'>keluar</button>
           </div>

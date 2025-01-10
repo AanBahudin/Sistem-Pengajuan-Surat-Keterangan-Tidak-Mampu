@@ -1,9 +1,22 @@
 import React, { useState } from 'react'
 import { AtSign, Search, X, ExternalLink, Clipboard, MapPinHouse  } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
+import customFetch from '../../utils/customFetch'
+import { KelurahanPengajuanCard } from '../../components'
+
+export const loader = async() => {
+  try {
+    const { data } = await customFetch.get('/kelurahan');
+    return data
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const SemuaPengajuan = () => {
 
+  const { ajuan } = useLoaderData();
+  
   const [isEmail, setEmail] = useState('')
 
   return (
@@ -46,107 +59,10 @@ const SemuaPengajuan = () => {
 
         {/* kartu pengajuan */}
       <section className='mt-10 w-full grid grid-cols-3 gap-y-4 gap-x-10'>
-        <Link to='pengajuan' className='w-[380px] h-[35vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
-          {/* deret icon */}
-          <div className='w-full flex items-center justify-end'>
-          <ExternalLink className='w-5 h-5 stroke-slate-500 hover:stroke-slate-700 duration-200 ease-in-out' />
-          </div>
-
-          <h2 className='mt-1 font-semibold text-lg text-slate-900 capitalize'>Aan Bahudin</h2>
-          <p className='text-xs text-slate-600  text-justify'>Pembuatan surat keterangan tidak mampu diajukan oleh <span className='font-bold text-newBlue'> Aan Bahudin </span> pada tanggal 22/12/2021 di kelurahan Bukit Wolio Indah</p>
-
-          <div className='w-full'>
-            
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 truncate'>
-              <MapPinHouse className='w-4 h-4 stroke-newBlue' />
-              Jalan gatot subroto No 34 A
-            </p>
-
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 mt-2 truncate'>
-              <Clipboard className='w-4 h-4 stroke-newBlue' />
-               RT 012
-            </p>
-            
-            <p className='text-sm bg-newBlue/70 py-2 px-4 rounded-md text-center text-white mt-4'>lihat detail</p>
-          </div>
-        </Link>
-
-        <Link to='pengajuan' className='w-[380px] h-[35vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
-          {/* deret icon */}
-          <div className='w-full flex items-center justify-end'>
-          <ExternalLink className='w-5 h-5 stroke-slate-500 hover:stroke-slate-700 duration-200 ease-in-out' />
-          </div>
-
-          <h2 className='mt-1 font-semibold text-lg text-slate-900 capitalize'>Aan Bahudin</h2>
-          <p className='text-xs text-slate-600  text-justify'>Pembuatan surat keterangan tidak mampu diajukan oleh <span className='font-bold text-newBlue'> Aan Bahudin </span> pada tanggal 22/12/2021 di kelurahan Bukit Wolio Indah</p>
-
-          <div className='w-full'>
-            
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 truncate'>
-              <MapPinHouse className='w-4 h-4 stroke-newBlue' />
-              Jalan gatot subroto No 34 A
-            </p>
-
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 mt-2 truncate'>
-              <Clipboard className='w-4 h-4 stroke-newBlue' />
-               RT 012
-            </p>
-            
-            <p className='text-sm bg-newBlue/70 py-2 px-4 rounded-md text-center text-white mt-4'>lihat detail</p>
-          </div>
-        </Link>
-
-        <Link to='pengajuan' className='w-[380px] h-[35vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
-          {/* deret icon */}
-          <div className='w-full flex items-center justify-end'>
-          <ExternalLink className='w-5 h-5 stroke-slate-500 hover:stroke-slate-700 duration-200 ease-in-out' />
-          </div>
-
-          <h2 className='mt-1 font-semibold text-lg text-slate-900 capitalize'>Aan Bahudin</h2>
-          <p className='text-xs text-slate-600  text-justify'>Pembuatan surat keterangan tidak mampu diajukan oleh <span className='font-bold text-newBlue'> Aan Bahudin </span> pada tanggal 22/12/2021 di kelurahan Bukit Wolio Indah</p>
-
-          <div className='w-full'>
-            
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 truncate'>
-              <MapPinHouse className='w-4 h-4 stroke-newBlue' />
-              Jalan gatot subroto No 34 A
-            </p>
-
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 mt-2 truncate'>
-              <Clipboard className='w-4 h-4 stroke-newBlue' />
-               RT 012
-            </p>
-            
-            <p className='text-sm bg-newBlue/70 py-2 px-4 rounded-md text-center text-white mt-4'>lihat detail</p>
-          </div>
-        </Link>
-
-        <Link to='pengajuan' className='w-[380px] h-[35vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
-          {/* deret icon */}
-          <div className='w-full flex items-center justify-end'>
-          <ExternalLink className='w-5 h-5 stroke-slate-500 hover:stroke-slate-700 duration-200 ease-in-out' />
-          </div>
-
-          <h2 className='mt-1 font-semibold text-lg text-slate-900 capitalize'>Aan Bahudin</h2>
-          <p className='text-xs text-slate-600  text-justify'>Pembuatan surat keterangan tidak mampu diajukan oleh <span className='font-bold text-newBlue'> Aan Bahudin </span> pada tanggal 22/12/2021 di kelurahan Bukit Wolio Indah</p>
-
-          <div className='w-full'>
-            
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 truncate'>
-              <MapPinHouse className='w-4 h-4 stroke-newBlue' />
-              Jalan gatot subroto No 34 A
-            </p>
-
-            <p className='text-xs flex items-center w-full text-slate-700 gap-x-4 mt-2 truncate'>
-              <Clipboard className='w-4 h-4 stroke-newBlue' />
-               RT 012
-            </p>
-            
-            <p className='text-sm bg-newBlue/70 py-2 px-4 rounded-md text-center text-white mt-4'>lihat detail</p>
-          </div>
-        </Link>
-      
         
+        {ajuan.map((item, index) => {
+          return <KelurahanPengajuanCard key={index} {...item} />
+        })}
         
       </section>
       </section>

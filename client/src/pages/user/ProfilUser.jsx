@@ -84,7 +84,7 @@ const ProfilUser = () => {
 
                 <section className='w-full grid grid-cols-3 gap-x-6 gap-y-4 mt-6'>
                   <FormInput inputName='nama' placeholder='nama lengkap'labelInput='Nama' isAutoFocus={true} isReadOnly={!isEdit} defaultValue={user.nama}  />
-                  <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} />
+                  { user.ROLE === 'USER' && <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} /> }
                   <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} isReadOnly={!isEdit} defaultValue='Pria' />
                   <FormInput inputName='email' placeholder='email'labelInput='email' isReadOnly={!isEdit} defaultValue={user.email} />
                   <FormInput inputName='kontak' placeholder='Kontak' labelInput='kontak' isReadOnly={!isEdit} defaultValue='081217597905' />
@@ -128,7 +128,7 @@ const ProfilUser = () => {
                   
                   {/* sisi kanan */}
                   <article className='w-full col-span-5 grid grid-cols-1'>
-                    <FormTextarea labelInput='Alamat Lengkap' nameInput='alamat' placeholder='masukan alamat' isReadOnly={!isEdit} defaultValue='Jl. Sultan Hasanuddin No.58, Batulo, Kec. Wolio, Kota Bau-Bau, Sulawesi Tenggara 93716' />
+                    <FormTextarea labelInput='Alamat Lengkap' nameInput='alamat' placeholder='masukan alamat' isReadOnly={!isEdit} defaultValue={user.alamat} />
                   </article>
 
                 </section>

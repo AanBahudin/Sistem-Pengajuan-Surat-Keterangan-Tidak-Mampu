@@ -5,3 +5,4 @@ export { default as SemuaPengajuan } from './SemuaPengajuan'
 
 // LOADER
 export { loader as kelurahanLayoutLoader } from './KelurahanLayout'
+export { loader as semuaPengajuanLoader } from './SemuaPengajuan'
