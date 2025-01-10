@@ -65,7 +65,7 @@ const PengajuanUser = () => {
         <h1 className='text-4xl font-semibold text-slate-900'>Ajukan Surat Keterangan Tidak Mampu Anda!</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Isi formulir pengajuan di bawah ini untuk memulai proses permohonan. Pastikan data yang Anda masukkan lengkap dan benar agar proses berjalan lancar.</p>
 
-        <WarningBar />
+        { !checkIsUserEligible() && <WarningBar /> }
 
         {/* container pengajuan */}
         <Form method='POST' encType='multipart/form-data' className='mt-10 w-full'>

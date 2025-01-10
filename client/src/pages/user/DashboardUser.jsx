@@ -29,6 +29,8 @@ const DashboardUser = () => {
     }).length === 0
   }
   
+  console.log(checkIsUserEligible());
+  
 
   const dataKelurahan = baubauData.find(item => {
     return item.kecamatan === user.kecamatan
