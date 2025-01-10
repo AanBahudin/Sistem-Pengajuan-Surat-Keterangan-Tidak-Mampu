@@ -3,6 +3,7 @@ import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
+import { sidebarLinks } from '../../utils/constant'
 
 const DashboardUserContext = createContext()
 export const loader = async() => {
@@ -35,7 +36,7 @@ const DashboardUser = () => {
     }}>
 
       <div className='w-full h-[100vh] flex overflow-hidden'>
-        <Sidebar data={user} logoutUser={logoutUser} />
+        <Sidebar data={user} link={sidebarLinks} logoutUser={logoutUser} />
 
         <div className='flex-1'>
           <Outlet />

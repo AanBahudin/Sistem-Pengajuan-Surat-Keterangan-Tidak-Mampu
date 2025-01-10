@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { CalendarRange, FileCheck2, FileCog, FileText, FileWarning, MapPin, User } from 'lucide-react'
+import { CalendarRange, FileCheck2, FileCog, FileText, FileWarning, MapPin, User, History, FolderCheck } from 'lucide-react'
 
 const DashboardPengajuan = () => {
   return (
@@ -203,8 +203,37 @@ const DashboardPengajuan = () => {
           </div>
 
           {/* sisi kanan */}
-          <div className="col-span-3 rounded-xl h-full bg-blue-100">
-            test
+          <div className="col-span-3 rounded-xl h-full bg-slate-100">
+            <section className='w-full rounded-t-xl bg-newBlue/30 px-2 py-4'>
+              <h2 className='text-slate-700 font-semibold text-lg'>Aktivitas Terbaru</h2>
+            </section>
+
+            <section className='mt-4 w-full flex flex-col justify-start gap-y-4'>
+
+              <article className='w-full flex justify-start items-center gap-x-5 px-4'>
+                <History className='w-12 h-12' />
+                <div>
+                  <p className='text-[12px] text-slate-600'>Anda mengubah status pengajuan milik <span className='text-newBlue'> Maria Ulfah </span> menjadi Sedang Diproses.</p>
+                </div>
+              </article>
+
+              <article className='w-full flex justify-start items-center gap-x-5 px-4'>
+                <FolderCheck className='w-12 h-12' />
+                <div>
+                  <p className='text-[12px] text-slate-600'>Anda mengubah status pengajuan milik <span className='text-newBlue'> Maria Ulfah </span> menjadi Sedang Diproses.</p>
+                </div>
+              </article>
+
+              <article className='w-full flex justify-start items-center gap-x-5 px-4'>
+                <History className='w-12 h-12' />
+                <div>
+                  <p className='text-[12px] text-slate-600'>Anda mengubah status pengajuan milik <span className='text-newBlue'> Maria Ulfah </span> menjadi Sedang Diproses.</p>
+                </div>
+              </article>
+
+              
+
+            </section>
           </div>
           
         </section>
