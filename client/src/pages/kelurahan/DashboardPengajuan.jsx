@@ -16,8 +16,8 @@ export const loader = async() => {
 
 const DashboardPengajuan = () => {
 
-  const {ajuan: data} = useLoaderData()
-  
+  let {ajuan: data, totalData, statusSummary} = useLoaderData()
+
 
   return (
     <section className='w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
@@ -40,25 +40,25 @@ const DashboardPengajuan = () => {
               {/* dashboard kartu */}
               <div className='bg-newBlue/30 rounded-xl w-[200px] h-[20vh] flex flex-col justify-center items-center'>
                 <FileText className='w-8 h-8 stroke-newBlue ' />
-                <h1 className='text-slate-800 text-2xl font-semibold my-2'>23</h1>
+                <h1 className='text-slate-800 text-2xl font-semibold my-2'>{totalData}</h1>
                 <p className='text-sm text-slate-600'>total pengajuan</p>
               </div>
 
               <div className='bg-newGreen/30 rounded-xl w-[200px] h-[20vh] flex flex-col justify-center items-center'>
                 <FileCheck2 className='w-8 h-8 stroke-newGreen ' />
-                <h1 className='text-slate-800 text-2xl font-semibold my-2'>23</h1>
+                <h1 className='text-slate-800 text-2xl font-semibold my-2'>{statusSummary[1]?.count || 0}</h1>
                 <p className='text-sm text-slate-600'>Diterima</p>
               </div>
 
               <div className='bg-newYellow/30 rounded-xl w-[200px] h-[20vh] flex flex-col justify-center items-center'>
                 <FileCog className='w-8 h-8 stroke-newYellow ' />
-                <h1 className='text-slate-800 text-2xl font-semibold my-2'>23</h1>
+                <h1 className='text-slate-800 text-2xl font-semibold my-2'>{statusSummary[2]?.count || 0}</h1>
                 <p className='text-sm text-slate-600'>Proses</p>
               </div>
 
               <div className='bg-newRed/30 rounded-xl w-[200px] h-[20vh] flex flex-col justify-center items-center'>
                 <FileWarning className='w-8 h-8 stroke-newRed ' />
-                <h1 className='text-slate-800 text-2xl font-semibold my-2'>23</h1>
+                <h1 className='text-slate-800 text-2xl font-semibold my-2'>{statusSummary[3]?.count || 0}</h1>
                 <p className='text-sm text-slate-600'>Ditolak</p>
               </div>
             </article>

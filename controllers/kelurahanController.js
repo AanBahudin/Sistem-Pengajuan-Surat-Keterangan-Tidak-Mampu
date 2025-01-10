@@ -4,7 +4,19 @@ import Data from '../models/DataModel.js'
 
 export const kelurahanDashboard = async(req, res) => {
     const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccKelurahan: 'belum' });
-    return res.status(StatusCodes.OK).json({ ajuan: data })
+    const totalData = await Data.find({kelurahan: req.user.kelurahan}).countDocuments();
+    const statusSummary = await Data.aggregate([
+        {
+            $group: {
+                _id: "$statusAccKelurahan",
+                count: { $sum: 1 }
+            }
+        }
+    ])
+
+
+
+    return res.status(StatusCodes.OK).json({ ajuan: data, totalData, statusSummary })
 }
 
 export const getAllPermohonanData = async(req, res) => {
