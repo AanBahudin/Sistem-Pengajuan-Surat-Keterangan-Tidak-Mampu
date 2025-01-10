@@ -26,7 +26,7 @@ const KelurahanPengajuanCard = ({ url, nama, nik, createdAt, kelurahan, alamatPe
                {nik}
             </p>
             
-            <p className='text-sm bg-newBlue/70 py-2 px-4 rounded-md text-center text-white mt-4'>{statusAccKelurahan === 'terima' ? 'Selesai' : ( statusAccKelurahan === 'tolak' ? 'ditolak' : 'lihat detail' )}</p>
+            <p className={`text-sm ${ statusAccKelurahan === 'terima' ? 'bg-newBlue/70' : ( statusAccKelurahan === 'tolak' ? 'bg-newRed/70' : 'bg-slate-800/70' ) } py-2 px-4 rounded-md text-center text-white mt-4`}>{statusAccKelurahan === 'terima' ? 'Selesai' : ( statusAccKelurahan === 'tolak' ? 'ditolak' : 'lihat detail' )}</p>
           </div>
         </Link>
   )
