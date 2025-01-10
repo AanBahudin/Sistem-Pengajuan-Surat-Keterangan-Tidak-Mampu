@@ -14,7 +14,10 @@ const UserSchema = mongoose.Schema({
         unique: true
     },
     password : String,
-    alamat : String,
+    alamat : {
+        type: String,
+        default: ''
+    },
     kelurahan : {
         type: String,
         default: 'Batupuaro'
@@ -31,10 +34,22 @@ const UserSchema = mongoose.Schema({
         type: String,
         default: '00'
     },
-    nomor_hp : String,
-    tanggalLahir: String,
-    jenisKelamin: String,
-    nik : String
+    nomor_hp : {
+        type: String,
+        default: ''
+    },
+    tanggalLahir: {
+        type: String,
+        default: ""
+    },
+    jenisKelamin: {
+        type: String,
+        default: "Pria"
+    },
+    nik : {
+        type: String,
+        default: ""
+    }
 }, { timestamps: true });
 
 export default mongoose.model("User", UserSchema);
