@@ -49,6 +49,14 @@ const UserSchema = mongoose.Schema({
     nik : {
         type: String,
         default: ""
+    },
+    photo: {
+        type: String,
+        default: ''
+    },
+    photoPublicId: {
+        type: String,
+        default: ''
     }
 }, { timestamps: true });
 
