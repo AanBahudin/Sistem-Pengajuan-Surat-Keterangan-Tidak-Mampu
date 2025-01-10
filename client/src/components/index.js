@@ -1,4 +1,5 @@
 export { default as CustomToast } from './CustomToast'
+export { default as DataContainer } from './DataContainer'
 export { default as FormInput } from './FormInput'
 export { default as FormTextarea } from './FormTextarea'
 export { default as KelurahanCardDashboard } from './KelurahanCardDashboard'

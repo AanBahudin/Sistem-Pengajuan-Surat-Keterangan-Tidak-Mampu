@@ -14,7 +14,7 @@ const FormInput = ({ labelInput, inputType='text', inputName, placeholder, isAut
       ) : (
         <input className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' name={inputName} id={inputName} defaultValue={defaultValue} type={inputType} disabled={isReadOnly} value={isReadOnly ? defaultValue : null} placeholder={placeholder} autoFocus={isAutoFocus} required={isRequired} autoComplete='off' />
       )}
-      </div>
+    </div>
   )
 }
 
