@@ -2,9 +2,15 @@ import { StatusCodes } from 'http-status-codes'
 import { NotFoundError } from '../middleware/ErrorHandlerMiddleware.js'
 import Data from '../models/DataModel.js'
 
-export const getAllPermohonanKecamatan = async(req, res) => {
-    const data = await Data.find({ kelurahan: req.user.kelurahan });
+export const kelurahanDashboard = async(req, res) => {
+    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccKelurahan: 'belum' });
     return res.status(StatusCodes.OK).json({ ajuan: data })
+}
+
+export const getAllPermohonanData = async(req, res) => {
+    // leter add sort (default : belum)
+
+    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccKelurahan: 'belum'})
 }
 
 export const getSinglePermohonanKecamatan = async(req, res) => {

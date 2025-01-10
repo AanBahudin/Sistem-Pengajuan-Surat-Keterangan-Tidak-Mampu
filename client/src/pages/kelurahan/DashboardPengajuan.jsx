@@ -64,12 +64,16 @@ const DashboardPengajuan = () => {
             </article>
 
             <h4 className='mt-6 text-lg text-slate-800 font-medium'>Pengajuan yang disarankan</h4>        
-            <article className='w-full grid grid-cols-3 gap-y-4 mt-4'>
-              {data.map((item, index) => {
-                return <KelurahanCardDashboard key={index} {...item} />
-              })}
-            </article>
 
+            {data.length === 0 ? (
+              <h4 className='mt-4 text-slate-600'>Belum ada pengajuan terbaru ...</h4>
+            ) : (
+              <article className='w-full grid grid-cols-3 gap-y-4 mt-4'>
+                {data.map((item, index) => {
+                  return <KelurahanCardDashboard key={index} {...item} />
+                })}
+              </article>
+            )} 
             
 
           </div>

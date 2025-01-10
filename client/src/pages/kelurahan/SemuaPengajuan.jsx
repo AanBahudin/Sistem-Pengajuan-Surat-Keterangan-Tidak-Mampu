@@ -60,9 +60,16 @@ const SemuaPengajuan = () => {
         {/* kartu pengajuan */}
       <section className='mt-10 w-full grid grid-cols-3 gap-y-4 gap-x-10'>
         
-        {ajuan.map((item, index) => {
-          return <KelurahanPengajuanCard url={`/kelurahan/pengajuan/${item._id}`} key={index} {...item} />
-        })}
+        {
+          ajuan.length === 0 ? (
+            <h1 className='text-slate-600'>Belum ada pengajuan terbaru ...</h1>
+          ) : (
+            ajuan.map((item, index) => {
+              return <KelurahanPengajuanCard url={`/kelurahan/pengajuan/${item._id}`} key={index} {...item} />
+            })
+          )
+        }
+
         
       </section>
       </section>

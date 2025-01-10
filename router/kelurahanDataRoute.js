@@ -1,10 +1,13 @@
 import express from 'express'
-import { getAllPermohonanKecamatan, getSinglePermohonanKecamatan, handlePengajuan } from '../controllers/kelurahanController.js'
+import { kelurahanDashboard, getSinglePermohonanKecamatan, handlePengajuan } from '../controllers/kelurahanController.js'
 
 const router = express.Router()
 
 router.route('/')
-    .get(getAllPermohonanKecamatan)
+    .get(kelurahanDashboard)
+
+router.route('/all')
+    .get()
 
 router.route('/:id')
     .get(getSinglePermohonanKecamatan)
