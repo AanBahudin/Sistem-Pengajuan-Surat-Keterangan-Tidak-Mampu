@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Scan, LoaderCircle, TriangleAlert } from 'lucide-react'
 import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import { baubauData } from '../../utils/constant'
-import { FormInput, FormTextarea } from '../../components'
+import { FormInput, FormTextarea, WarningBar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
 import {useUserDashboardContext} from './DashboardUser'
 import customFetch from '../../utils/customFetch'
@@ -58,10 +58,6 @@ const PengajuanUser = () => {
     setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
   }
 
-  
-
-  
-
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center justify-center flex-col'>
 
@@ -69,10 +65,7 @@ const PengajuanUser = () => {
         <h1 className='text-4xl font-semibold text-slate-900'>Ajukan Surat Keterangan Tidak Mampu Anda!</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Isi formulir pengajuan di bawah ini untuk memulai proses permohonan. Pastikan data yang Anda masukkan lengkap dan benar agar proses berjalan lancar.</p>
 
-        <div className='w-full mt-4 py-2 px-2 gap-x-2 flex rounded-lg bg-newRed/60 items-center'>
-          <TriangleAlert className='w-4 h-4 stroke-newRed' />
-          <h1 className='font-medium text-white'>Maaf, Anda tidak bisa mengajukan surat keterangan jika data diri anda belum lengkap. <Link to='/user/profil' className='underline'>Silahkan lengkapi terlebih dahulu</Link> </h1>
-        </div>
+        <WarningBar />
 
         {/* container pengajuan */}
         <Form method='POST' encType='multipart/form-data' className='mt-10 w-full'>

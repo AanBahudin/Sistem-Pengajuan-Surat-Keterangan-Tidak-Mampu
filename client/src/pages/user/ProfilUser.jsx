@@ -66,10 +66,9 @@ const ProfilUser = () => {
           </div>
 
             <article className='w-full flex px-6 gap-x-4'>
-              {/* <img className='w-40 h-40 rounded-full border-4 border-white -mt-20 bg-slate-300' src="" alt="" /> */}
               <User className='w-40 h-40 rounded-full border-4 border-white -mt-20 bg-slate-300 stroke-slate-200' src="" alt="" />
 
-              {isEdit && <p className='bg-newBlue/70 w-fit h-fit mt-2 hover:bg-newBlue py-2 px-4 rounded-lg text-sm text-slate-600 flex items-center gap-x-3 group hover:text-slate-950 duration-200 ease-in-out cursor-default select-none'><Camera className='w-5 h-5 stroke-slate-600 group-hover:stroke-slate-950' /> Pilih gambar</p>}
+              {isEdit && <label htmlFor='profile'  className='bg-newBlue/70 w-fit h-fit mt-2 hover:bg-newBlue py-2 px-4 rounded-lg text-sm text-slate-600 flex items-center gap-x-3 group hover:text-slate-950 duration-200 ease-in-out cursor-default select-none'><Camera className='w-5 h-5 stroke-slate-600 group-hover:stroke-slate-950' /> Pilih gambar</label>}
               
             </article>
 
