@@ -9,7 +9,7 @@ import { dashboardUserLoader, pengajuanLoader, profileLoader, statusLoader } fro
 import { pengajuanAction } from "./pages/user"
 
 // kelurahan page import
-import { DashboardPengajuan, dashboardPengajuanLoader, DetailPengajuan, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
+import { DashboardPengajuan, dashboardPengajuanLoader, DetailPengajuan, detailPengajuanLoader, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
 import { kelurahanLayoutLoader, semuaPengajuanLoader } from "./pages/kelurahan"
 
 import { action as LoginAction } from './pages/Login'
@@ -82,7 +82,8 @@ const App = () => {
         },
         {
           path: 'pengajuan/:id',
-          element: <DetailPengajuan />
+          element: <DetailPengajuan />,
+          loader: detailPengajuanLoader
         },
         {
           path: 'profil',
