@@ -28,6 +28,7 @@ const DataSchema = new mongoose.Schema({
     publicIdKK: String,
     alamatPemohon: String,
     alamatwali: String,
+    alasanPengajuan: String,
     id_pemohon : {
         type: mongoose.Types.ObjectId,
         ref: "User"
