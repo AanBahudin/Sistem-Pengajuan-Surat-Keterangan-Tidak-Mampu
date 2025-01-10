@@ -1,9 +1,10 @@
 import React from 'react'
-import { DataContainer, BigDataContainer } from '../../components'
+import { DataContainer, BigDataContainer, ImageViewer } from '../../components'
 import { useLoaderData, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import moment from 'moment'
-import { X } from 'lucide-react'
+import { useKelurahanContext } from './KelurahanLayout'
+
 
 export const loader = async({ params }) => {
   try {
@@ -17,8 +18,9 @@ export const loader = async({ params }) => {
 
 const DetailPengajuan = () => {
 
-  const isSubmitting = useNavigation().state === 'submitting'
+  const { showImageReview, toggleImageReview } = useKelurahanContext()
   
+  const isSubmitting = useNavigation().state === 'submitting'
   const {data} = useLoaderData()
   
 
@@ -26,15 +28,7 @@ const DetailPengajuan = () => {
     <section className='relative w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
 
     {/* image viewer test */}
-    <div className='fixed flex items-center flex-col h-[70vh] w-[50%] z-20 bg-white/80 rounded-2xl px-10 py-4 overflow-hidden border-[2px] border-slate-200'>
-
-      <section className='w-full flex justify-between items-center gap-x-4'>
-        <h1 className='font-semibold text-slate-800'>Kartu Tanda Penduduk Aan Bahudin</h1>
-        <X className='stroke-newRed' size={35} />
-      </section>
-
-      <img className='min-w-fit max-w-full overflow-hidden h-[70%] my-auto object-contain' src={data.ktp} alt="" />
-    </div>
+    { showImageReview.show && <ImageViewer data={showImageReview.judul === 'ktp' ? data.ktp : data.kk} judul={showImageReview.judul === 'ktp' ? 'Kartu Tanda Penduduk'  : 'Kartu Keluarga'} nama={data.nama} /> }
 
 
     {/* welcome sign */}
@@ -96,7 +90,7 @@ const DetailPengajuan = () => {
                 <p className='text-slate-800 font-semibold'>Foto KTP Pemohon</p>
                 <section className='w-full h-[30vh] text-sm px-10 py-5 group outline-none rounded-md border-[2px] red overflow-hidden border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
                     <div className=' relative w-full h-full overflow-hidden rounded-md'>
-                      <button className='text-sm w-[10vw] absolute z-1 top-1/2 left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-newBlue text-white rounded-xl py-2 px-10 transition-opacity opacity-0 group-hover:opacity-100'>lihat foto</button>
+                      <button onClick={() => toggleImageReview(true, 'ktp')} className='text-sm w-[10vw] absolute z-10 top-1/2 left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-newBlue text-white rounded-xl py-2 px-10 transition-opacity opacity-0 group-hover:opacity-100'>lihat foto</button>
                       <img className='w-full h-full object-cover rounded-md group-hover:opacity-70 duration-200 ease-in-out' src={data.ktp} alt="" />
                     </div>
                 </section>
@@ -106,7 +100,7 @@ const DetailPengajuan = () => {
                 <p className='text-slate-800 font-semibold'>Foto KK Pemohon</p>
                 <section className='w-full h-[30vh] text-sm px-10 py-5 group outline-none rounded-md border-[2px] red overflow-hidden border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
                     <div className=' relative w-full z-10 h-full overflow-hidden rounded-md'>
-                      <button className='text-sm w-[10vw] absolute z-10 top-1/2 left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-newBlue text-white rounded-xl py-2 px-10 transition-opacity opacity-0 group-hover:opacity-100'>lihat foto</button>
+                      <button onClick={() => toggleImageReview(true, 'kk')} className='text-sm w-[10vw] absolute z-10 top-1/2 left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-newBlue text-white rounded-xl py-2 px-10 transition-opacity opacity-0 group-hover:opacity-100'>lihat foto</button>
                       <img className='w-full h-full object-cover rounded-md group-hover:opacity-70 duration-200 ease-in-out' src={data.kk} alt="" />
                     </div>
                 </section>

@@ -32,9 +32,7 @@ const StatusPengajuanUser = () => {
         <p className='text-md mt-2 text-slate-500'>Pantau status pengajuan surat Anda dengan mudah. Anda hanya dapat memiliki maksimal 3 pengajuan. Untuk mengajukan yang baru, Anda harus membatalkan salah satu dari yang sedang berjalan.</p>
 
         {/* kartu pengajuan */}
-        <section className='mt-10 w-full grid grid-cols-3'>
-          
-
+        <section className='mt-10 w-full grid grid-cols-3 gap-y-6'>
           {/* tampilkan jika tidak ada pengajuan sama sekali */}
           
           { permohonan.length === 0 ? (

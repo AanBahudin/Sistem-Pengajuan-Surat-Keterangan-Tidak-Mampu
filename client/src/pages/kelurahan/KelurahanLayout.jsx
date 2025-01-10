@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
@@ -19,8 +19,13 @@ export const loader = async() => {
 const KelurahanLayout = () => {
 
   const { user } = useLoaderData()
-  
   const navigate = useNavigate()
+  const [showImageReview, setShowImageReview] = useState({ show: false, judul: '' })
+
+  const toggleImageReview = (show, judul) => {
+    setShowImageReview(prevState => ({...prevState, show, judul}))
+    
+  }
 
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
@@ -30,7 +35,9 @@ const KelurahanLayout = () => {
 
   return (
     <KelurahaanContext.Provider value={{
+      showImageReview,
       user,
+      toggleImageReview,
       logoutUser
     }}>
        <div className='w-full h-[100vh] flex overflow-hidden'>
