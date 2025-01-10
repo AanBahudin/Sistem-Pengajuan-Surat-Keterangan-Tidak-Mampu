@@ -10,13 +10,13 @@ export const loader = async() => {
     return data
   } catch (error) {
     console.log(error);
+    return error
   }
 }
 
 const SemuaPengajuan = () => {
 
   const { ajuan } = useLoaderData();
-  
   const [isEmail, setEmail] = useState('')
 
   return (
@@ -61,7 +61,7 @@ const SemuaPengajuan = () => {
       <section className='mt-10 w-full grid grid-cols-3 gap-y-4 gap-x-10'>
         
         {ajuan.map((item, index) => {
-          return <KelurahanPengajuanCard key={index} {...item} />
+          return <KelurahanPengajuanCard url={`/kelurahan/pengajuan/${item._id}`} key={index} {...item} />
         })}
         
       </section>

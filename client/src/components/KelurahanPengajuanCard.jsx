@@ -3,9 +3,9 @@ import { ExternalLink, MapPinHouse, Fingerprint } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const KelurahanPengajuanCard = ({ nama, nik, createdAt, kelurahan, alamatPemohon }) => {
+const KelurahanPengajuanCard = ({ url, nama, nik, createdAt, kelurahan, alamatPemohon }) => {
   return (
-    <Link to='pengajuan' className='w-[380px] h-[35vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
+    <Link to={url} className='w-[380px] h-[35vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
           {/* deret icon */}
           <div className='w-full flex items-center justify-end'>
           <ExternalLink className='w-5 h-5 stroke-slate-500 hover:stroke-slate-700 duration-200 ease-in-out' />
