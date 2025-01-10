@@ -3,7 +3,7 @@ import { CircleEllipsis, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const StatusCard = ({ nama, createdAt, kelurahan, urutan}) => {
+const StatusCard = ({ nama, createdAt, kelurahan, urutan, statusAccKelurahan}) => {
   return (
     <Link to='pengajuan' className='w-[350px] h-[30vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
       {/* deret icon */}
@@ -20,7 +20,7 @@ const StatusCard = ({ nama, createdAt, kelurahan, urutan}) => {
           status
       </p>
       
-      <p className='text-sm bg-newYellow/70 py-2 px-4 rounded-md text-center text-white mt-1'>pending</p>
+      <p className={`text-sm ${statusAccKelurahan === 'terima' ? 'bg-newBlue/70' : (statusAccKelurahan === 'tolak' ? 'bg-newRed/70' : 'bg-slate-500')} py-2 px-4 rounded-md text-center text-white mt-1`}>{statusAccKelurahan === 'terima' ? 'Telah Diterima' : (statusAccKelurahan === 'tolak' ? 'Ajuan Tertolak' : 'Ajuan Pending')}</p>
       </div>
     </Link>
   )
