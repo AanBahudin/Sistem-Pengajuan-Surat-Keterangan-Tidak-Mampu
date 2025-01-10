@@ -26,6 +26,10 @@ const UserSchema = mongoose.Schema({
         type: String,
         default: 'Batupoaro'
     },
+    pekerjaan: {
+        type: String,
+        default: ''
+    },
     RT: {
         type: String,
         default: '00'
@@ -39,8 +43,8 @@ const UserSchema = mongoose.Schema({
         default: ''
     },
     tanggalLahir: {
-        type: String,
-        default: ""
+        type: Date,
+        default: Date.now()
     },
     jenisKelamin: {
         type: String,

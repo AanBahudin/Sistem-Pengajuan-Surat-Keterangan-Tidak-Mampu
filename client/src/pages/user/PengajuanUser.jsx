@@ -109,30 +109,6 @@ const PengajuanUser = () => {
                 <FormInput inputName='tanggalLahirIbu' placeholder='kota lahir'labelInput='tanggal lahir' inputType='date' />
                 <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir'labelInput='tempat lahir' />
               </article>
-
-              <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Tujuan Pengajuan</h4>
-
-              <article className='grid grid-cols-2 gap-4'>
-                {/* chaining kecamatan dan kelurahan */}
-                <div className='w-full flex flex-col gap-x-1'>
-                  <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kecamatan</label>
-                    <select onChange={(e) => setChaining(e)} className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase'  name='kecamatan' id='kecamatan' >
-                      {baubauData.map((item, index) => {
-                        return <option key={index} value={item.kecamatan} className='capitalize'>{item.kecamatan}</option>
-                      })}
-                    </select>
-                </div>
-
-                <div className='w-full flex flex-col gap-x-1'>
-                  <label htmlFor="kecamatan" className='text-slate-800 font-semibold capitalize'>Kelurahan</label>
-                    <select className='text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/60 placeholder:lowercase' name='kelurahan' id='kelurahan' >
-                      {selectedKelurahan.map((item, index) => {
-                        return <option key={index} value={item} className='capitalize'>{item}</option>
-                      })}
-                    </select>
-                </div>
-              </article>
-
             </section>
 
             {/* kolom kanan */}
@@ -176,8 +152,7 @@ const PengajuanUser = () => {
               </div>
             </section>
 
-            <div className='col-span-7 mt-6 mb-20 flex flex-col'>
-
+            <div className='col-span-7 mb-20 flex flex-col'>
               { 
                 checkIsUserEligible() && (
                 <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>

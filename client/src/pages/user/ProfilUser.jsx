@@ -128,6 +128,7 @@ const ProfilUser = () => {
                       <DataContainer labelData='email' valueData={user.email} />
                       <DataContainer labelData='kontak ' valueData={user.nomor_hp} />
                       <DataContainer labelData='tanggal lahir ' valueData={user.tanggalLahir} />
+                      <DataContainer labelData='pekerjaan ' valueData={user.pekerjaan} />
                     </>
                   ) : (
                     <>
@@ -137,6 +138,7 @@ const ProfilUser = () => {
                       <FormInput inputName='email' labelInput='Email' placeholder='masukan email' defaultValue={user.email} />
                       <FormInput inputName='nomor_hp' placeholder='masukan nomor telepon'labelInput='kontak' defaultValue={user.nomor_hp} />
                       <FormInput inputName='tanggalLahir' labelInput='tanggal Lahir' inputType='date' defaultValue={ user.tanggalLahir } />
+                      <FormInput inputName='pekerjaan' labelInput='pekerjaan' placeholder='Masukan pekerjaan' defaultValue={ user.pekerjaan } />
                     </>
 
                   ) }
