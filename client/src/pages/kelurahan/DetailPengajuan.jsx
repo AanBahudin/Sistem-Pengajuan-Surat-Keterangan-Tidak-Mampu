@@ -4,7 +4,7 @@ import { Form, useLoaderData, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import moment from 'moment'
 import { useKelurahanContext } from './KelurahanLayout'
-import { LoaderCircle } from 'lucide-react'
+import { FileDown, LoaderCircle } from 'lucide-react'
 import { handleToast } from '../../components/CustomToast'
 
 export const action = async({request, params}) => {
@@ -47,7 +47,16 @@ const DetailPengajuan = () => {
 
     {/* welcome sign */}
     <section className='w-full h-full rounded-xl p-4'>
-      <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
+      <div className='w-full flex items-center justify-between'>
+        <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
+
+        {data.statusAccKelurahan === 'terima' ? (
+          <button className='flex items-center gap-x-4 bg-newBlue/80 px-6 py-2 rounded-lg text-sm text-white'>
+            <FileDown className='w-5 h-5 stroke-white' />
+            Unduh Surat
+          </button>
+        ) : null}
+      </div>
       <p className='text-md mt-2 text-slate-500 w-[80%]'>Pastikan semua data pemohon sudah sesuai dan lakukan verifikasi sebelum mengambil tindakan lanjutan. Anda dapat menyetujui, ataupun menolak.</p>
 
       <section className='mt-10 w-full'>
