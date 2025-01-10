@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, useLoaderData } from 'react-router-dom'
-import { CalendarRange, FileCheck2, FileCog, FileText, FileWarning, MapPin, User, History, FolderCheck } from 'lucide-react'
+import { useLoaderData } from 'react-router-dom'
+import { FileCheck2, FileCog, FileText, FileWarning, History, FolderCheck } from 'lucide-react'
 import { KelurahanCardDashboard } from '../../components'
 import customFetch from '../../utils/customFetch'
 
@@ -75,7 +75,7 @@ const DashboardPengajuan = () => {
           </div>
 
           {/* sisi kanan */}
-          {/* PERBAIKI BUG TINGGI CONTAINER DIBAWAH INI */}
+          {/* PERBAIKI BUG TINGGI CONTAINER DIBAWAH INI  */}
           <div className="col-span-3 rounded-xl h-[80vh] bg-slate-100">
             <section className='w-full rounded-t-xl bg-newBlue/30 px-2 py-4'>
               <h2 className='text-slate-700 font-semibold text-lg'>Aktivitas Terbaru</h2>
