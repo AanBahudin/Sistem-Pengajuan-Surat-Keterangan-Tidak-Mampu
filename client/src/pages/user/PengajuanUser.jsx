@@ -135,6 +135,7 @@ const PengajuanUser = () => {
             {/* kolom kanan */}
             <section className='w-full col-span-5 grid grid-cols-1 ml-6 gap-y-4 h-fit'>
 
+              <FormTextarea labelInput='Alasan Pengajuan' nameInput='alasanPengajuan' placeholder='alasan' />
               <FormTextarea labelInput='Alamat Pemohon' nameInput='alamatPemohon' placeholder='masukan alamat' />
               <FormTextarea labelInput='Alamat wali' nameInput='alamatwali' placeholder='masukan alamat' />
 

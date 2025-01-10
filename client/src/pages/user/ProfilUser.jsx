@@ -24,6 +24,8 @@ const ProfilUser = () => {
   const isEdit = new URLSearchParams(useLocation().search).get('edit') === 'true';
   const [selectedKecamatan, setSelectedKecamatan] = useState('Wolio')
   const [selectedKelurahan, setSelectedKelurahan] = useState([])
+  console.log(user.role === 'USER');
+  
 
   useEffect(() => {
     const getKecamatan = baubauData.find(item => {
@@ -84,7 +86,7 @@ const ProfilUser = () => {
 
                 <section className='w-full grid grid-cols-3 gap-x-6 gap-y-4 mt-6'>
                   <FormInput inputName='nama' placeholder='nama lengkap'labelInput='Nama' isAutoFocus={true} isReadOnly={!isEdit} defaultValue={user.nama}  />
-                  { user.ROLE === 'USER' && <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} /> }
+                  { user.role === 'USER' ? <FormInput inputName='nik' placeholder='nomor induk keluarga'labelInput='Nomor induk keluarga' isReadOnly={!isEdit} defaultValue={user.nik || '-'} />  : null}
                   <FormInput inputName='jenisKelamin'labelInput='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} isReadOnly={!isEdit} defaultValue='Pria' />
                   <FormInput inputName='email' placeholder='email'labelInput='email' isReadOnly={!isEdit} defaultValue={user.email} />
                   <FormInput inputName='kontak' placeholder='Kontak' labelInput='kontak' isReadOnly={!isEdit} defaultValue='081217597905' />
