@@ -34,8 +34,6 @@ const DashboardUser = () => {
     return item.kecamatan === user.kecamatan
   }).kelurahan
   
-  console.log(dataKelurahan);
-  
 
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')

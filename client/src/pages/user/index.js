@@ -11,3 +11,4 @@ export { loader as statusLoader } from './StatusPengajuanUser'
 
 // ACTION
 export { action as pengajuanAction } from './PengajuanUser'
+export { action as profilAction } from './ProfilUser'

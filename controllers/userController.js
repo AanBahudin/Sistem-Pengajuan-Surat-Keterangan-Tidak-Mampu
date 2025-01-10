@@ -10,12 +10,13 @@ const getCurrentUser = async(req, res) => {
 
 const getPermohonan = async(req, res) => {
     const permohonan = await Data.find({id_pemohon: req.user.userId})
-
     return res.status(StatusCodes.OK).json({permohonan})
 }
 
 const updateUser = async(req, res) => {
-    res.send('update user');
+    console.log(req.body);
+    
+    return res.status(StatusCodes.OK).json({ msg: 'berhasil update profile' })
 };
 
 export {

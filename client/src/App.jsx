@@ -6,7 +6,7 @@ import { MainLayout, LoginPage, RegisterPage} from './pages'
 // user page import
 import { DashboardUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
 import { dashboardUserLoader, pengajuanLoader, profileLoader, statusLoader } from './pages/user'
-import { pengajuanAction } from "./pages/user"
+import { pengajuanAction, profilAction } from "./pages/user"
 
 // kelurahan page import
 import { DashboardPengajuan, dashboardPengajuanLoader, DetailPengajuan, detailPengajuanLoader, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
@@ -59,7 +59,8 @@ const App = () => {
         {
           path: 'profil',
           element: <ProfilUser />,
-          loader: profileLoader
+          loader: profileLoader,
+          action: profilAction
         }
       ]
     },

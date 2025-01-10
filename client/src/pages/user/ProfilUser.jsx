@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { User, Pencil, Camera, X, Save } from 'lucide-react'
-import { Link, useLoaderData, useLocation, redirect } from 'react-router-dom'
+import { Link, useLoaderData, useLocation, redirect, Form } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { DataContainer, BigDataContainer, FormInput, FormTextarea } from '../../components'
 import { baubauData } from '../../utils/constant'
 import { useUserDashboardContext } from './DashboardUser'
+import { handleToast } from '../../components/CustomToast'
 
 export const loader = async() => {
   try {
@@ -13,6 +14,31 @@ export const loader = async() => {
   } catch (error) {
     console.log(error);
     return redirect('/')
+  }
+}
+
+export const action = async({ request }) => {
+  const formData = await request.formData()
+
+  const file = formData.get('photo');
+  if (file && file.size > 500000) {
+    handleToast('warning', 'Peringatan file', 'Gambar yang anda pilih melebihi 5 MB.', 4000)
+    return null
+  }
+
+  try {
+    await customFetch.patch('/user/update', formData)
+    handleToast('success', 'Profil diperbaharui !', 'Data diri dan domisili anda telah diperbaharui', 3000)    
+    return redirect('/user/profil')
+  } catch (error) {
+    const errArr = error.response.data.msg
+
+    if (typeof errArr === 'string') {
+      handleToast('error', 'Ada yang tidak beres', errArr, 4000)
+    } else {
+      handleToast('error', 'Ada yang tidak beres', errArr.join(', '), 4000)
+    }
+    return error
   }
 }
 
@@ -44,7 +70,7 @@ const ProfilUser = () => {
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center flex-col'>
-      <section className='w-full h-full rounded-xl p-4'>
+      <Form method='POST' encType='multipart/form-data' className='w-full h-full rounded-xl p-4'>
         <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Hallo, {user.nama} ✨</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Selamat datang di halaman profil Anda. Di sini, Anda dapat melihat detail informasi pribadi dan memperbaruinya jika diperlukan.</p>
 
@@ -177,7 +203,7 @@ const ProfilUser = () => {
 
 
 
-  </section>
+  </Form>
   )
 }
 
