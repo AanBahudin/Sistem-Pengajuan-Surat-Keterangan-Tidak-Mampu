@@ -4,8 +4,6 @@ import Data from '../models/DataModel.js'
 import cloudinary from 'cloudinary'
 
 const addData = async(req, res) => {
-
-    console.log(req.body);
     
     req.body.id_pemohon = req.user.userId
     

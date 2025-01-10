@@ -25,9 +25,9 @@ const updateUser = async(req, res) => {
     }
     
     const updatedUser = await User.findOneAndUpdate({ _id: req.user.userId }, req.body, { new: true, runValidators: true })
-    if (req.file && updatedUser.photoPublicId) {
-        await cloudinary.v2.uploader.destroy(updatedUser.photoPublicId)
-    }
+    // if (req.file && updatedUser.photoPublicId) {
+    //     await cloudinary.v2.uploader.destroy(updatedUser.photoPublicId)
+    // }
 
 
     return res.status(StatusCodes.OK).json({ msg: 'berhasil update profile' })

@@ -73,7 +73,6 @@ const ProfilUser = () => {
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center flex-col'>
-      <img src={user.photo} alt="" />
       <Form method='POST' encType='multipart/form-data' className='w-full h-full rounded-xl p-4'>
         <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Hallo, {user.nama} ✨</h1>
         <p className='text-md w-[80%] mt-2 text-slate-500'>Selamat datang di halaman profil Anda. Di sini, Anda dapat melihat detail informasi pribadi dan memperbaruinya jika diperlukan.</p>
