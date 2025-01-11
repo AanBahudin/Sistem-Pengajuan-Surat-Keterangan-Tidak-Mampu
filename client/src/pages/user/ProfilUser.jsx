@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { User, Pencil, Camera, X, Save } from 'lucide-react'
+import { User, Pencil, Camera, X, Save, LoaderCircle } from 'lucide-react'
 import { Link, useLoaderData, useLocation, redirect, Form, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { DataContainer, BigDataContainer, FormInput, FormTextarea } from '../../components'
@@ -83,7 +83,9 @@ const ProfilUser = () => {
           <div className='w-full h-[30vh] bg-gradient-to-b from-newBlue to-blue-500 rounded-t-2xl flex justify-end items-end gap-x-4 p-4 group'>
 
             { isEdit ? (
-                <button className={`bg-newBlue w-[12%] text-white text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}><Save className='w-4 h-4 stroke-white'/> { isSubmitting ? 'Menyimpan' : 'Simpan' } </button>
+                <button disabled={isSubmitting} className={`bg-newBlue w-[12%] text-white text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}>
+                  {isSubmitting ? <LoaderCircle className='w-4 h-4 stroke-white animate-spin' /> : <Save className='w-4 h-4 stroke-white'/>}           
+                  { isSubmitting ? 'Menyimpan' : 'Simpan' } </button>
             ) : null }
 
             <Link to={`${isEdit ? '/user/profil'  : '/user/profil?edit=true'}`} className={`${isEdit ? 'bg-newRed/80 hover:bg-newRed text-white ' : 'bg-white hover:bg-slate-200 text-slate-600 hover:text-slate-950 '} w-[12%] text-center justify-center py-2 px-4 rounded-lg text-sm flex items-center gap-x-3 group duration-100 ease-in-out cursor-default select-none transition-opacity opacity-0 group-hover:opacity-100`}>
