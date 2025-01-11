@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { AtSign, Search, X, ExternalLink, Clipboard, MapPinHouse  } from 'lucide-react'
-import { Link, useLoaderData } from 'react-router-dom'
+import { AtSign, Search, X } from 'lucide-react'
+import { useLoaderData } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { KelurahanPengajuanCard } from '../../components'
 
 export const loader = async() => {
   try {
-    const { data } = await customFetch.get('/kelurahan');
+    const { data } = await customFetch.get('/kelurahan/all');
     return data
   } catch (error) {
     console.log(error);
@@ -17,7 +17,13 @@ export const loader = async() => {
 const SemuaPengajuan = () => {
 
   const { ajuan } = useLoaderData();
+  
   const [isEmail, setEmail] = useState('')
+  const [filter, setFilter] = useState('belum')
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value)
+  }
 
   return (
     <section className='w-full h-full p-10 flex items-center justify-center flex-col overflow-y-scroll no-scrollbar'>
@@ -46,8 +52,10 @@ const SemuaPengajuan = () => {
           </div>
         </div>
 
-        <select className='w-[20%] h-12 border-[2px] border-slate-300 rounded-xl shadow-md text-sm px-2 text-slate-700' name="filter" id="filter">
-          <option value="">Status</option>
+        <select className='w-[20%] h-12 border-[2px] border-slate-300 rounded-xl shadow-md text-sm px-2 text-slate-700' name="filter" id="filter" value={filter} onChange={(event) => handleFilterChange(event)}>
+          <option value="belum">Belum diproses</option>
+          <option value="terima">Diterima</option>
+          <option value="tolak">Tertolak</option>
         </select>
 
         <button className='w-[20%] flex h-12 items-center justify-center gap-x-4 rounded-xl bg-newBlue/80 text-sm lowercase text-white'>
@@ -64,9 +72,29 @@ const SemuaPengajuan = () => {
           ajuan.length === 0 ? (
             <h1 className='text-slate-600'>Belum ada pengajuan terbaru ...</h1>
           ) : (
-            ajuan.map((item, index) => {
-              return <KelurahanPengajuanCard url={`/kelurahan/pengajuan/${item._id}`} key={index} {...item} />
-            })
+            (() => {
+              const filteredAjuan = ajuan.filter((filteredItem) => {
+                if (filter) {
+                  return filteredItem.statusAccKelurahan === filter;
+                } else {
+                  return filteredItem;
+                }
+              });
+        
+              if (filteredAjuan.length === 0) {
+                return <h1 className='text-slate-600'>
+                  {filter === 'belum' ? 'Belum ada pengajuan terbaru...' : ( filter === 'tolak' ? 'Belum ada pengajuan yang ditolak...' : 'Belum ada pengajuan yang diterima...' )}
+                </h1>;
+              }
+        
+              return filteredAjuan.map((item, index) => (
+                <KelurahanPengajuanCard
+                  url={`/kelurahan/pengajuan/${item._id}`}
+                  key={index}
+                  {...item}
+                />
+              ));
+            })()
           )
         }
 

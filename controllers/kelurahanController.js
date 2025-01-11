@@ -13,16 +13,12 @@ export const kelurahanDashboard = async(req, res) => {
             }
         }
     ])
-
-
-
     return res.status(StatusCodes.OK).json({ ajuan: data, totalData, statusSummary })
 }
 
 export const getAllPermohonanData = async(req, res) => {
-    // leter add sort (default : belum)
-
-    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccKelurahan: 'belum'})
+    const data = await Data.find({ kelurahan: req.user.kelurahan})
+    return res.status(StatusCodes.OK).json({ ajuan: data })
 }
 
 export const getSinglePermohonanKecamatan = async(req, res) => {
