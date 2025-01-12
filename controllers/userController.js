@@ -16,7 +16,8 @@ const getPermohonan = async(req, res) => {
 }
 
 const getSinglePermohonan = async(req, res) => {
-    const permohonan = await Data.findOne({id_pemohon: req.user.userId}) 
+    const { id } = req.params
+    const permohonan = await Data.findOne({_id: id}) 
     return res.status(StatusCodes.OK).json({data: permohonan})
 }
 

@@ -27,9 +27,9 @@ const RTLayout = () => {
   const navigate = useNavigate()
   const [showImageReview, setShowImageReview] = useState({ show: false, judul: '' })
   
-    const toggleImageReview = (show, judul) => {
-      setShowImageReview(prevState => ({...prevState, show, judul}))
-    }
+  const toggleImageReview = (show, judul) => {
+    setShowImageReview(prevState => ({...prevState, show, judul}))
+  }
 
 
   const logoutUser = async() => {

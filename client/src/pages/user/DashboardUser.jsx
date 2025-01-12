@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react'
+import React, { useState, useContext, createContext } from 'react'
 import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
@@ -31,6 +31,11 @@ const DashboardUser = () => {
   const dataKelurahan = baubauData.find(item => {
     return item.kecamatan === user.kecamatan
   }).kelurahan
+
+  const [showImageReview, setShowImageReview] = useState({ show: false, judul: '' })
+  const toggleImageReview = (show, judul) => {
+    setShowImageReview(prevState => ({...prevState, show, judul}))
+  }
   
 
   const logoutUser = async() => {
@@ -43,6 +48,8 @@ const DashboardUser = () => {
     <DashboardUserContext.Provider value={{
       user,
       dataKelurahan,
+      showImageReview,
+      toggleImageReview,
       checkIsUserEligible,
       logoutUser
     }}>
