@@ -15,6 +15,11 @@ const getPermohonan = async(req, res) => {
     return res.status(StatusCodes.OK).json({permohonan})
 }
 
+const getSinglePermohonan = async(req, res) => {
+    const permohonan = await Data.findOne({id_pemohon: req.user.userId}) 
+    return res.status(StatusCodes.OK).json({data: permohonan})
+}
+
 const updateUser = async(req, res) => {
     if(req.file) {
         const response = await cloudinary.v2.uploader.upload(req.file.path);
@@ -35,6 +40,7 @@ const updateUser = async(req, res) => {
 
 export {
     getCurrentUser,
+    getSinglePermohonan,
     getPermohonan,
     updateUser
 }
