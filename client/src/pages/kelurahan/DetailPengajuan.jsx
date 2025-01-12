@@ -112,9 +112,9 @@ const DetailPengajuan = () => {
               ) }
 
               { data?.pesan?.rt ? (
-                <BigDataContainer labelInput='Catatan Ketua RT' valueData={data.pesan?.rt} />
+                <BigDataContainer labelInput='Catatan Ketua RT' dataValue={data.pesan.rt || 'Tidak ada catatan'} />
               ) : (
-                <BigDataContainer labelInput='Catatan Ketua RT' dataValue="Tidak ada pesan" />
+                <BigDataContainer labelInput='Catatan Anda' dataValue={data.pesan.kelurahan || 'Tidak ada catatan'} />
               ) }
               </article>
 
