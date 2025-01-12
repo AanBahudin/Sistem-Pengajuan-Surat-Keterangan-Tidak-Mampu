@@ -4,7 +4,7 @@ import handleErrorMessage from '../../utils/handleErrorMessage'
 import { ImageViewer, BigDataContainer, DataContainer } from '../../components'
 import moment from 'moment'
 import { handleToast } from '../../components/CustomToast'
-import { useLoaderData } from 'react-router-dom'
+import { redirect, useLoaderData } from 'react-router-dom'
 import { useUserDashboardContext } from './DashboardUser'
 
 export const loader = async({ params }) => {
@@ -15,7 +15,7 @@ export const loader = async({ params }) => {
     } catch (error) {
       const errMsg = handleErrorMessage(error.response.data.msg)
       handleToast('error', 'Ada yang tidak beres', errMsg, 3000)
-      return errMsg
+      return redirect('/user/pengajuan')
     }
 }
 
