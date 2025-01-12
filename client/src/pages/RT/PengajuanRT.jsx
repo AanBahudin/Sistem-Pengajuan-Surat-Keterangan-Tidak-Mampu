@@ -83,7 +83,7 @@ const PengajuanRT = () => {
             (() => {
               const filteredAjuan = ajuan.filter((filteredItem) => {
                 if (filter) {
-                  return filteredItem.statusAccKelurahan === filter;
+                  return filteredItem.statusAccRt === filter;
                 } else {
                   return filteredItem;
                 }
