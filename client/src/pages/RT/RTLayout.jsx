@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
-import { Outlet, useLoaderData } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
 import { handleToast } from '../../components/CustomToast'
@@ -26,7 +26,7 @@ const RTLayout = () => {
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
     await customFetch.get('/auth/logout')
-    return navigate('/')
+    return redirect('/')
   }
 
   return (

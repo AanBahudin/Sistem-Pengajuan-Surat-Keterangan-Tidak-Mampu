@@ -36,7 +36,7 @@ const DataSchema = new mongoose.Schema({
         ref: "User"
     },
     statusAccRt: {
-        type: Boolean,
+        type: String,
         default: 'belum'
     },
     statusAccKelurahan: {

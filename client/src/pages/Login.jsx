@@ -17,9 +17,11 @@ export const action = async({ request }) => {
       return redirect('/user')
     } else if (role === 'KELURAHAN') {
       return redirect('/kelurahan')
+    } else if (role === 'RT') {
+      return redirect('/rt')
+    } else {
+      return '.'
     }
-  
-    return '.'
 
   } catch (error) {
     const errArr = error.response.data.msg

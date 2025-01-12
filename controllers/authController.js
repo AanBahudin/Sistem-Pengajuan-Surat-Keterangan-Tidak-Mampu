@@ -7,6 +7,7 @@ import { NotAuthenticatedError } from '../middleware/ErrorHandlerMiddleware.js'
 const login = async(req, res) => {
 
     const user = await User.findOne({email: req.body.email})
+    
     const isPasswordValid = await comparePassword(req.body.password, user.password);
 
     if (!isPasswordValid) {

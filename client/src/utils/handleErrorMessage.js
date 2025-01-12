@@ -3,7 +3,7 @@ const error = (err) => {
     if (typeof err === 'string') {
         errMessage = err
     } else {
-        errMessage = errArr.join(', ')
+        errMessage = err.join(', ')
     }
 
     return errMessage

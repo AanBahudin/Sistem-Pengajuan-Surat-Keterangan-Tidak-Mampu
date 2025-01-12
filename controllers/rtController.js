@@ -3,6 +3,7 @@ import Data from '../models/DataModel.js'
 
 export const getSemuaPengajuan = async(req, res) => {
     const data = await Data.find({kelurahan: req.user.kelurahan, rt: req.user.RT})
+    
     return res.status(StatusCodes.OK).json({ data })
 } 
 
@@ -15,16 +16,16 @@ export const getSinglePengajuan = async(req, res) => {
 
 export const stats = async(req, res) => {
     const data = await Data.find({ kelurahan: req.user.kelurahan, rt: req.user.RT, statusAccRt: 'belum' });
-        const totalData = await Data.find({kelurahan: req.user.kelurahan, rt: req.user.RT}).countDocuments();
-        const statusSummary = await Data.aggregate([
-            {
-                $group: {
-                    _id: "$statusAccKelurahan",
-                    count: { $sum: 1 }
-                }
+    const totalData = await Data.find({kelurahan: req.user.kelurahan, rt: req.user.RT}).countDocuments();
+    const statusSummary = await Data.aggregate([
+        {
+            $group: {
+                _id: "$statusAccKelurahan",
+                count: { $sum: 1 }
             }
-        ])
-        return res.status(StatusCodes.OK).json({ ajuan: data, totalData, statusSummary })
+        }
+    ])
+    return res.status(StatusCodes.OK).json({ ajuan: data, totalData, statusSummary })
 }
 
 export const updatePengajuan = async(req, res) => {
