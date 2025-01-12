@@ -31,6 +31,16 @@ const DataSchema = new mongoose.Schema({
     alamatPemohon: String,
     alamatwali: String,
     alasanPengajuan: String,
+    pesan : {
+        kelurahan: {
+            type: String,
+            default: ''
+        },
+        rt: {
+            type: String,
+            default: ''
+        }
+    },
     id_pemohon : {
         type: mongoose.Types.ObjectId,
         ref: "User"
