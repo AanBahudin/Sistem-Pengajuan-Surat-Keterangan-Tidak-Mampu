@@ -85,6 +85,22 @@ const DetailAjuanUser = () => {
             <DataContainer valueData={data.tempatLahirIbu} placeholder='Kota lahir'labelData='tempat lahir' />
           </article>
 
+          <article className='flex gap-x-14 mt-10'>
+            <div className=''>
+              <h5 className='text-slate-700 font-semibold '>Validasi Ketua RT</h5>
+              <p className={`${ data.statusAccRt === 'belum' ? 'bg-slate-500' : (data.statusAccRt === 'tolak' ? 'bg-newRed/70' : 'bg-newBlue/70') } mt-2 text-center py-2 rounded-lg w-[10vw] text-white`}>
+                { data.statusAccRt === 'belum' ? 'Pending' : (data.statusAccRt === 'tolak' ? 'Tertolak' : 'Diterima') }
+              </p>
+            </div>
+
+            <div className=''>
+              <h5 className='text-slate-700 font-semibold '>Validasi Kelurahan</h5>
+              <p className={`${ data.statusAccKelurahan === 'belum' ? 'bg-slate-500' : (data.statusAccKelurahan === 'tolak' ? 'bg-newRed/70' : 'bg-newBlue/70') } mt-2 text-center py-2 rounded-lg w-[10vw] text-white`}>
+              { data.statusAccKelurahan === 'belum' ? 'Pending' : (data.statusAccKelurahan === 'tolak' ? 'Tertolak' : 'Diterima') }
+              </p>
+            </div>
+          </article>
+
             
         </section>
 
