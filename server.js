@@ -6,6 +6,9 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cloudinary from 'cloudinary'
 
+// FOR TESTING PORPOSED 
+import Data from './models/DataModel.js'
+
 // app route
 import authRouter from './router/authRoute.js';
 import dataRouter from './router/dataRoute.js';
@@ -16,6 +19,7 @@ import userRouter from './router/userRoute.js';
 // middleware
 import errorHandlerMiddleware from './errors/ErrorHandler.js';
 import { authenticatedUser } from './middleware/authMiddleware.js';
+import { StatusCodes } from 'http-status-codes';
 
 // using package
 const app = express();
@@ -32,6 +36,12 @@ cloudinary.config({
 })
 
 // route
+
+app.get('/clean_data', async(req, res) => {
+    await Data.deleteMany();
+    res.status(StatusCodes.OK).json({msg: 'data_clened!'})
+})
+
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/data', authenticatedUser, dataRouter);
 app.use('/api/v1/kelurahan', authenticatedUser, kelurahanRoute);    //  ADD OTHER MIDDLEWARE FOR CHECKING IF USER IS KELURAHAN TO ACCESS THIS ROUTE
