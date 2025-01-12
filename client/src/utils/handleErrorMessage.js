@@ -8,3 +8,5 @@ const error = (err) => {
 
     return errMessage
 }
+
+export default error

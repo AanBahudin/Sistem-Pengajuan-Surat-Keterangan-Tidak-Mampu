@@ -18,6 +18,25 @@ export const sidebarLinks = [
     },
 ]
 
+export const rtSidebarLinks = [
+  {
+    icon: <LayoutDashboard  className='w-5 h-5 stroke-slate-700 group-hover:stroke-slate-900' />,
+    name: 'Dashboard',
+    path: '/rt'
+  },
+  {
+    icon: <NotepadTextDashed  className='w-5 h-5 stroke-slate-700 group-hover:stroke-slate-900' />,
+    name: 'Semua Pengajuan',
+    path: 'pengajuan'
+  },
+  {
+    icon: <SquareUserIcon  className='w-5 h-5 stroke-slate-700 group-hover:stroke-slate-900' />,
+    name: 'Profil',
+    path: 'profil'
+  },
+]
+
+
 export const adminSidebarLinks = [
   {
     icon: <LayoutDashboard  className='w-5 h-5 stroke-slate-700 group-hover:stroke-slate-900' />,
@@ -34,7 +53,6 @@ export const adminSidebarLinks = [
     name: 'Profil',
     path: 'profil'
   },
-  
 ]
 
 export const baubauData = [

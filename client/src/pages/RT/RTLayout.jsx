@@ -3,6 +3,8 @@ import { Outlet, useLoaderData } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
 import { handleToast } from '../../components/CustomToast'
+import { Sidebar } from '../../components'
+import { rtSidebarLinks } from '../../utils/constant'
 
 export const loader = async() => {
   try {
@@ -32,7 +34,7 @@ const RTLayout = () => {
       logoutUser
     }}>
       <div className='w-full h-[100vh] flex overflow-hidden'>
-        <Sidebar data={user} link={sidebarLinks} logoutUser={logoutUser} />
+        <Sidebar data={user} link={rtSidebarLinks} logoutUser={logoutUser} />
 
         <div className='flex-1'>
           <Outlet />
