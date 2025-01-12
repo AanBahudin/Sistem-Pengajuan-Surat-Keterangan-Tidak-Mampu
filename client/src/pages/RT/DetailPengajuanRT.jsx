@@ -52,7 +52,6 @@ const DetailPengajuanRT = () => {
       <section className='w-full h-full rounded-xl p-4'>
         <div className='w-full flex items-center justify-between'>
           <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
-
         </div>
 
         <p className='text-md mt-2 text-slate-500 w-[80%]'>Pastikan semua data pemohon sudah sesuai dan lakukan verifikasi sebelum mengambil tindakan lanjutan. Anda dapat menyetujui, ataupun menolak.</p>

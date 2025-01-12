@@ -15,7 +15,6 @@ export const loader = async() => {
     return data
   } catch (error) {
     const errMsg = handleErrorMessage(error.response.data.msg)
-    handleToast('error', 'Ada yang tidak beres', errMsg, 3000)
     return errMsg
   }
 }

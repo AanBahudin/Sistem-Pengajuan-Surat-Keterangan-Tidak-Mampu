@@ -19,7 +19,7 @@ export const loader = async() => {
     console.log(error.response.data.msg);
     
     handleToast('error', 'Ada yang tidak beres', handleErrorMessage(error.response.data.msg), 3000)
-    return handleErrorMessage(error.response.data.msg)
+    return redirect('/')
   }
 }
 
