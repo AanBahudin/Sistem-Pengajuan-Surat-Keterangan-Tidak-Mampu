@@ -11,6 +11,11 @@ const KelurahaanContext = createContext()
 export const loader = async() => {
   try {
     const { data } = await customFetch.get('/user/currentUser')
+
+    if (data.user.role !== 'KELURAHAN') {
+      return redirect('/')
+    }
+
     return data
   } catch (error) {
     console.log(error.response.data.msg);
