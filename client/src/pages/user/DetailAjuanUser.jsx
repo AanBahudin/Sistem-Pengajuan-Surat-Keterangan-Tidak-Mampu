@@ -99,8 +99,11 @@ const DetailAjuanUser = () => {
               { data.statusAccKelurahan === 'belum' ? 'Pending' : (data.statusAccKelurahan === 'tolak' ? 'Tertolak' : 'Diterima') }
               </p>
             </div>
+
           </article>
 
+          { data.statusAccKelurahan === 'terima' && data.statusAccRt === 'terima' && <p className='text-sm text-slate-600 my-6'> * Pengajuan surat keterangan tidak mampu anda telah disetujui. Silahkan pergi ke kantor kelurahan <span className='font-bold text-newBlue/70'> {data.kelurahan} </span> untuk mengambil surat anda!</p> }
+          
             
         </section>
 
@@ -129,6 +132,7 @@ const DetailAjuanUser = () => {
                     </div>
                 </section>
             </div>
+
         
           </section>
 
