@@ -37,6 +37,8 @@ export const action = async({ request, params }) => {
 const DetailPengajuanRT = () => {
   
   const {data} = useLoaderData()
+  console.log(data);
+  
   const { showImageReview, toggleImageReview } = useRtContext()
   const isSubmitting = useNavigation().state === 'submitting'
 
@@ -105,7 +107,7 @@ const DetailPengajuanRT = () => {
               { data.statusAccRt === 'belum' ? (
                 <FormTextarea   labelInput='Tambahkan catatan anda' nameInput='message' defaultValue=' ' placeholder="tambahkan catatan "  />
               ) : (
-                <BigDataContainer labelInput='Catatan Ketua RT' valueData={data.pesan?.rt || 'Tidak ada catatan tambahan'} />
+                <BigDataContainer labelInput='Catatan Ketua RT' dataValue={data.pesan.rt || 'Tidak ada catatan tambahan'} />
               ) }
             
             </article>

@@ -57,9 +57,6 @@ const DataSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    pesan: {
-        type: String,
-    }
 }, { timestamps:true });
 
 export default mongoose.model("Data", DataSchema)
