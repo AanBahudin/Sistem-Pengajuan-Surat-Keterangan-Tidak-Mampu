@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataContainer, BigDataContainer, ImageViewer } from '../../components'
+import { DataContainer, BigDataContainer, ImageViewer, FormTextarea } from '../../components'
 import { Form, useLoaderData, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import moment from 'moment'
@@ -101,6 +101,23 @@ const DetailPengajuan = () => {
               <DataContainer valueData={data.tempatLahirIbu} placeholder='Kota lahir'labelData='tempat lahir' />
             </article>
 
+            <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Informasi Tambahan</h4> 
+
+            <article className={`w-full grid ${data.pesan?.rt !== '' ? 'grid-cols-2' : 'grid-cols-1'} gap-x-4`}>
+
+              { data.statusAccKelurahan === 'belum' ? (
+                <FormTextarea labelInput='Tambahkan catatan anda' nameInput='message' defaultValue=' ' placeholder="tambahkan catatan "  />
+              ) : (
+                <BigDataContainer labelInput='Catatan Kelurahan' dataValue={data.pesan?.rt || 'Tidak ada catatan tambahan'} />
+              ) }
+
+              { data?.pesan?.rt ? (
+                <BigDataContainer labelInput='Catatan Ketua RT' valueData={data.pesan?.rt} />
+              ) : (
+                <BigDataContainer labelInput='Catatan Ketua RT' dataValue="Tidak ada pesan" />
+              ) }
+              </article>
+
             
           </section>
 
@@ -133,8 +150,6 @@ const DetailPengajuan = () => {
           </section>
 
           <div className='col-span-7 mt-10 mb-20 flex gap-x-6'>
-
-
             {data.statusAccKelurahan === 'belum' ? (
               <>
                 <Form method='POST' className='w-full'>
