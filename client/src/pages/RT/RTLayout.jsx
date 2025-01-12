@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
-import { Outlet, redirect, useLoaderData } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
 import { handleToast } from '../../components/CustomToast'
@@ -22,6 +22,7 @@ const RTContext = createContext()
 const RTLayout = () => {
 
   const { user } = useLoaderData()
+  const navigate = useNavigate()
   const [showImageReview, setShowImageReview] = useState({ show: false, judul: '' })
   
     const toggleImageReview = (show, judul) => {
@@ -32,7 +33,7 @@ const RTLayout = () => {
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
     await customFetch.get('/auth/logout')
-    return redirect('/')
+    return navigate('/')
   }
 
   return (
