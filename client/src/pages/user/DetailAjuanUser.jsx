@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
-import { BigDataContainer, DataContainer } from '../../components'
+import { ImageViewer, BigDataContainer, DataContainer } from '../../components'
 import moment from 'moment'
 import { handleToast } from '../../components/CustomToast'
 import { useLoaderData } from 'react-router-dom'
