@@ -1,7 +1,15 @@
 import React from 'react'
+import customFetch from '../../utils/customFetch'
+import { redirect, useLoaderData } from 'react-router-dom'
 
 export const loader = async() => {
-    return null
+  try {
+    const { data } = await customFetch.get('/user/currentUser')
+    return data
+  } catch (error) {
+    console.log(error);
+    return redirect('/')
+  }
 }
 
 export const action = async() => {
@@ -9,6 +17,11 @@ export const action = async() => {
 }
 
 const ProfileRT = () => {
+
+  const { user } = useLoaderData()
+  
+  
+
   return (
     <div>ProfileRT</div>
   )

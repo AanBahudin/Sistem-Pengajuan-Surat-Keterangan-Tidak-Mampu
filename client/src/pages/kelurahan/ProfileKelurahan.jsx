@@ -65,14 +65,6 @@ const ProfileKelurahan = () => {
     }
   }
 
-  const setChaining = (event) => {
-    setSelectedKecamatan(event.target.value)
-    const getKecamatan = baubauData.find(item => {
-      return item.kecamatan === (event.target.value || selectedKecamatan) 
-    })
-    setSelectedKelurahan(getKecamatan ? getKecamatan.kelurahan : [])
-  }  
-
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center flex-col'>
       <Form method='POST' encType='multipart/form-data' className='w-full h-full rounded-xl p-4'>
