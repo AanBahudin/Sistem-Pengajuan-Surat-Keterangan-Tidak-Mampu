@@ -100,6 +100,12 @@ const DetailAjuanUser = () => {
               <DataContainer valueData={data.tempatLahirIbu} placeholder='Kota lahir'labelData='tempat lahir' />
             </article>
 
+
+            <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Informasi Tambahan</h4>
+            <div className='w-full grid grid-cols-2 gap-x-4'>
+              <BigDataContainer labelInput='Catatan Ketua RT' dataValue={data.pesan?.rt || 'Tidak ada catatan'} />
+              <BigDataContainer labelInput='Catatan Kelurahan' dataValue={data.pesan?.kelurahan || 'Tidak ada Catatan'} />
+            </div>
       
             { data.statusAccKelurahan === 'terima' && data.statusAccRt === 'terima' && <p className='text-sm text-slate-600 my-6'> * Pengajuan surat keterangan tidak mampu anda telah disetujui. Silahkan pergi ke kantor kelurahan <span className='font-bold text-newBlue/70'> {data.kelurahan} </span> untuk mengambil surat anda!</p> }
             
