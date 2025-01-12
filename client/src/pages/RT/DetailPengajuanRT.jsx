@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import customFetch from '../../utils/customFetch'
 import { useRtContext } from './RTLayout'
 import handleErrorMessage from '../../utils/handleErrorMessage'
@@ -24,26 +24,24 @@ export const loader = async({params}) => {
 export const action = async({ request, params }) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
-
+  
   try {
     await customFetch.patch(`/rt/${params.id}`, data)
     return handleToast('success', 'Pengajuan di Terima', 'Hasil pengajuan akan segera dikirim ke pemohon', 3000)
   } catch (error) {
-    console.log(error);
+      console.log(error);
     return error
   }
 }
 
 const DetailPengajuanRT = () => {
-
+  
   const {data} = useLoaderData()
-  
-  
   const { showImageReview, toggleImageReview } = useRtContext()
   const isSubmitting = useNavigation().state === 'submitting'
 
   return (
-    <section className='relative w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
+    <Form method='POST' className='relative w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
 
       {/* image viewer test */}
       { showImageReview.show && <ImageViewer toggleImageReview={toggleImageReview} data={showImageReview.judul === 'ktp' ? data.ktp : data.kk} judul={showImageReview.judul === 'ktp' ? 'Kartu Tanda Penduduk'  : 'Kartu Keluarga'} nama={data.nama} /> }
@@ -105,7 +103,7 @@ const DetailPengajuanRT = () => {
             <article className='w-full grid gap-x-4'>
 
               { data.statusAccRt === 'belum' ? (
-                <FormTextarea labelInput='Tambahkan catatan anda' nameInput='message' defaultValue=' ' placeholder="tambahkan catatan "  />
+                <FormTextarea   labelInput='Tambahkan catatan anda' nameInput='message' defaultValue=' ' placeholder="tambahkan catatan "  />
               ) : (
                 <BigDataContainer labelInput='Catatan Ketua RT' valueData={data.pesan?.rt || 'Tidak ada catatan tambahan'} />
               ) }
@@ -147,21 +145,19 @@ const DetailPengajuanRT = () => {
 
             {data.statusAccRt === 'belum' ? (
               <>
-                <Form method='POST' className='w-full'>
-                  <input type="hidden" name='status' value='terima' />
-                  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+                <div className='w-full'>
+                  <button disabled={isSubmitting} name='status' value='terima' type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
                     { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
                     <span>{ isSubmitting ? 'Mengajukan ...' : 'Terima' }</span>
                   </button>
-                </Form>
+                </div>
 
-                <Form method='POST' className='w-full'>
-                  <input type="hidden" name='status' value='tolak' />
-                  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
+                <div className='w-full'>
+                  <button disabled={isSubmitting} name='status' value='tolak' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
                     { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
                     <span>{ isSubmitting ? 'Menolak ...' : 'Tolak' }</span>
                   </button>
-                </Form>
+                </div>
               </>
             ) : (
               <p className={`w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white ${data.statusAccRt === 'terima' ? 'bg-newBlue/80 hover:bg-newBlue' : 'bg-newRed/80 hover:bg-newRed'} duration-200 ease-in-out col-span-2 text-center`} >{ data.statusAccRt === 'terima' ? 'Sudah diterima' : 'tertolak' }</p>
@@ -173,7 +169,7 @@ const DetailPengajuanRT = () => {
         </section>
 
     </section>
-  </section>
+  </Form>
   )
 }
 
