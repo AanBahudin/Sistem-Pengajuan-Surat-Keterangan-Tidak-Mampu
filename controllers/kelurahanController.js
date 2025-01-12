@@ -17,7 +17,7 @@ export const kelurahanDashboard = async(req, res) => {
 }
 
 export const getAllPermohonanData = async(req, res) => {
-    const data = await Data.find({ kelurahan: req.user.kelurahan})
+    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccRt: 'terima'})
     return res.status(StatusCodes.OK).json({ ajuan: data })
 }
 
