@@ -17,6 +17,8 @@ export const loader = async() => {
 const SemuaPengajuan = () => {
 
   const { ajuan } = useLoaderData();
+  console.log(ajuan);
+  
   
   const [isEmail, setEmail] = useState('')
   const [filter, setFilter] = useState('belum')

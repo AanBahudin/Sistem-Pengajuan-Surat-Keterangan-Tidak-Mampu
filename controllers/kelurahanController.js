@@ -17,7 +17,7 @@ export const kelurahanDashboard = async(req, res) => {
 }
 
 export const getAllPermohonanData = async(req, res) => {
-    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccRt: 'terima'}).populate('accByRt')
+    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccRt: 'terima'}).populate(['accByRt', 'id_pemohon'])
     return res.status(StatusCodes.OK).json({ ajuan: data })
 }
 
