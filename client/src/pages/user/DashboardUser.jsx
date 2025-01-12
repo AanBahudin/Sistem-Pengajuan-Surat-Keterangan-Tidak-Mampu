@@ -9,7 +9,6 @@ const DashboardUserContext = createContext()
 export const loader = async() => {
   try {
     const { data } = await customFetch.get('/user/currentUser')
-    
     return data
   } catch (error) {
     console.log(error.response.data.msg);
