@@ -143,7 +143,7 @@ const ProfilUser = () => {
                       <FormInput inputName='email' labelInput='Email' placeholder='masukan email' defaultValue={user.email} />
                       <FormInput inputName='nomor_hp' placeholder='masukan nomor telepon'labelInput='kontak' defaultValue={user.nomor_hp} />
                       <FormInput inputName='tanggalLahir' labelInput='tanggal Lahir' inputType='date' defaultValue={ formattedDate } />
-                      <FormInput inputName='tempatLahir' labelInput='tanggal Lahir' placeholder='masukan kota/tempat lahir' defaultValue={ user.tempatLahir } />
+                      <FormInput inputName='tempatLahir' labelInput='tempat lahir' placeholder='masukan kota/tempat lahir' defaultValue={ user.tempatLahir } />
                       <FormInput inputName='pekerjaan' labelInput='pekerjaan' placeholder='Masukan pekerjaan' defaultValue={ user.pekerjaan } />
                     </>
 
