@@ -37,6 +37,7 @@ cloudinary.config({
 
 // route
 
+// DELETE IF THE PROJECT IS DONE
 app.get('/clean_data', async(req, res) => {
     await Data.deleteMany();
     res.status(StatusCodes.OK).json({msg: 'data_clened!'})

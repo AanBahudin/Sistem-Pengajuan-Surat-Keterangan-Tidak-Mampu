@@ -15,8 +15,7 @@ export const action = async({ request }) => {
   const formData = await request.formData()
   try {
     customFetch.post('/data', formData)
-    handleToast('success', 'Pengajuan dikirim', 'Ajuanmu telah dikirim. Lihat detailnya dimenu informasi', 3000)
-    return redirect('/user')
+    return handleToast('success', 'Pengajuan dikirim', 'Ajuanmu telah dikirim. Lihat detailnya dimenu informasi', 3000)
   } catch (error) {
     const errArr = error.response.data.msg
 
