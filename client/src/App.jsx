@@ -4,14 +4,14 @@ import { toast, ToastContainer } from "react-toastify"
 import { MainLayout, LoginPage, RegisterPage} from './pages'
 
 // masyarakat page import
-import { DashboardUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
-import { dashboardUserLoader, pengajuanLoader, profileLoader, statusLoader } from './pages/user'
+import { DashboardUser, DetailAjuanUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
+import { dashboardUserLoader, detailAjuanUserLoader, pengajuanLoader, profileLoader, statusLoader } from './pages/user'
 import { pengajuanAction, profilAction } from "./pages/user"
 
 // RT page import
 import { DashboardRT, DetailPengajuanRT, PengajuanRT, ProfileRT, RTLayout } from './pages/RT'
 import { dashboardRTLoader, detailPengajuanRtLoader, pengajuarRTLoader, profileRTLoader, rtLayoutLoader } from './pages/RT'
-import { detailPengajuanRtAction, pengajuanRTAction, profileRTAction } from './pages/RT'
+import { detailPengajuanRtAction, profileRTAction } from './pages/RT'
 
 // kelurahan page import
 import { DashboardPengajuan, dashboardPengajuanLoader, DetailPengajuan, detailPengajuanLoader, KelurahanLayout, SemuaPengajuan } from './pages/kelurahan'
@@ -61,6 +61,11 @@ const App = () => {
           element: <PengajuanUser />,
           action: pengajuanAction,
           loader: pengajuanLoader
+        }, 
+        {
+          path: 'pengajuan/:id',
+          element: <DetailAjuanUser />,
+          loader: detailAjuanUserLoader
         },
         {
           path: 'profil',

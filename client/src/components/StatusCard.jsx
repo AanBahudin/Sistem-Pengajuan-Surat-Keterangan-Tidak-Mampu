@@ -3,9 +3,9 @@ import { CircleEllipsis, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const StatusCard = ({ _id, nama, createdAt, kelurahan, urutan, statusAccKelurahan, alasanPengajuan}) => {
+const StatusCard = ({ _id, nama, createdAt, kelurahan, statusAccKelurahan, alasanPengajuan}) => {
   return (
-    <Link to='pengajuan' className='w-[350px] h-[30vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
+    <Link to={`pengajuan/${_id}`} className='w-[350px] h-[30vh] rounded-xl border-slate-300 hover:border-newBlue/40 border-[2px] px-4 py-2 flex items-start justify-between flex-col cursor-default hover:shadow-xl duration-200 ease-in-out'>
       {/* deret icon */}
       <div className='w-full flex items-center justify-end'>
       <ExternalLink className='w-5 h-5 stroke-slate-500 hover:stroke-slate-700 duration-200 ease-in-out' />
