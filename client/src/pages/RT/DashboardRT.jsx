@@ -7,7 +7,6 @@ import { useLoaderData } from 'react-router-dom'
 
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
-import { handleToast } from '../../components/CustomToast'
 
 export const loader = async() => {
   try {
