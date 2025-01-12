@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AtSign, X, Search } from 'lucide-react'
-import { KelurahanPengajuanCard } from '../../components'
+import { RtPengajuanCard } from '../../components'
 import customFetch from '../../utils/customFetch'
 import { useLoaderData } from 'react-router-dom'
 import handleErrorMessage from '../../utils/handleErrorMessage'
@@ -96,7 +96,7 @@ const PengajuanRT = () => {
               }
         
               return filteredAjuan.map((item, index) => (
-                <KelurahanPengajuanCard
+                <RtPengajuanCard
                   url={`/rt/pengajuan/${item._id}`}
                   key={index}
                   {...item}
