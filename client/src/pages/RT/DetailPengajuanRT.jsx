@@ -2,6 +2,7 @@ import React from 'react'
 import customFetch from '../../utils/customFetch'
 import { useRtContext } from './RTLayout'
 import handleErrorMessage from '../../utils/handleErrorMessage'
+import { LoaderCircle } from 'lucide-react'
 import { handleToast } from '../../components/CustomToast'
 import { BigDataContainer, DataContainer, ImageViewer } from '../../components'
 import moment from 'moment'
@@ -20,7 +21,7 @@ export const loader = async({params}) => {
 
 }
 
-export const action = async() => {
+export const action = async({ request, params }) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
 
@@ -36,7 +37,6 @@ export const action = async() => {
 const DetailPengajuanRT = () => {
 
   const {data} = useLoaderData()
-  console.log(data);
   
   const { showImageReview, toggleImageReview } = useRtContext()
   const isSubmitting = useNavigation().state === 'submitting'
@@ -53,12 +53,6 @@ const DetailPengajuanRT = () => {
         <div className='w-full flex items-center justify-between'>
           <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
 
-          {data.statusAccKelurahan === 'terima' ? (
-            <button className='flex items-center gap-x-4 bg-newBlue/80 px-6 py-2 rounded-lg text-sm text-white'>
-              <FileDown className='w-5 h-5 stroke-white' />
-              Unduh Surat
-            </button>
-          ) : null}
         </div>
 
         <p className='text-md mt-2 text-slate-500 w-[80%]'>Pastikan semua data pemohon sudah sesuai dan lakukan verifikasi sebelum mengambil tindakan lanjutan. Anda dapat menyetujui, ataupun menolak.</p>
@@ -139,7 +133,7 @@ const DetailPengajuanRT = () => {
           <div className='col-span-7 mt-10 mb-20 flex gap-x-6'>
 
 
-            {data.statusAccKelurahan === 'belum' ? (
+            {data.statusAccRt === 'belum' ? (
               <>
                 <Form method='POST' className='w-full'>
                   <input type="hidden" name='status' value='terima' />
@@ -158,7 +152,7 @@ const DetailPengajuanRT = () => {
                 </Form>
               </>
             ) : (
-              <p className={`w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white ${data.statusAccKelurahan === 'terima' ? 'bg-newBlue/80 hover:bg-newBlue' : 'bg-newRed/80 hover:bg-newRed'} duration-200 ease-in-out col-span-2 text-center`} >{ data.statusAccKelurahan === 'terima' ? 'Sudah diterima' : 'tertolak' }</p>
+              <p className={`w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white ${data.statusAccRt === 'terima' ? 'bg-newBlue/80 hover:bg-newBlue' : 'bg-newRed/80 hover:bg-newRed'} duration-200 ease-in-out col-span-2 text-center`} >{ data.statusAccRt === 'terima' ? 'Sudah diterima' : 'tertolak' }</p>
             )}
             </div>
           </div>

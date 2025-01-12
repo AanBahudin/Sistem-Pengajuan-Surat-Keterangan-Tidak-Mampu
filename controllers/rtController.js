@@ -29,6 +29,8 @@ export const stats = async(req, res) => {
 }
 
 export const updatePengajuan = async(req, res) => {
+    console.log('test');
+    
     const { id } = req.params
     const { status } = req.body
 
