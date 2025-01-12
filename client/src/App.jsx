@@ -83,7 +83,7 @@ const App = () => {
         {
           path: 'pengajuan',
           element: <PengajuanRT />,
-          loader: pengajuanLoader
+          loader: pengajuarRTLoader
         },
         {
           path: 'pengajuan/:id',

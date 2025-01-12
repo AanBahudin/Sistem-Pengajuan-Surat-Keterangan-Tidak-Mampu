@@ -101,7 +101,7 @@ const SemuaPengajuan = () => {
         
       </section>
       </section>
-  </section>
+    </section>
   )
 }
 
