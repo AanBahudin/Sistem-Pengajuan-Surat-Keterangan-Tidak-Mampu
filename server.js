@@ -7,10 +7,11 @@ import cookieParser from 'cookie-parser';
 import cloudinary from 'cloudinary'
 
 // app route
-import userRouter from './router/userRoute.js';
 import authRouter from './router/authRoute.js';
 import dataRouter from './router/dataRoute.js';
 import kelurahanRoute from './router/kelurahanDataRoute.js';
+import rtRoute from './router/rtRoute.js'
+import userRouter from './router/userRoute.js';
 
 // middleware
 import errorHandlerMiddleware from './errors/ErrorHandler.js';
@@ -31,10 +32,11 @@ cloudinary.config({
 })
 
 // route
-app.use('/api/v1/user', authenticatedUser, userRouter);
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/data', authenticatedUser, dataRouter);
 app.use('/api/v1/kelurahan', authenticatedUser, kelurahanRoute);    //  ADD OTHER MIDDLEWARE FOR CHECKING IF USER IS KELURAHAN TO ACCESS THIS ROUTE
-app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/rt', authenticatedUser, rtRoute)                   // ADD OTHER MIDDLEWARE FOR CHECKING IF USER IS RT TO ACCESS THIS ROUTE
+app.use('/api/v1/user', authenticatedUser, userRouter);
 
 app.use(errorHandlerMiddleware);
 

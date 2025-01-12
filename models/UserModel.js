@@ -32,11 +32,11 @@ const UserSchema = mongoose.Schema({
     },
     RT: {
         type: String,
-        default: '00'
+        default: ''
     },
     RW: {
         type: String,
-        default: '00'
+        default: ''
     },
     nomor_hp : {
         type: String,

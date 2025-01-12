@@ -22,6 +22,8 @@ const DataSchema = new mongoose.Schema({
     tempatLahirIbu: String,
     kecamatan: String,
     kelurahan: String,
+    rt: String,
+    rw: String,
     ktp: String,
     publicIdKtp: String,
     kk: String,
@@ -35,7 +37,7 @@ const DataSchema = new mongoose.Schema({
     },
     statusAccRt: {
         type: Boolean,
-        default: false
+        default: 'belum'
     },
     statusAccKelurahan: {
         type: String,

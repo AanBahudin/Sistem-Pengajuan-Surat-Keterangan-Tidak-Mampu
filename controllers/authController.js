@@ -13,7 +13,7 @@ const login = async(req, res) => {
         throw new NotAuthenticatedError('Password salah')
     }
 
-    const payload = { userId: user._id, role: user.role, email: user.email, kelurahan: user.kelurahan || '', RT: user.RT || "00" }
+    let payload = { userId: user._id, role: user.role, email: user.email, kelurahan: user.kelurahan || '', RT: user.RT || "00" }
     const token = createToken(payload)
     res.cookie('token', token, {
         httpOnly: true,

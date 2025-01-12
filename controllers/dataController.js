@@ -10,6 +10,8 @@ const addData = async(req, res) => {
     
     req.body.kelurahan = user.kelurahan
     req.body.kecamatan = user.kecamatan
+    req.body.rt = user.RT
+    req.body.rw = user.RW
     req.body.id_pemohon = req.user.userId
     
     if(req.files) {
