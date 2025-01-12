@@ -54,7 +54,7 @@ const DetailAjuanUser = () => {
         ) : null }
 
         {/* show pending banner */}
-        { data.statusAccKelurahan === 'belum' && data.statusAccRt === 'belum' ? (
+        { data.statusAccKelurahan === 'belum' || data.statusAccRt === 'belum' ? (
           <p className='w-full text-center py-2 rounded-md bg-slate-500/80 text-white mt-10 font-bold'>Pengajuan anda dalam proses pemeriksaan. Silahkan pantau secara berkala status ajuan anda agar mendapatkan informasi</p>
         ) : null }
 
