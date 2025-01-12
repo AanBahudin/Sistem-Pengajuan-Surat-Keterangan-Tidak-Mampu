@@ -33,8 +33,14 @@ export const getSinglePermohonanKecamatan = async(req, res) => {
 
 export const handlePengajuan = async(req, res) => {
     const { id } = req.params
-    const { status } = req.body
+    const { message, status } = req.body
         
-    const data = await Data.findOneAndUpdate({ _id: id }, {statusAccKelurahan: status}, {new: true, runValidators: true})
+    const data = await Data.findOneAndUpdate({ _id: id }, 
+        { $set: {
+            'pesan.kelurahan': message,  // Update pesan.rt
+            'statusAccKelurahan': status // Update statusAccRt
+        }}, 
+        {new: true, runValidators: true})
+
     return res.status(StatusCodes.OK).json({data: 'data'})
 }

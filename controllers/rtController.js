@@ -32,11 +32,11 @@ export const updatePengajuan = async(req, res) => {
     const { id } = req.params
     const { status, message } = req.body
 
-    const updated = await Data.findOneAndUpdate({ _id: id, kelurahan: req.user.kelurahan, rt: req.user.RT, statusAccRt: 'belum' }, {
-        $set: {
+    const updated = await Data.findOneAndUpdate({ _id: id, kelurahan: req.user.kelurahan, rt: req.user.RT, statusAccRt: 'belum' }, 
+        { $set: {
             'pesan.rt': message,  // Update pesan.rt
             'statusAccRt': status // Update statusAccRt
-        }
-    }, { new: true, runValidators: true })
+        }}, 
+        { new: true, runValidators: true })
     return res.status(StatusCodes.OK).json({updated})
 }

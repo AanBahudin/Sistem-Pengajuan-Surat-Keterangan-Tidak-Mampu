@@ -39,10 +39,10 @@ const DetailPengajuan = () => {
   
 
   return (
-    <section className='relative w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
+    <Form method='POST' className='relative w-full h-full overflow-y-auto no-scrollbar p-10 flex items-center justify-center flex-col'>
 
-    {/* image viewer test */}
-    { showImageReview.show && <ImageViewer data={showImageReview.judul === 'ktp' ? data.ktp : data.kk} judul={showImageReview.judul === 'ktp' ? 'Kartu Tanda Penduduk'  : 'Kartu Keluarga'} nama={data.nama} /> }
+      {/* image viewer test */}
+      { showImageReview.show && <ImageViewer data={showImageReview.judul === 'ktp' ? data.ktp : data.kk} judul={showImageReview.judul === 'ktp' ? 'Kartu Tanda Penduduk'  : 'Kartu Keluarga'} nama={data.nama} /> }
 
 
     {/* welcome sign */}
@@ -108,7 +108,7 @@ const DetailPengajuan = () => {
               { data.statusAccKelurahan === 'belum' ? (
                 <FormTextarea labelInput='Tambahkan catatan anda' nameInput='message' defaultValue=' ' placeholder="tambahkan catatan "  />
               ) : (
-                <BigDataContainer labelInput='Catatan Kelurahan' dataValue={data.pesan?.rt || 'Tidak ada catatan tambahan'} />
+                <BigDataContainer labelInput='Catatan Kelurahan' dataValue={data.pesan.kelurahan || 'Tidak ada catatan tambahan'} />
               ) }
 
               { data?.pesan?.rt ? (
@@ -152,21 +152,19 @@ const DetailPengajuan = () => {
           <div className='col-span-7 mt-10 mb-20 flex gap-x-6'>
             {data.statusAccKelurahan === 'belum' ? (
               <>
-                <Form method='POST' className='w-full'>
-                  <input type="hidden" name='status' value='terima' />
-                  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+                <div className='w-full'>
+                  <button disabled={isSubmitting} name='status' value='terima' type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
                     { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
                     <span>{ isSubmitting ? 'Mengajukan ...' : 'Terima' }</span>
                   </button>
-                </Form>
+                </div>
 
-                <Form method='POST' className='w-full'>
-                  <input type="hidden" name='status' value='tolak' />
-                  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
+                <div className='w-full'>
+                  <button disabled={isSubmitting} name='status' value='tolak' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newRed/80 hover:bg-newRed duration-200 ease-in-out col-span-2 text-center'>
                     { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
                     <span>{ isSubmitting ? 'Menolak ...' : 'Tolak' }</span>
                   </button>
-                </Form>
+                </div>
               </>
             ) : (
               <p className={`w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white ${data.statusAccKelurahan === 'terima' ? 'bg-newBlue/80 hover:bg-newBlue' : 'bg-newRed/80 hover:bg-newRed'} duration-200 ease-in-out col-span-2 text-center`} >{ data.statusAccKelurahan === 'terima' ? 'Sudah diterima' : 'tertolak' }</p>
@@ -178,7 +176,7 @@ const DetailPengajuan = () => {
         </section>
 
     </section>
-  </section>
+  </Form>
   )
 }
 
