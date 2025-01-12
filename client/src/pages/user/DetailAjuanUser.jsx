@@ -50,7 +50,7 @@ const DetailAjuanUser = () => {
 
         {/* show approve banner */}
         { data.statusAccKelurahan === 'terima' && data.statusAccRt === 'terima' ? (
-          <p className='w-full text-center py-2 rounded-md bg-newRed/80 text-white mt-10 font-bold'>Pengajuan anda telah diterima !. Silahkan kunjungi kantor kelurahan {data.kelurahan} untuk mengambil surat.</p>
+          <p className='w-full text-center py-2 rounded-md bg-newBlue/80 text-white mt-10 font-bold'>Pengajuan anda telah diterima !. Silahkan kunjungi kantor kelurahan {data.kelurahan} untuk mengambil surat.</p>
         ) : null }
 
         {/* show pending banner */}
