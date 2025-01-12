@@ -1,7 +1,9 @@
 import React, { createContext, useContext } from "react"
-import { toast, ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 
 import { MainLayout, LoginPage, RegisterPage} from './pages'
+import { loader as loginLoader } from './pages/Login'
+import { loader as registerLoader } from './pages/Register'
 
 // masyarakat page import
 import { DashboardUser, DetailAjuanUser, PengajuanUser, ProfilUser, StatusPengajuanUser } from './pages/user'
@@ -37,11 +39,13 @@ const App = () => {
         {
           index: true,
           element: <LoginPage />,
+          loader: loginLoader,
           action: LoginAction
         },
         {
           path: 'register',
           element: <RegisterPage />,
+          loader: registerLoader,
           action: RegisterAction
         }
       ]

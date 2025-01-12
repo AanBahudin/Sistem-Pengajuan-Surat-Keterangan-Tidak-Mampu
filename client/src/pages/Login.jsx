@@ -4,8 +4,27 @@ import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { handleToast } from '../components/CustomToast'
 
-export const action = async({ request }) => {
+export const loader = async() => {
+  try {
+    const {data} = await customFetch.get('/user/currentUser')
+    
+    if ( data.user.role ) {
+      if (data.user.role === 'KELURAHAN') {
+        return redirect('/kelurahan')
+      } else if (data.user.role === 'RT') {
+        return redirect('/rt')
+      } else if (data.user.role === 'USER') {
+        return redirect('/user')
+      } else {
+        return redirect('/')
+      }
+    }
+  } catch (error) {
+    return null
+  }
+}
 
+export const action = async({ request }) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
   try {
@@ -34,7 +53,6 @@ export const action = async({ request }) => {
     return error
   }
   
-  return null
 }
 
 const Login = () => {
