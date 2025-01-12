@@ -38,6 +38,7 @@ const DetailPengajuanRT = () => {
 
   const {data} = useLoaderData()
   
+  
   const { showImageReview, toggleImageReview } = useRtContext()
   const isSubmitting = useNavigation().state === 'submitting'
 
@@ -99,17 +100,16 @@ const DetailPengajuanRT = () => {
             </article>
             
 
-            <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Catatan</h4> 
+            <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Informasi Tambahan</h4> 
 
-            <article className='w-full grid grid-cols-2 gap-x-4'>
-              <BigDataContainer labelInput='Catatan Ketua RT' />
-              
-              {data.pesan.kelurahan || data.statusAccKeluarhan === 'terima' ? (
-                <BigDataContainer labelInput='Catatan Ketua RT' />
-                
+            <article className='w-full grid gap-x-4'>
+
+              { data.statusAccRt === 'belum' ? (
+                <FormTextarea labelInput='Tambahkan catatan anda' nameInput='message' defaultValue=' ' placeholder="tambahkan catatan "  />
               ) : (
-                <FormTextarea labelInput='Tambahkan catatan anda' nameInput='message' defaultValue='' placeholder="catatan "  />
-              )}
+                <BigDataContainer labelInput='Catatan Ketua RT' valueData={data.pesan?.rt || 'Tidak ada catatan tambahan'} />
+              ) }
+            
             </article>
             
           </section>
