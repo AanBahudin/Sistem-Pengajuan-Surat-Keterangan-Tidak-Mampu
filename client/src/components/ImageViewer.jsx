@@ -1,10 +1,7 @@
 import React from 'react'
 import { X } from 'lucide-react'
-import { useKelurahanContext } from '../pages/kelurahan/KelurahanLayout'
 
-const ImageViewer = ({judul, nama, data}) => {
-
-  const { toggleImageReview } = useKelurahanContext()
+const ImageViewer = ({toggleImageReview,  judul, nama, data}) => {
 
   return (
     <div className='fixed flex items-center flex-col h-[70vh] w-[50%] z-20 bg-white rounded-2xl px-10 py-4 overflow-hidden border-[2px] border-slate-200'>

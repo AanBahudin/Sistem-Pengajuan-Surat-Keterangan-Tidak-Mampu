@@ -22,6 +22,12 @@ const RTContext = createContext()
 const RTLayout = () => {
 
   const { user } = useLoaderData()
+  const [showImageReview, setShowImageReview] = useState({ show: false, judul: '' })
+  
+    const toggleImageReview = (show, judul) => {
+      setShowImageReview(prevState => ({...prevState, show, judul}))
+    }
+
 
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
@@ -31,6 +37,8 @@ const RTLayout = () => {
 
   return (
     <RTContext.Provider value={{
+      showImageReview,
+      toggleImageReview,
       logoutUser
     }}>
       <div className='w-full h-[100vh] flex overflow-hidden'>
