@@ -3,7 +3,7 @@ import { NotFoundError } from '../middleware/ErrorHandlerMiddleware.js'
 import Data from '../models/DataModel.js'
 
 export const kelurahanDashboard = async(req, res) => {
-    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccKelurahan: 'belum' });
+    const data = await Data.find({ kelurahan: req.user.kelurahan, statusAccKelurahan: 'belum', statusAccRt: 'terima' });
     const totalData = await Data.find({kelurahan: req.user.kelurahan}).countDocuments();
     const statusSummary = await Data.aggregate([
         {
