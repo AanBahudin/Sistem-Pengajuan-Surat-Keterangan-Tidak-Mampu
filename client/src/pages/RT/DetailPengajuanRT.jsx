@@ -4,7 +4,7 @@ import { useRtContext } from './RTLayout'
 import handleErrorMessage from '../../utils/handleErrorMessage'
 import { LoaderCircle } from 'lucide-react'
 import { handleToast } from '../../components/CustomToast'
-import { BigDataContainer, DataContainer, ImageViewer } from '../../components'
+import { BigDataContainer, DataContainer, FormTextarea, ImageViewer } from '../../components'
 import moment from 'moment'
 import { Form, useLoaderData, useNavigation } from 'react-router-dom'
 
@@ -97,7 +97,20 @@ const DetailPengajuanRT = () => {
               <DataContainer valueData={data.tanggalLahirIbu} placeholder='kota lahir'labelData='tanggal lahir' inputType='date' />
               <DataContainer valueData={data.tempatLahirIbu} placeholder='Kota lahir'labelData='tempat lahir' />
             </article>
+            
 
+            <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Catatan</h4> 
+
+            <article className='w-full grid grid-cols-2 gap-x-4'>
+              <BigDataContainer labelInput='Catatan Ketua RT' />
+              
+              {data.pesan.kelurahan || data.statusAccKeluarhan === 'terima' ? (
+                <BigDataContainer labelInput='Catatan Ketua RT' />
+                
+              ) : (
+                <FormTextarea labelInput='Tambahkan catatan anda' nameInput='message' defaultValue='' placeholder="catatan "  />
+              )}
+            </article>
             
           </section>
 
