@@ -57,10 +57,9 @@ const PengajuanUser = () => {
 
 
         <div className='bg-white w-full border-[2px] slate-400 rounded-xl items-stretch flex justify-center mt-5'>
-          <h1 onClick={() => setCurrentTab('first')} className={`p-3 ${currentTab === 'first' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md`}>Identitas</h1>
-          <h1 onClick={() => setCurrentTab('second')} className={`p-3 ${currentTab === 'second' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md`}>Alamat dan Alasan</h1>
-          <h1 onClick={() => setCurrentTab('third')} className={`p-3 ${currentTab === 'third' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md`}>Koordinat Tempat Tinggal</h1>
-
+          <h1 onClick={() => setCurrentTab('first')} className={`p-3 ${currentTab === 'first' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select- cursor-default`}>Identitas</h1>
+          <h1 onClick={() => setCurrentTab('second')} className={`p-3 ${currentTab === 'second' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Alamat dan Alasan</h1>
+          <h1 onClick={() => setCurrentTab('third')} className={`p-3 ${currentTab === 'third' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Koordinat Tempat Tinggal</h1>
         </div>
 
         { !checkIsUserEligible() && <WarningBar /> }
@@ -152,14 +151,18 @@ const PengajuanUser = () => {
                   </div>
                 </section>
               ) : (
-              <div className='col-span-12 mb-10 flex flex-col'>
-                <Maps />
-              </div>
+
+                <div className='col-span-12 mb-10 flex flex-col'>
+                  <p className='mb-6 text-slate-600 font-medium px-2 py-1'>
+                    Pastikan lokasi perangkat Anda aktif untuk membantu kami melacak lokasi Anda dengan akurat. Jika lokasi yang terdeteksi tidak sesuai, Anda dapat menyeret pin pada peta untuk menyesuaikan lokasi Anda secara manual
+                    </p>
+                  <Maps />
+                </div>
               )
             ) }
           </div>
 
-
+          <button className='mt-10 mb-32'>Kirim Ajuan Anda</button>
         </Form>
       </section>
 
