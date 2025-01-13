@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { useAppContext } from '../App';
 import { LoaderCircle } from 'lucide-react';
 
-const Maps = () => {
+const Maps = ({ isDraggable=true }) => {
   const {position, setPosition} = useAppContext()
   
     
