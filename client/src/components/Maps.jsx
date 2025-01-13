@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { useAppContext } from '../App';
 import { LoaderCircle } from 'lucide-react';
 
-const Maps = ({ isDraggable=true }) => {
+const Maps = ({ isDraggable }) => {
   const {position, setPosition} = useAppContext()
   
     
@@ -24,7 +24,7 @@ const Maps = ({ isDraggable=true }) => {
             />
             <Marker
               position={position}
-              draggable // Membuat pin dapat diseret
+              draggable={isDraggable} // Membuat pin dapat diseret
               eventHandlers={{
                 dragend: (e) => {
                   const marker = e.target;
