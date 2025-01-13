@@ -5,6 +5,7 @@ import { FormInput, FormTextarea, Maps, WarningBar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
 import {useUserDashboardContext} from './DashboardUser'
 import customFetch from '../../utils/customFetch'
+import { useAppContext } from '../../App'
 
 export const loader = async() => {
   return null
@@ -30,13 +31,16 @@ export const action = async({ request }) => {
 const PengajuanUser = () => {
   
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-  const { user, checkIsUserEligible, position } = useUserDashboardContext()
+  const { user, checkIsUserEligible } = useUserDashboardContext()
+  const { position } = useAppContext()
   const [currentTab, setCurrentTab] = useState('first')
   const { nama, jenisKelamin, pekerjaan, nik, tanggalLahir, tempatLahir, alamat } = user
 
 
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
+  console.log(position);
+  
   
   
   // for review photo before upload

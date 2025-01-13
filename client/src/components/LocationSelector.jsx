@@ -1,11 +1,11 @@
 import React from 'react'
 import { useMapEvents } from 'react-leaflet';
-import { useUserDashboardContext } from '../pages/user/DashboardUser';
+import { useAppContext } from '../App';
 
 
 const LocationSelector = ({ }) => {
 
-    const { setPosition } = useUserDashboardContext()
+    const { setPosition } = useAppContext()
 
     // Mengizinkan interaksi dengan peta
       useMapEvents({

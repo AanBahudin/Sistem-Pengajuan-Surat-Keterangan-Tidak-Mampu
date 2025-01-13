@@ -4,6 +4,7 @@ import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
 import { baubauData, sidebarLinks } from '../../utils/constant'
+import { useAppContext } from '../../App'
 
 const DashboardUserContext = createContext()
 export const loader = async() => {
@@ -24,8 +25,9 @@ export const loader = async() => {
 const DashboardUser = () => {
 
   const { user } = useLoaderData()
+  const { position, setPosition } = useAppContext()
   const navigate = useNavigate()
-  const [position, setPosition] = useState(null)
+  
 
    useEffect(() => {
       // Mendapatkan lokasi pengguna secara otomatis
@@ -71,8 +73,6 @@ const DashboardUser = () => {
   return (
     <DashboardUserContext.Provider value={{
       user,
-      position,
-      setPosition,
       dataKelurahan,
       showImageReview,
       toggleImageReview,

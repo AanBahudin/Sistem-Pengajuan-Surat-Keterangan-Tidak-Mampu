@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react"
+import React, { useState, createContext, useContext } from "react"
 import { ToastContainer } from "react-toastify"
 
 import { MainLayout, LoginPage, RegisterPage} from './pages'
@@ -30,6 +30,7 @@ import ProfileKelurahan from "./pages/kelurahan/ProfileKelurahan"
 const AppContext = createContext()
 
 const App = () => {
+  const [position, setPosition] = useState(null)
 
   const router = createBrowserRouter([
     {
@@ -142,7 +143,10 @@ const App = () => {
 
     <>
       <ToastContainer position='top-right' hideProgressBar={true} closeButton={false}/>
-      <AppContext.Provider value={{}}>
+      <AppContext.Provider value={{
+        position,
+        setPosition
+      }}>
         <div className='h-[100vh] w-full'>
           <RouterProvider router={router} />
         </div>

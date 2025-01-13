@@ -26,8 +26,8 @@ export const action = async({ request, params }) => {
   const data = Object.fromEntries(formData)
   
   try {
-    await customFetch.patch(`/rt/${params.id}`, data)
-    return handleToast('success', 'Pengajuan di Terima', 'Hasil pengajuan akan segera dikirim ke pemohon', 3000)
+      await customFetch.patch(`/rt/${params.id}`, data)
+      return handleToast('success', 'Pengajuan di Terima', 'Hasil pengajuan akan segera dikirim ke pemohon', 3000)
   } catch (error) {
       console.log(error);
     return error

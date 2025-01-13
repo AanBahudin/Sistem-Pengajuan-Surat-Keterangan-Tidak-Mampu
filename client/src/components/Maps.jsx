@@ -2,10 +2,11 @@ import React from 'react'
 import LocationSelector from './LocationSelector';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useUserDashboardContext } from '../pages/user/DashboardUser';
+import { useAppContext } from '../App';
 
 const Maps = () => {
-  const {position, setPosition} = useUserDashboardContext()
+  const {position, setPosition} = useAppContext()
+  
     
     return (
       <div className='h-[80vh]'  >
