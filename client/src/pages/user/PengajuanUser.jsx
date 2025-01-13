@@ -160,7 +160,7 @@ const PengajuanUser = () => {
                   <p className='mb-6 text-slate-600 font-medium px-2 py-1'>
                     Pastikan lokasi perangkat Anda aktif untuk membantu kami melacak lokasi Anda dengan akurat. Jika lokasi yang terdeteksi tidak sesuai, Anda dapat menyeret pin pada peta untuk menyesuaikan lokasi Anda secara manual
                     </p>
-                  <Maps />
+                  <Maps isDraggable={true} />
                 </div>
               )
             ) }

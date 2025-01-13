@@ -24,7 +24,7 @@ const Maps = ({ isDraggable }) => {
             />
             <Marker
               position={position}
-              draggable={isDraggable} // Membuat pin dapat diseret
+              draggable={isDraggable === true ? true : false} // Membuat pin dapat diseret
               eventHandlers={{
                 dragend: (e) => {
                   const marker = e.target;
