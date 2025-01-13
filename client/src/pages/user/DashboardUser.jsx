@@ -4,8 +4,6 @@ import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
 import { baubauData, sidebarLinks } from '../../utils/constant'
-import L from 'leaflet'
-import { useMapEvents } from 'react-leaflet'
 
 const DashboardUserContext = createContext()
 export const loader = async() => {

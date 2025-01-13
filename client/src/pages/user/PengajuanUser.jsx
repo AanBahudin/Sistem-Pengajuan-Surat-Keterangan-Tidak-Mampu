@@ -37,7 +37,6 @@ const PengajuanUser = () => {
 
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
-  console.log(position);
   
   
   // for review photo before upload
@@ -48,25 +47,6 @@ const PengajuanUser = () => {
     }));
     }
   }
-
-
-
-
-  useEffect(() => {
-
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords
-        console.log(latitude, longitude);
-        
-      }, (error) => {
-        handleToast('error', 'Lokasi tidak ditemukan', 'Lokasi tidak ditemukan. Harap izinkan kami mengakses lokasi anda', 5000)
-      })
-    } else {
-      handleToast('error', 'Lokasi tidak ditemukan', 'Lokasi tidak ditemukan. Harap izinkan kami mengakses lokasi anda', 5000)
-    }
-
-  }, [])
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center no-scrollbar justify-center flex-col'>
