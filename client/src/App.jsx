@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react"
 import { ToastContainer } from "react-toastify"
+import Maps from "./Maps"
 
 import { MainLayout, LoginPage, RegisterPage} from './pages'
 import { loader as loginLoader } from './pages/Login'
@@ -47,6 +48,10 @@ const App = () => {
           element: <RegisterPage />,
           loader: registerLoader,
           action: RegisterAction
+        },
+        {
+          path: 'maps',
+          element: <Maps />
         }
       ]
     },
@@ -147,6 +152,7 @@ const App = () => {
           <RouterProvider router={router} />
         </div>
       </AppContext.Provider>
+      {/* <Maps /> */}
     </>
   )
 }
