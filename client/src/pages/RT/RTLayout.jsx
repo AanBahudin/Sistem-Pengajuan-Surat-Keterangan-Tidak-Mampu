@@ -1,10 +1,11 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react'
 import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
 import { handleToast } from '../../components/CustomToast'
 import { Sidebar } from '../../components'
 import { rtSidebarLinks } from '../../utils/constant'
+import { useAppContext } from '../../App'
 
 export const loader = async() => {
   try {
@@ -29,12 +30,32 @@ const RTContext = createContext()
 const RTLayout = () => {
 
   const { user } = useLoaderData()
+  const { setPosition } = useAppContext()
   const navigate = useNavigate()
   const [showImageReview, setShowImageReview] = useState({ show: false, judul: '' })
   
   const toggleImageReview = (show, judul) => {
     setShowImageReview(prevState => ({...prevState, show, judul}))
   }
+
+  useEffect(() => {
+        // Mendapatkan lokasi pengguna secara otomatis
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const { latitude, longitude } = pos.coords;
+              setPosition([latitude, longitude]);
+            },
+            (err) => {
+              console.error('Geolocation error:', err.message);
+              setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika gagal
+            }
+          );
+        } else {
+          console.error('Geolocation is not supported by this browser.');
+          setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika tidak didukung
+        }
+      }, []);
 
 
   const logoutUser = async() => {

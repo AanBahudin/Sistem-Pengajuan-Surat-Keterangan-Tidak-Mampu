@@ -30,7 +30,7 @@ export const action = async({ request, params }) => {
       return handleToast('success', 'Pengajuan di Terima', 'Hasil pengajuan akan segera dikirim ke pemohon', 3000)
   } catch (error) {
       console.log(error);
-    return error
+      return error
   }
 }
 
@@ -74,7 +74,7 @@ const DetailPengajuanRT = () => {
 
                 <h4 className='text-lg font-medium text-slate-800 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Pemohon</h4>
 
-                <article className='grid grid-cols-2 gap-4'>
+                <article className='grid grid-cols-3 gap-4'>
 
                   <DataContainer labelData='Nama lengkap' valueData={data.nama} />
                   <DataContainer labelData='Nomor induk keluarga' valueData={data.nik} />
@@ -87,7 +87,7 @@ const DetailPengajuanRT = () => {
 
                 <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ayah</h4>
 
-                <article className='grid grid-cols-2 gap-4'>
+                <article className='grid grid-cols-3 gap-4'>
                   <DataContainer valueData={data.namaAyah} labelData='Nama ayah' />
                   <DataContainer valueData={data.nikAyah} labelData='Nomor induk keluarga' />
                   <DataContainer valueData={data.jenisKelaminAyah} labelData='Jenis kelamin' />
@@ -98,7 +98,7 @@ const DetailPengajuanRT = () => {
 
                 <h4 className='text-lg font-medium text-slate-800 mt-6 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Ibu</h4>
 
-                <article className='grid grid-cols-2 gap-4'>
+                <article className='grid grid-cols-3 gap-4'>
                   <DataContainer valueData={data.namaIbu} placeholder='nama lengkap'labelData='Nama ibu' />
                   <DataContainer valueData={data.nikIbu} placeholder='nomor induk keluarga'labelData='Nomor induk keluarga' />
                   <DataContainer valueData="Wanita" labelData='Jenis kelamin' inputType='select' list={["Pria", "Wanita"]} defaultValue='Wanita' />
@@ -124,7 +124,7 @@ const DetailPengajuanRT = () => {
 
           ) : (
             currentTab === 'second' ? (
-              <section className='w-full col-span-12 grid grid-cols-1 ml-6 gap-y-4 h-fit'>
+              <section className='w-full col-span-12 grid grid-cols-3 gap-4 h-fit'>
                 <BigDataContainer labelInput="alasan pengajuan" dataValue={data.alasanPengajuan} />
                 <BigDataContainer labelInput="Alamat Lengkap" dataValue={data.alamatPemohon} />
                 <BigDataContainer labelInput="Alamat Wali" dataValue={data.alamatwali} />
@@ -139,7 +139,7 @@ const DetailPengajuanRT = () => {
                     </section>
                 </div>
 
-                <div className='flex flex-col gap-x-1 mt-4'>
+                <div className='flex flex-col gap-x-1'>
                     <p className='text-slate-800 font-semibold'>Foto KK Pemohon</p>
                     <section className='w-full h-[30vh] text-sm px-10 py-5 group outline-none rounded-md border-[2px] red overflow-hidden border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
                         <div className=' relative w-full z-10 h-full overflow-hidden rounded-md'>
