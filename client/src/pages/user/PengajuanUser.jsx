@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Scan, LoaderCircle } from 'lucide-react'
+import { Scan } from 'lucide-react'
 import { Form, useNavigation } from 'react-router-dom'
-import { FormInput, FormTextarea, WarningBar } from '../../components'
+import { FormInput, FormTextarea, Maps, WarningBar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
 import {useUserDashboardContext} from './DashboardUser'
-import Maps from '../../Maps'
 import customFetch from '../../utils/customFetch'
 
 export const loader = async() => {
@@ -31,14 +30,15 @@ export const action = async({ request }) => {
 const PengajuanUser = () => {
   
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-  const { user, checkIsUserEligible } = useUserDashboardContext()
+  const { user, checkIsUserEligible, position } = useUserDashboardContext()
   const [currentTab, setCurrentTab] = useState('first')
-  const [isLocationActive, setIsLocationActive] = useState(false)
   const { nama, jenisKelamin, pekerjaan, nik, tanggalLahir, tempatLahir, alamat } = user
 
 
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
+  console.log(position);
+  
   
   // for review photo before upload
   const imageUpload = (event, name) => {

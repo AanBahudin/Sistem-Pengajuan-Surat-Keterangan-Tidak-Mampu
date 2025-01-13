@@ -1,9 +1,11 @@
-import React, { useState, useContext, createContext } from 'react'
+import React, { useState, useEffect, useContext, createContext } from 'react'
 import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import { Sidebar } from '../../components'
 import { handleToast } from '../../components/CustomToast'
 import { baubauData, sidebarLinks } from '../../utils/constant'
+import L from 'leaflet'
+import { useMapEvents } from 'react-leaflet'
 
 const DashboardUserContext = createContext()
 export const loader = async() => {
@@ -25,6 +27,26 @@ const DashboardUser = () => {
 
   const { user } = useLoaderData()
   const navigate = useNavigate()
+  const [position, setPosition] = useState(null)
+
+   useEffect(() => {
+      // Mendapatkan lokasi pengguna secara otomatis
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const { latitude, longitude } = pos.coords;
+            setPosition([latitude, longitude]);
+          },
+          (err) => {
+            console.error('Geolocation error:', err.message);
+            setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika gagal
+          }
+        );
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+        setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika tidak didukung
+      }
+    }, []);
   
 
   const checkIsUserEligible = () => {
@@ -41,7 +63,6 @@ const DashboardUser = () => {
   const toggleImageReview = (show, judul) => {
     setShowImageReview(prevState => ({...prevState, show, judul}))
   }
-  
 
   const logoutUser = async() => {
     handleToast('success', 'Sampai Jumpa Kembali', 'Senang Dapat Melayani Anda !')
@@ -52,6 +73,8 @@ const DashboardUser = () => {
   return (
     <DashboardUserContext.Provider value={{
       user,
+      position,
+      setPosition,
       dataKelurahan,
       showImageReview,
       toggleImageReview,
