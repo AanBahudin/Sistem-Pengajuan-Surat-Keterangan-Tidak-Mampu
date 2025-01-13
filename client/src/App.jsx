@@ -47,10 +47,6 @@ const App = () => {
           element: <RegisterPage />,
           loader: registerLoader,
           action: RegisterAction
-        },
-        {
-          path: 'maps',
-          element: <Maps />
         }
       ]
     },
