@@ -3,6 +3,7 @@ import LocationSelector from './LocationSelector';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useAppContext } from '../App';
+import { LoaderCircle } from 'lucide-react';
 
 const Maps = () => {
   const {position, setPosition} = useAppContext()
@@ -38,7 +39,12 @@ const Maps = () => {
           </MapContainer>
         </>
       ) : (
-        <p>Loading map...</p>
+        <div className='w-full h-[30vh] flex items-center justify-center'>
+          <p className='text-center flex animate-pulse items-center gap-x-4 text-2xl text-slate-700 font-semibold'>
+            <LoaderCircle className='animate-spin ' />
+            Mohon menunggu, sedang memuat peta ...
+          </p>
+        </div>
       )}
     </div>
     );
