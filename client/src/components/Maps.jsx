@@ -5,8 +5,9 @@ import 'leaflet/dist/leaflet.css';
 import { useAppContext } from '../App';
 import { LoaderCircle } from 'lucide-react';
 
-const Maps = ({ isDraggable }) => {
+const Maps = ({ isDraggable, koordinatMasyarakat }) => {
   const {position, setPosition} = useAppContext()
+  console.log(position);
   
     
     return (
@@ -14,7 +15,7 @@ const Maps = ({ isDraggable }) => {
       {position ? (
         <>
           <MapContainer
-            center={position}
+            center={isDraggable === true ? position : []}
             zoom={13}
             style={{ height: '100%', width: '100%' }}
           >
