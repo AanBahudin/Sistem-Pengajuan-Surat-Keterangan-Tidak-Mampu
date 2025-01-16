@@ -156,7 +156,7 @@ const DetailPengajuanRT = () => {
                   Pastikan lokasi perangkat Anda aktif untuk membantu kami melacak lokasi Anda dengan akurat. Jika lokasi yang terdeteksi tidak sesuai, Anda dapat menyeret pin pada peta untuk menyesuaikan lokasi Anda secara manual
                   </p>
                 <RtAndKelurahanMap koordinat={[data.lat, data.long]} />
-              </div>
+            </div>
 
           <div className='col-span-7 mt-10 mb-20 flex gap-x-6'>
 
