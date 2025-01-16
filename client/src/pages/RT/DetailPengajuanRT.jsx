@@ -67,7 +67,7 @@ const DetailPengajuanRT = () => {
 
 
         <section className='mt-10 w-full'>
-          <div className='w-full grid grid-cols-12 gap-x-6'>
+          <div className='w-full flex flex-col gap-x-6'>
 
             {/* FIRST TAB */}
             <section className={` ${currentTab !== 'first' && 'hidden'} w-full col-span-12 h-fit`}>
