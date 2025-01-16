@@ -26,8 +26,14 @@ const DataSchema = new mongoose.Schema({
     rw: String,
     ktp: String,
     publicIdKtp: String,
-    lat: Number,
-    long: Number,
+    lat: {
+        type: Number,
+        required: true
+    },
+    long: {
+        type: Number,
+        required: true
+    },
     kk: String,
     publicIdKK: String,
     alamatPemohon: String,
