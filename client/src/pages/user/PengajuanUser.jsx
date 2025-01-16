@@ -32,7 +32,11 @@ export const action = async({ request }) => {
 const PengajuanUser = () => {
   
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-  const { user, checkIsUserEligible, position } = useUserDashboardContext()
+  const { user, checkIsUserEligible } = useUserDashboardContext()
+  const [position, setPosition] = useState(null)
+  console.log(position);
+  
+  
   // const { position } = useAppContext()
   
   const [currentTab, setCurrentTab] = useState('first')
@@ -53,6 +57,25 @@ const PengajuanUser = () => {
     }));
     }
   }
+
+  useEffect(() => {
+    // Mendapatkan lokasi pengguna secara otomatis
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          setPosition([latitude, longitude]);
+        },
+        (err) => {
+          console.error('Geolocation error:', err.message);
+          setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika gagal
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika tidak didukung
+    }
+  }, []);
 
   return (
     <section className='w-full h-full overflow-y-auto p-10 flex items-center no-scrollbar justify-center flex-col'>
@@ -162,7 +185,7 @@ const PengajuanUser = () => {
                 <p className='mb-6 text-slate-600 font-medium px-2 py-1'>
                   Pastikan lokasi perangkat Anda aktif untuk membantu kami melacak lokasi Anda dengan akurat. Jika lokasi yang terdeteksi tidak sesuai, Anda dapat menyeret pin pada peta untuk menyesuaikan lokasi Anda secara manual
                   </p>
-                <Maps isDraggable={true} />
+                <Maps isDraggable={true} position={position} setPosition={setPosition} />
               </div>
           </div>
 
