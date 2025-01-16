@@ -75,6 +75,7 @@ const DashboardUser = () => {
       user,
       dataKelurahan,
       showImageReview,
+      position,
       toggleImageReview,
       checkIsUserEligible,
       logoutUser

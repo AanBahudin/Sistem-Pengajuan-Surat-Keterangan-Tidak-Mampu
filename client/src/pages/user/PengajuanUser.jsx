@@ -6,6 +6,7 @@ import { handleToast } from '../../components/CustomToast'
 import {useUserDashboardContext} from './DashboardUser'
 import customFetch from '../../utils/customFetch'
 import { useAppContext } from '../../App'
+import { LoaderCircle } from 'lucide-react'
 
 export const loader = async() => {
   return null
@@ -31,17 +32,18 @@ export const action = async({ request }) => {
 const PengajuanUser = () => {
   
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-  const { user, checkIsUserEligible } = useUserDashboardContext()
-  const { position } = useAppContext()
+  const { user, checkIsUserEligible, position } = useUserDashboardContext()
+  // const { position } = useAppContext()
+  
   const [currentTab, setCurrentTab] = useState('first')
   const { nama, jenisKelamin, pekerjaan, nik, tanggalLahir, tempatLahir, alamat } = user
 
 
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
-  console.log(position);
-  
-  
+
+  const lat = position && position[0];
+  const long = position && position[1];
   
   // for review photo before upload
   const imageUpload = (event, name) => {
@@ -69,14 +71,14 @@ const PengajuanUser = () => {
         { !checkIsUserEligible() && <WarningBar /> }
 
         {/* container pengajuan */}
-        <Form method='POST' encType='multipart/form-data' className='mt-10 w-full'>
+        <Form method='POST' encType='multipart/form-data' className='mt-10 w-full flex flex-col'>
+          <input type="hidden" name="lat" value={lat} />
+          <input type="hidden" name="long" value={long} />
 
           <div className='w-full grid grid-cols-12 gap-x-6'>
 
-            {/* kolom kiri */}
-
-            { currentTab === 'first' ? (
-              <section className='w-full col-span-12 h-fit'>
+              {/* FIRST TAB */}
+              <section className={`${currentTab !== 'first' && 'hidden'} w-full col-span-12 h-fit`}>
 
                 <h4 className='text-lg font-medium text-slate-800 mb-4 bg-slate-200 px-2 py-1 rounded-md'>Identitas Pemohon</h4>
 
@@ -113,60 +115,70 @@ const PengajuanUser = () => {
                   <FormInput inputName='tempatLahirIbu' placeholder='Kota lahir'labelInput='tempat lahir' />
                 </article>
               </section>
-            ) : (
-              currentTab === 'second' ? (
-                <section className='w-full col-span-12 grid grid-cols-3  gap-4 h-fit'>
 
-                  <FormTextarea labelInput='Alasan Pengajuan' nameInput='alasanPengajuan' placeholder='alasan' />
-                  <FormTextarea labelInput='Alamat Pemohon' nameInput='alamatPemohon' placeholder='masukan alamat' defaultValue={alamat} />
-                  <FormTextarea labelInput='Alamat wali' nameInput='alamatwali' placeholder='masukan alamat' />
+              {/* SECOND TAB */}
+              <section className={`w-full col-span-12 ${currentTab !== 'second' ? 'hidden' : 'grid grid-cols-3'} gap-4 h-fit`}>
 
-                  <div className='flex flex-col gap-x-1'>
-                    <p className='text-slate-800 font-semibold'>Foto KTP Pemohon</p>
-                    <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
-                        { selectedImage.ktpImage ? (
-                          <img className='w-full h-full object-contain' src={selectedImage.ktpImage} alt="" />
-                        ) : (
-                          <Scan className='w-14 h-14 stroke-slate-500/40' />
-                        ) }
-                    </section>
-                    <div className='flex gap-x-6'>
-                      <button type='button' onClick={() => setSelectedImage(prevState => ({...prevState, ktpImage: null }))}  className={`bg-newRed/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm ${selectedImage.ktpImage ? 'visible' : 'hidden'}`}>Hapus</button>
-                      <label htmlFor="ktp" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu identitas</label>
-                    </div>
-                    <input type="file" name="ktp" id="ktp" accept='image/*' className='hidden' onChange={(event) => imageUpload(event, 'ktpImage')} />
+                <FormTextarea labelInput='Alasan Pengajuan' nameInput='alasanPengajuan' placeholder='alasan' />
+                <FormTextarea labelInput='Alamat Pemohon' nameInput='alamatPemohon' placeholder='masukan alamat' defaultValue={alamat} />
+                <FormTextarea labelInput='Alamat wali' nameInput='alamatwali' placeholder='masukan alamat' />
+
+                <div className='flex flex-col gap-x-1'>
+                  <p className='text-slate-800 font-semibold'>Foto KTP Pemohon</p>
+                  <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 flex items-center justify-center' >
+                      { selectedImage.ktpImage ? (
+                        <img className='w-full h-full object-contain' src={selectedImage.ktpImage} alt="" />
+                      ) : (
+                        <Scan className='w-14 h-14 stroke-slate-500/40' />
+                      ) }
+                  </section>
+                  <div className='flex gap-x-6'>
+                    <button type='button' onClick={() => setSelectedImage(prevState => ({...prevState, ktpImage: null }))}  className={`bg-newRed/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm ${selectedImage.ktpImage ? 'visible' : 'hidden'}`}>Hapus</button>
+                    <label htmlFor="ktp" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu identitas</label>
                   </div>
-
-                  <div className='flex flex-col gap-x-1'>
-                    <p className='text-slate-800 font-semibold'>Foto Scan Kartu Keluarga</p>
-                    <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 resize-none overflow-y-auto flex items-center justify-center' >
-                        { selectedImage.kkImage ? (
-                          <img className='w-full h-full object-contain' src={selectedImage.kkImage} alt="" />
-                        ) : (
-                          <Scan className='w-14 h-14 stroke-slate-500/40' />
-                        ) }
-                    </section>
-
-                    <div className='flex gap-x-5'>
-                      <button type='button' onClick={() => setSelectedImage(prevState => ({...prevState, kkImage: null }))} htmlFor="kk" className={`bg-newRed/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm ${selectedImage.kkImage ? 'visible' : 'hidden'}`}>Hapus</button>
-                      <label htmlFor="kk" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu keluarga</label>
-                    </div>
-                    <input type="file" name="kk" id="kk" accept='image/*' className='hidden' onChange={(event) => imageUpload(event, 'kkImage')} />
-                  </div>
-                </section>
-              ) : (
-
-                <div className='col-span-12 mb-10 flex flex-col'>
-                  <p className='mb-6 text-slate-600 font-medium px-2 py-1'>
-                    Pastikan lokasi perangkat Anda aktif untuk membantu kami melacak lokasi Anda dengan akurat. Jika lokasi yang terdeteksi tidak sesuai, Anda dapat menyeret pin pada peta untuk menyesuaikan lokasi Anda secara manual
-                    </p>
-                  <Maps isDraggable={true} />
+                  <input type="file" name="ktp" id="ktp" accept='image/*' className='hidden' onChange={(event) => imageUpload(event, 'ktpImage')} />
                 </div>
-              )
-            ) }
+
+                <div className='flex flex-col gap-x-1'>
+                  <p className='text-slate-800 font-semibold'>Foto Scan Kartu Keluarga</p>
+                  <section className='w-full h-[20vh] text-sm px-4 py-2 outline-none rounded-md border-[2px] border-slate-300 text-slate-800 focus:border-newBlue/80 resize-none overflow-y-auto flex items-center justify-center' >
+                      { selectedImage.kkImage ? (
+                        <img className='w-full h-full object-contain' src={selectedImage.kkImage} alt="" />
+                      ) : (
+                        <Scan className='w-14 h-14 stroke-slate-500/40' />
+                      ) }
+                  </section>
+
+                  <div className='flex gap-x-5'>
+                    <button type='button' onClick={() => setSelectedImage(prevState => ({...prevState, kkImage: null }))} htmlFor="kk" className={`bg-newRed/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm ${selectedImage.kkImage ? 'visible' : 'hidden'}`}>Hapus</button>
+                    <label htmlFor="kk" className='bg-newBlue/80 w-full py-2 rounded-md text-white text-center mt-2 text-sm'>upload kartu keluarga</label>
+                  </div>
+                  <input type="file" name="kk" id="kk" accept='image/*' className='hidden' onChange={(event) => imageUpload(event, 'kkImage')} />
+                </div>
+              </section>
+
+              {/* THIRD TAB */}
+              <div className={`col-span-12 mb-10 ${currentTab !== 'third' ? 'hidden' : 'flex flex-col'}`}>
+                <p className='mb-6 text-slate-600 font-medium px-2 py-1'>
+                  Pastikan lokasi perangkat Anda aktif untuk membantu kami melacak lokasi Anda dengan akurat. Jika lokasi yang terdeteksi tidak sesuai, Anda dapat menyeret pin pada peta untuk menyesuaikan lokasi Anda secara manual
+                  </p>
+                <Maps isDraggable={true} />
+              </div>
           </div>
 
-          <button className='mt-10 mb-32'>Kirim Ajuan Anda</button>
+          { 
+            checkIsUserEligible() && (
+            <button disabled={isSubmitting} type='submit' className='w-full  flex justify-center items-center gap-x-4 py-2 mt-10 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
+              { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
+              <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
+            </button>
+            )
+          }
+          
+          {/* set coordinate */}
+         
+
+          <div className='mt-20 text-white'>test</div>
         </Form>
       </section>
 
@@ -176,11 +188,3 @@ const PengajuanUser = () => {
 }
 
 export default PengajuanUser
-{/* { 
-  checkIsUserEligible() && (
-  <button disabled={isSubmitting} type='submit' className='w-full flex justify-center items-center gap-x-4 py-3 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
-    { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
-    <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>
-  </button>
-  )
-} */}
