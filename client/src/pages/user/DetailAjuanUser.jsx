@@ -142,6 +142,12 @@ const DetailAjuanUser = () => {
                 <RtAndKelurahanMap koordinat={[data.lat, data.long]} />
             </div>
 
+            {/* FOURTH TAB */}
+            <div className={`col-span-12 mb-10 ${currentTab !== 'fourth' ? 'hidden' : 'flex flex-col'}`}>
+                {/* <RtAndKelurahanMap koordinat={[data.lat, data.long]} /> */}
+                timeline component
+            </div>
+
           <div className='text-white mt-10'>test</div>
 
         </div>
