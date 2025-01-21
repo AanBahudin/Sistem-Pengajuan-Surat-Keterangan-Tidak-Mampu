@@ -27,13 +27,15 @@ const Timeline = () => {
 
 
   return (
-    <section className='w-full '>
-     <Chrono
-      items={items}
-      mode="HORIZONTAL"
-      itemWidth={150}
-      showSingle
-    />
+    <section className='w-full bg-black'>
+      <Chrono
+        items={items}
+        mode="HORIZONTAL"
+        itemWidth={150}
+        showSingle
+        disableToolbar
+        showAllCardsHorizontal
+      />
       
     </section>
   )

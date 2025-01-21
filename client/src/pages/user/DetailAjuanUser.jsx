@@ -10,7 +10,6 @@ import { useUserDashboardContext } from './DashboardUser'
 export const loader = async({ params }) => {
     try {
       const { data } = await customFetch.get(`/user/permohonan/${params.id}`)
-      console.log(data)
       return data
     } catch (error) {
       const errMsg = handleErrorMessage(error.response.data.msg)
@@ -22,9 +21,7 @@ export const loader = async({ params }) => {
 const DetailAjuanUser = () => {
 
   const { data } = useLoaderData()
-  const [currentTab, setCurrentTab] = useState('fourth')
-  console.log(data);
-  
+  const [currentTab, setCurrentTab] = useState('first')
   const { toggleImageReview, showImageReview } = useUserDashboardContext() 
   
 
@@ -38,29 +35,31 @@ const DetailAjuanUser = () => {
       {/* welcome sign */}
       <section className='w-full h-full rounded-xl p-4'>
         <div className='w-full flex items-center justify-between'>
-          <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
+          <article className='w-full flex items-center justify-between'>
+            <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
 
+            {/* show approve banner */}
+            { data.statusAccKelurahan === 'terima' && data.statusAccRt === 'terima' ? (
+              <p className='w-fit text-center py-2 rounded-md bg-newBlue/80 text-white font-medium text-sm px-10'>Diterima</p>
+            ) : null }
+
+            {/* show tolak banner */}
+            { data.statusAccKelurahan === 'tolak' || data.statusAccRt === 'tolak' ? (
+              <p className='w-fit text-center py-2 rounded-md bg-newBlue/80 text-white font-medium text-sm px-10'>Pengajuan anda telah ditolak ! Untak memudahkan ajuan, silahkan ajukan pengajuan kembali dengan data diri dan informasi domisili yang benar.</p>
+            ) : null }
+
+
+            {/* show pending banner */}
+            { data.statusAccKelurahan === 'belum' || data.statusAccRt === 'belum' ? (
+              <p className='w-fit text-center py-2 rounded-md bg-newBlue/80 text-white font-medium text-sm px-10'>Pengajuan anda dalam proses pemeriksaan. Silahkan pantau secara berkala status ajuan anda agar mendapatkan informasi</p>
+            ) : null }
+          </article>
         </div>
 
         <p className='text-md mt-2 text-slate-500 w-[80%]'>Pastikan semua data pemohon sudah sesuai dan lakukan verifikasi sebelum mengambil tindakan lanjutan. Anda dapat menyetujui, ataupun menolak.</p>
 
-        {/* show tolak banner */}
-        { data.statusAccKelurahan === 'tolak' || data.statusAccRt === 'tolak' ? (
-          <p className='w-full text-center py-2 rounded-md bg-newRed/80 text-white mt-10 font-bold'>Pengajuan anda telah ditolak ! Untak memudahkan ajuan, silahkan ajukan pengajuan kembali dengan data diri dan informasi domisili yang benar.</p>
-        ) : null }
-
-        {/* show approve banner */}
-        { data.statusAccKelurahan === 'terima' && data.statusAccRt === 'terima' ? (
-          <p className='w-full text-center py-2 rounded-md bg-newBlue/80 text-white mt-10 font-bold'>Pengajuan anda telah diterima !. Silahkan kunjungi kantor kelurahan {data.kelurahan} untuk mengambil surat.</p>
-        ) : null }
-
-        {/* show pending banner */}
-        { data.statusAccKelurahan === 'belum' || data.statusAccRt === 'belum' ? (
-          <p className='w-full text-center py-2 rounded-md bg-slate-500/80 text-white mt-10 font-bold'>Pengajuan anda dalam proses pemeriksaan. Silahkan pantau secara berkala status ajuan anda agar mendapatkan informasi</p>
-        ) : null }
-
         <div className='bg-white w-full border-[2px] slate-400 rounded-xl items-stretch flex justify-center mt-5'>
-          <h1 onClick={() => setCurrentTab('fourth')} className={`p-3 ${currentTab === 'fourth' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Timeline</h1>
+          {/* <h1 onClick={() => setCurrentTab('fourth')} className={`p-3 ${currentTab === 'fourth' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Status Ajuan</h1> */}
           <h1 onClick={() => setCurrentTab('first')} className={`p-3 ${currentTab === 'first' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select- cursor-default`}>Identitas</h1>
           <h1 onClick={() => setCurrentTab('second')} className={`p-3 ${currentTab === 'second' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Alamat dan Alasan</h1>
           <h1 onClick={() => setCurrentTab('third')} className={`p-3 ${currentTab === 'third' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Koordinat Tempat Tinggal</h1>
@@ -143,10 +142,9 @@ const DetailAjuanUser = () => {
             </div>
 
             {/* FOURTH TAB */}
-            <div className={`col-span-12 mb-10 ${currentTab !== 'fourth' ? 'hidden' : 'flex flex-col'}`}>
-                {/* <RtAndKelurahanMap koordinat={[data.lat, data.long]} /> */}
+            {/* <div className={`col-span-12 mb-10 ${currentTab !== 'fourth' ? 'hidden' : 'flex flex-col'}`}>
                 <Timeline />
-            </div>
+            </div> */}
 
           <div className='text-white mt-10'>test</div>
 
