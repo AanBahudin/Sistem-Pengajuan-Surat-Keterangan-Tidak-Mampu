@@ -5,7 +5,7 @@ import { LoaderCircle } from 'lucide-react';
 
 const RTAndKelurahanMaps = ({koordinat=[]}) => {
   return (
-    <div className="h-[80vh]">
+    <div className="h-[70vh]  ">
     {koordinat ? (
       <MapContainer
         center={koordinat}
