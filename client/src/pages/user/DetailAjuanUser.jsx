@@ -63,6 +63,7 @@ const DetailAjuanUser = () => {
           <h1 onClick={() => setCurrentTab('first')} className={`p-3 ${currentTab === 'first' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select- cursor-default`}>Identitas</h1>
           <h1 onClick={() => setCurrentTab('second')} className={`p-3 ${currentTab === 'second' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Alamat dan Alasan</h1>
           <h1 onClick={() => setCurrentTab('third')} className={`p-3 ${currentTab === 'third' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Koordinat Tempat Tinggal</h1>
+          <h1 onClick={() => setCurrentTab('fourth')} className={`p-3 ${currentTab === 'fourth' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Timeline</h1>
         </div>  
 
         <section className='mt-12 w-full'>
