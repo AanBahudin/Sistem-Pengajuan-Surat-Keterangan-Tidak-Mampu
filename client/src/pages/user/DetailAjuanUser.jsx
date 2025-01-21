@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
-import { ImageViewer, BigDataContainer, DataContainer, RtAndKelurahanMap } from '../../components'
+import { ImageViewer, BigDataContainer, DataContainer, RtAndKelurahanMap, Timeline } from '../../components'
 import moment from 'moment'
 import { handleToast } from '../../components/CustomToast'
 import { redirect, useLoaderData } from 'react-router-dom'
@@ -22,7 +22,7 @@ export const loader = async({ params }) => {
 const DetailAjuanUser = () => {
 
   const { data } = useLoaderData()
-  const [currentTab, setCurrentTab] = useState('first')
+  const [currentTab, setCurrentTab] = useState('fourth')
   console.log(data);
   
   const { toggleImageReview, showImageReview } = useUserDashboardContext() 
@@ -60,10 +60,10 @@ const DetailAjuanUser = () => {
         ) : null }
 
         <div className='bg-white w-full border-[2px] slate-400 rounded-xl items-stretch flex justify-center mt-5'>
+          <h1 onClick={() => setCurrentTab('fourth')} className={`p-3 ${currentTab === 'fourth' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Timeline</h1>
           <h1 onClick={() => setCurrentTab('first')} className={`p-3 ${currentTab === 'first' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select- cursor-default`}>Identitas</h1>
           <h1 onClick={() => setCurrentTab('second')} className={`p-3 ${currentTab === 'second' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Alamat dan Alasan</h1>
           <h1 onClick={() => setCurrentTab('third')} className={`p-3 ${currentTab === 'third' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Koordinat Tempat Tinggal</h1>
-          <h1 onClick={() => setCurrentTab('fourth')} className={`p-3 ${currentTab === 'fourth' ? 'bg-slate-700 text-white' : null} text-slate-700 font-semibold w-full text-center  duration-200 ease-in-out rounded-md select-none cursor-default`}>Timeline</h1>
         </div>  
 
         <section className='mt-12 w-full'>
@@ -145,7 +145,7 @@ const DetailAjuanUser = () => {
             {/* FOURTH TAB */}
             <div className={`col-span-12 mb-10 ${currentTab !== 'fourth' ? 'hidden' : 'flex flex-col'}`}>
                 {/* <RtAndKelurahanMap koordinat={[data.lat, data.long]} /> */}
-                timeline component
+                <Timeline />
             </div>
 
           <div className='text-white mt-10'>test</div>
