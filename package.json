@@ -6,6 +6,7 @@
   "scripts": {
     "client": "cd client && npm run dev",
     "setup-project": "npm i && cd client && npm i",
+    "client-build": "cd client && npm run build",
     "server": "supervisor server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +15,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@pdftron/pdfnet-node": "^11.2.0",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.5.1",
     "cookie-parser": "^1.4.7",

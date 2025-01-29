@@ -5,6 +5,9 @@ import * as dotenv from 'dotenv';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cloudinary from 'cloudinary'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import fs from 'fs'
 
 // FOR TESTING PORPOSED 
 import Data from './models/DataModel.js'
@@ -19,8 +22,6 @@ import userRouter from './router/userRoute.js';
 // middleware
 import errorHandlerMiddleware from './errors/ErrorHandler.js';
 import { authenticatedUser } from './middleware/authMiddleware.js';
-import { StatusCodes } from 'http-status-codes';
-
 // using package
 const app = express();
 dotenv.config();

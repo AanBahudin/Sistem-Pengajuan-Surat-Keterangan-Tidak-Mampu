@@ -26,6 +26,7 @@ const DashboardUser = () => {
 
   const { user } = useLoaderData()
   const { position, setPosition } = useAppContext()
+  const [isLocationActive, setLocationActive] = useState(false)
   const navigate = useNavigate()
   
 
@@ -36,14 +37,18 @@ const DashboardUser = () => {
           (pos) => {
             const { latitude, longitude } = pos.coords;
             setPosition([latitude, longitude]);
+            setLocationActive(true)
           },
           (err) => {
-            console.error('Geolocation error:', err.message);
+            handleToast('error', 'Lokasi tidak Ditemukan', 'Izinkan akses lokasi untuk melakukan pengajuan', false)
+            setLocationActive(false)
             setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika gagal
           }
         );
       } else {
         console.error('Geolocation is not supported by this browser.');
+        setLocationActive(false)
+        handleToast('error', 'Lokasi tidak Ditemukan', 'Browser ini tidak mendukung pelacakan lokasi', false)
         setPosition([-5.463573110237984, 122.60159597384775]); // Lokasi default jika tidak didukung
       }
     }, []);
@@ -73,6 +78,7 @@ const DashboardUser = () => {
   return (
     <DashboardUserContext.Provider value={{
       user,
+      isLocationActive,
       dataKelurahan,
       showImageReview,
       position,

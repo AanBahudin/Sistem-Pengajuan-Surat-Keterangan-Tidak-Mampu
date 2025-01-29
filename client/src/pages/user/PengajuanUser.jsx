@@ -32,10 +32,8 @@ export const action = async({ request }) => {
 const PengajuanUser = () => {
   
   const [selectedImage, setSelectedImage] = useState({ktpImage: null, kkImage: null})
-  const { user, checkIsUserEligible } = useUserDashboardContext()
+  const { user, isLocationActive, checkIsUserEligible } = useUserDashboardContext()
   const [position, setPosition] = useState(null)
-  console.log(position);
-  
   
   // const { position } = useAppContext()
   
@@ -190,7 +188,7 @@ const PengajuanUser = () => {
           </div>
 
           { 
-            checkIsUserEligible() && (
+            checkIsUserEligible() && isLocationActive && (
             <button disabled={isSubmitting} type='submit' className='w-full  flex justify-center items-center gap-x-4 py-2 mt-10 font-semibold cursor-default rounded-md text-sm text-white bg-newBlue/80 hover:bg-newBlue duration-200 ease-in-out col-span-2 text-center'>
               { isSubmitting && <LoaderCircle className='w-4 h-4 animate-spin' /> }
               <span>{ isSubmitting ? 'Mengajukan ...' : 'Ajukkan' }</span>

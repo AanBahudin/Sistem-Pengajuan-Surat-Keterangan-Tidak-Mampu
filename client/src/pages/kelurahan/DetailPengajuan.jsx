@@ -52,7 +52,7 @@ const DetailPengajuan = () => {
           <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
 
           {data.statusAccKelurahan === 'terima' ? (
-            <button className='flex items-center gap-x-4 bg-newBlue/80 px-6 py-2 rounded-lg text-sm text-white'>
+            <button  className='flex items-center gap-x-4 bg-newBlue/80 px-6 py-2 rounded-lg text-sm text-white'>
               <FileDown className='w-5 h-5 stroke-white' />
               Unduh Surat
             </button>
