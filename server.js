@@ -5,9 +5,11 @@ import * as dotenv from 'dotenv';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cloudinary from 'cloudinary'
-import path from 'path'
 import { fileURLToPath } from 'url';
-import fs from 'fs'
+import path from 'path'
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // FOR TESTING PORPOSED 
 import Data from './models/DataModel.js'
@@ -36,7 +38,8 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 })
 
-// route
+
+app.use(express.static(path.resolve(__dirname, './client/dist')));
 
 // DELETE IF THE PROJECT IS DONE
 app.get('/clean_data', async(req, res) => {
@@ -49,6 +52,10 @@ app.use('/api/v1/data', authenticatedUser, dataRouter);
 app.use('/api/v1/kelurahan', authenticatedUser, kelurahanRoute);    //  ADD OTHER MIDDLEWARE FOR CHECKING IF USER IS KELURAHAN TO ACCESS THIS ROUTE
 app.use('/api/v1/rt', authenticatedUser, rtRoute)                   // ADD OTHER MIDDLEWARE FOR CHECKING IF USER IS RT TO ACCESS THIS ROUTE
 app.use('/api/v1/user', authenticatedUser, userRouter);
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public', 'index.html'))
+})
 
 app.use(errorHandlerMiddleware);
 
