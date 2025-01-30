@@ -4,7 +4,7 @@ import { Form, useLoaderData, useNavigation } from 'react-router-dom'
 import customFetch from '../../utils/customFetch'
 import moment from 'moment'
 import { useKelurahanContext } from './KelurahanLayout'
-import { LoaderCircle } from 'lucide-react'
+import { FileDown, LoaderCircle } from 'lucide-react'
 import { handleToast } from '../../components/CustomToast'
 
 export const action = async({request, params}) => {
@@ -51,7 +51,11 @@ const DetailPengajuan = () => {
         <div className='w-full flex items-center justify-between'>
           <h1 className='text-4xl font-semibold text-slate-900 capitalize'>Detail Permohonan</h1>
 
-          
+          {data.statusAccKelurahan === 'terima' ? (
+            <p  className='flex items-center gap-x-4 bg-newBlue/80 px-6 py-2 rounded-lg text-sm text-white'>
+              Diterima
+            </p>
+          ) : null}
         </div>
         <p className='text-md mt-2 text-slate-500 w-[80%]'>Pastikan semua data pemohon sudah sesuai dan lakukan verifikasi sebelum mengambil tindakan lanjutan. Anda dapat menyetujui, ataupun menolak.</p>
 
