@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import customFetch from '../../utils/customFetch'
 import handleErrorMessage from '../../utils/handleErrorMessage'
-import { ImageViewer, BigDataContainer, DataContainer, RtAndKelurahanMap, Timeline } from '../../components'
+import { ImageViewer, BigDataContainer, DataContainer, RtAndKelurahanMap } from '../../components'
 import moment from 'moment'
 import { handleToast } from '../../components/CustomToast'
 import { redirect, useLoaderData } from 'react-router-dom'
@@ -22,7 +22,18 @@ const DetailAjuanUser = () => {
 
   const { data } = useLoaderData()
   const [currentTab, setCurrentTab] = useState('first')
-  const { toggleImageReview, showImageReview } = useUserDashboardContext() 
+  const { toggleImageReview, showImageReview } = useUserDashboardContext()
+
+
+  const handleDownload = () => {
+    const fileUrl = "/template.docx"; // Akses langsung dari public
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "surat.docx");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   
 
   return (
@@ -40,7 +51,10 @@ const DetailAjuanUser = () => {
 
             {/* show approve banner */}
             { data.statusAccKelurahan === 'terima' && data.statusAccRt === 'terima' ? (
-              <p className='w-fit text-center py-2 rounded-md bg-newBlue/80 text-white font-medium text-sm px-10'>Diterima</p>
+              <div className='flex justify-center gap-x-2'>
+                <p className='w-fit text-center py-2 rounded-md bg-newBlue/80 text-white font-medium text-sm px-10'>Diterima</p>
+                <button onClick={handleDownload} className='w-fit text-center py-2 rounded-md bg-newBlue/80 text-white font-medium text-sm px-10'>Unduh Surat</button>
+              </div>
             ) : null }
 
             {/* show tolak banner */}
